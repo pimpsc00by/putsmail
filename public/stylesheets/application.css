@@ -7,7 +7,7 @@ body{
 	border: 2px solid #000;
 } 
 #body:focus {
-	border: 2px solid #CCC;
+	border: 2px solid #FCB205;
 }
 .inputText {
 	width:300px;
@@ -15,7 +15,7 @@ body{
 	border: 2px solid #000;
 }
 .inputText:focus {
-	border: 2px solid #ccc;
+	border: 2px solid #FCB205;
 }
 .inputButton {
 	width:150px;
