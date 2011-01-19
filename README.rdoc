@@ -1,0 +1,13 @@
+== Puts Mail
+
+It's a mail test tool, to test your mails before send them
+
+The main idea of this tool, is to test html mail, to send it as campaign, newsletter and others (please, don't use it to spam test, help us to make a better world)
+
+You can see Puts Mail in action on the link below
+
+http://putsmail.com
+
+== Do you want to improve Puts Mail
+
+You’re welcome to make your contributions and send them as a pull request
