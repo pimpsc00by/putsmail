@@ -19,7 +19,7 @@ var PutsMail = {
 	},
 	preview: function(){
 		var preview = window.open('', 'preview');
-		preview.document.write($('#body').value);
+		preview.document.write($('#body').val());
 	},
 	sendToken: function(){
 		$.ajaxSetup({async:false});
