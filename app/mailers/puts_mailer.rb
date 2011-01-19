@@ -3,7 +3,7 @@ class PutsMailer < ActionMailer::Base
 
   def puts_mail(to, subject, body)
     @body = body
-    mail(:to => to, :subject => subject, :body => body)
+    mail(:to => to, :subject => subject, :body => raw(body))
   end
   
 end
