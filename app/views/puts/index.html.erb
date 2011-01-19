@@ -2,7 +2,7 @@
 body{
 	font-family: verdana, arial;
 }
-#mailBody {
+#body {
 	width:480px;
 	height:250px;
 	border: 2px solid #000;
@@ -39,17 +39,6 @@ ul li {
 }
 </style>
 
-<script>
-	var PutsMail = {
-		checkImagesSrc: function(){
-		},
-		preview: function(){
-			var preview = window.open('', 'preview');
-			preview.document.write(document.getElementById('mailBody').value);
-		}		
-	};
-</script>
-
 <div id="content">
 	<h1>Puts Mail</h1>
 	<h2>It's a mail test tool, to test your mails before send them</h2>
@@ -58,22 +47,22 @@ ul li {
 		The main idea of this tool, is to test html mail, to send it as campaign, newsletter and others (please, don't use it to spam test, help us to make a better world)
 	</p>
 	<p>
-		<label for="mailTo">* To</label><br/>
-		<input type="text" id="mailTo" class="inputText">&nbsp;<input type="button" value="Send activation code" class="inputButton"> 
+		<label for="to">* To</label><br/>
+		<input type="text" id="to" class="inputText">&nbsp;<input type="button" id="sendToken" onclick="PutsMail.sendToken();" value="Send activation code" class="inputButton"> 
 	</p>
 	<p>
-		<label for="mailSubject">Subject</label><br/>
-		<input type="text" id="mailSubject" class="inputText">
+		<label for="subject">Subject</label><br/>
+		<input type="text" id="subject" class="inputText" value="Puts Mail - Test">
 	</p>
 	<p>
-		<label for="activationCode">* Activation code</label> (<a href="#what_is_the_activation_code">what is it?</a>)<br/>
-		<input type="text" id="activationCode" class="inputText">
+		<label for="token">* Token</label> (<a href="#what_is_the_token">what is it?</a>)<br/>
+		<input type="text" id="token" class="inputText">
 	</p>
 	<div id="columns">
 		<div id="left">
 			<p>
-				<label for="mailBody">* Body (paste your mail body here)</label><br/>
-				<textarea id="mailBody"></textarea>
+				<label for="body">* Body (paste your mail body here)</label><br/>
+				<textarea id="body"></textarea>
 			</p>
 		</div>
 		<div id="right">
@@ -86,14 +75,14 @@ ul li {
 		</div>
 	</div>
 	<p>
-		<input type="button" onclick="PutsMail.preview();" value="Preview" class="inputButton"/> | <input type="button" value="Send mail" class="inputButton" onclick="PutsMail.checkImagesSrc();"/>
+		<input type="button" onclick="PutsMail.preview();" value="Preview" class="inputButton"/> | <input type="button" id="sendMail" value="Send mail" class="inputButton" onclick="PutsMail.putsMail();"/>
 	</p>
 
-	<h3 id="what_is_the_activation_code">What is the activation code?</h3>
+	<h3 id="what_is_the_activation_code">What is the token?</h3>
 	<p>
-		The activation code, is the code sent to your mail to guarantee that you are you. To avoid the usage of this tool to send inappropriate mail
+		The token, is the code sent to your mail to guarantee that you are you. To avoid the usage of this tool to send inappropriate mail
 	</p>
 	<p>
-		You can use the same code how many times as you want. If you request a new activation code, the previous code will be inativated
+		You can use the same token how many times as you want
 	</p>
 </div>

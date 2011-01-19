@@ -1,4 +1,5 @@
 Putsmail::Application.routes.draw do
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +49,11 @@ Putsmail::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "puts#index"
+  root :to => 'puts#index'
+  
+  match '/user' => 'users#create', :via => :post
+  
+  match '/puts_mail' => 'puts#puts_mail', :via => :post
 
   # See how all your routes lay out with "rake routes"
 
