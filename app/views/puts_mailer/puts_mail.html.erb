@@ -1,4 +1,5 @@
 <% 
-require 'cgi'
+#require 'cgi'
 %>
-<%=CGI.unescapeHTML(@body)%>
+<%#=CGI.unescapeHTML(@body)%>
+<%=raw(raw(@body))%>
