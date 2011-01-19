@@ -1,5 +1,5 @@
 class PutsMailer < ActionMailer::Base
-  default :from => 'megasename@gmail.com'
+  default :from => 'test@putsmail.com'
 
   def puts_mail(to, subject, body)
     @body = body

@@ -4,11 +4,11 @@
 ActionMailer::Base.smtp_settings = {  
   :address              => 'smtp.gmail.com',  
   :port                 => 587,  
-  :domain               => 'megasename.heroku.com',  
-  :user_name            => ENV['GMAIL_MEGASENAME_USER'] || 'megasename@gmail.com',  
-  :password             => ENV['GMAIL_MEGASENAME_PASSWORD'] || 'birobiro',  
+  :domain               => 'putsmail.com',  
+  :user_name            => ENV['EMAIL_FROM']
+  :password             => ENV['EMAIL_FROM_PASSWORD']
   :authentication       => 'plain',  
   :enable_starttls_auto => true  
 }
 
-ActionMailer::Base.default_url_options[:host] = ENV['MEGASENA_ME_DOMAIN'] || 'http://putsmail.heroku.com'
+ActionMailer::Base.default_url_options[:host] = 'http://putsmail.com'

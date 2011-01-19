@@ -2,12 +2,12 @@ require "spec_helper"
 
 describe PutsMailer do
   describe "send" do
-    let(:mail) { PutsMailer.puts_mail('to@example.org', 'Send', 'Hi') }
+    let(:mail) { PutsMailer.puts_mail('pablo@putsmail.com', 'Send', 'Hi') }
 
     it "renders the headers" do
       mail.subject.should eq("Send")
-      mail.to.should eq(["to@example.org"])
-      mail.from.should eq(["megasename@gmail.com"])
+      mail.to.should eq(["pablo@putsmail.com"])
+      mail.from.should eq(["test@putsmail.com"])
     end
 
     it "renders the body" do
