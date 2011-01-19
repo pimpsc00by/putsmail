@@ -5,8 +5,8 @@ ActionMailer::Base.smtp_settings = {
   :address              => 'smtp.gmail.com',  
   :port                 => 587,  
   :domain               => 'putsmail.com',  
-  :user_name            => ENV['EMAIL_FROM']
-  :password             => ENV['EMAIL_FROM_PASSWORD']
+  :user_name            => ENV['EMAIL_FROM'],
+  :password             => ENV['EMAIL_FROM_PASSWORD'],
   :authentication       => 'plain',  
   :enable_starttls_auto => true  
 }
