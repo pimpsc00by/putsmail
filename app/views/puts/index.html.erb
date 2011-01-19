@@ -2,7 +2,7 @@
 body{
 	font-family: verdana, arial;
 }
-#mailContent {
+#mailBody {
 	width:480px;
 	height:250px;
 	border: 2px solid #000;
@@ -42,7 +42,11 @@ ul li {
 <script>
 	var PutsMail = {
 		checkImagesSrc: function(){
-		}
+		},
+		preview: function(){
+			var preview = window.open('', 'preview');
+			preview.document.write(document.getElementById('mailBody').value);
+		}		
 	};
 </script>
 
@@ -68,8 +72,8 @@ ul li {
 	<div id="columns">
 		<div id="left">
 			<p>
-				<label for="mailContent">* Body (paste your mail body here)</label>
-				<textarea id="mailContent"></textarea>
+				<label for="mailBody">* Body (paste your mail body here)</label><br/>
+				<textarea id="mailBody"></textarea>
 			</p>
 		</div>
 		<div id="right">
@@ -82,7 +86,7 @@ ul li {
 		</div>
 	</div>
 	<p>
-		<input type="button" value="Send mail" class="inputButton" onclick="PutsMail.checkImagesSrc();">
+		<input type="button" onclick="PutsMail.preview();" value="Preview" class="inputButton"/> | <input type="button" value="Send mail" class="inputButton" onclick="PutsMail.checkImagesSrc();"/>
 	</p>
 
 	<h3 id="what_is_the_activation_code">What is the activation code?</h3>
