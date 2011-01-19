@@ -1,8 +1,8 @@
 == Puts Mail
 
-It's a mail test tool, to test your mails before send them
+It's a mail test tool to test your mails before sending them
 
-The main idea of this tool, is to test html mail, to send it as campaign, newsletter and others (please, don't use it to spam test, help us to make a better world)
+The main idea of this tool is to test HTML mails that will be sent as campaigns, newsletters and others (please, don't use it to spam, help us make a better world) 
 
 You can see Puts Mail in action on the link below
 
