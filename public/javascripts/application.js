@@ -26,12 +26,12 @@ var PutsMail = {
 		var mailTo = $('#to').val();
 		$('#sendToken').attr('disabled', true);
 		$.post('/user', {mail: mailTo}, function(data) {
-			$('#sendToken').attr('disabled', false);
 			var errors = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(errors)){
 				alert('The activation code was sent to ' + mailTo);
 			}
 		});
+		$('#sendToken').attr('disabled', false);
 	},
 	putsMail: function(){
 		$.ajaxSetup({async:false});
@@ -41,11 +41,11 @@ var PutsMail = {
 		var body = $('#body').val();
 		$('#sendMail').attr('disabled', true);
 		$.post('/puts_mail', {mail: mailTo, token: token, subject: subject, body: body}, function(data) {
-			$('#sendMail').attr('disabled', false);
 			var errors = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(errors)){
 				alert('The mail was sent to ' + mailTo);
 			}
 		});		
+		$('#sendMail').attr('disabled', false);
 	}		
 };
