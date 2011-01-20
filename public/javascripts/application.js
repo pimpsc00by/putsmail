@@ -28,7 +28,7 @@ var PutsMail = {
 		$.post('/user', {mail: mailTo}, function(data) {
 			var errors = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(errors)){
-				alert('The activation code was sent to ' + mailTo);
+				alert('The token was sent to ' + mailTo);
 			}
 		});
 		$('#sendToken').attr('disabled', false);
