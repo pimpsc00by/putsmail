@@ -5,13 +5,19 @@ class User < ActiveRecord::Base
   
   validates :mail, :presence => true, :email_format => true
   
-  before_create :generate_token
+  before_create :set_token
   
   private
   
-  def generate_token
+  def set_token
     # write_attribute :token, self.mail.crypt((rand * 1000).to_s)
-    write_attribute :token, Digest::MD5.hexdigest(self.mail)
+    # write_attribute :token, Digest::MD5.hexdigest(self.mail)
+    # http://www.ruby-doc.org/core/classes/Time.html#M000392
+    write_attribute :token, generate_token(self.mail)
+  end
+  
+  def generate_token(param)
+    Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
   end
   
 end

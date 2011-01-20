@@ -4,7 +4,9 @@ describe User do
   
   it 'should create a token' do
     apu = User.create(:mail => 'apu@kwik-e-mart.com')
-    apu.token.should eql('16ff12167572d9c6a501f0da76a12207')
+    apu.valid?.should be_true
+    apu.new_record?.should be_false
+    apu.token.nil?.should be_false
   end
   
   it 'should not save with invalid mail' do
