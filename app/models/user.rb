@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   private
   
   def generate_token
+    # write_attribute :token, self.mail.crypt((rand * 1000).to_s)
     write_attribute :token, Digest::MD5.hexdigest(self.mail)
   end
   
