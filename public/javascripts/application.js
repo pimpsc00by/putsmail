@@ -23,9 +23,9 @@ var PutsMail = {
 	},
 	sendToken: function(){
 		$.ajaxSetup({async:false});
-		var mail = $('#to').val();
+		var mailTo = $('#to').val();
 		$('#sendToken').attr('disabled', true);
-		$.post('/user', {mail: mail}, function(data) {
+		$.post('/user', {mail: mailTo}, function(data) {
 			var errors = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(errors)){
 				alert('The token was sent to ' + mailTo);
@@ -35,12 +35,12 @@ var PutsMail = {
 	},
 	putsMail: function(){
 		$.ajaxSetup({async:false});
-		var mail = $('#to').val();
+		var mailTo = $('#to').val();
 		var token = $('#token').val();
 		var subject = $('#subject').val();
 		var body = $('#body').val();
 		$('#sendMail').attr('disabled', true);
-		$.post('/puts_mail', {mail: mail, token: token, subject: subject, body: body}, function(data) {
+		$.post('/puts_mail', {mail: mailTo, token: token, subject: subject, body: body}, function(data) {
 			var errors = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(errors)){
 				alert('The mail was sent to ' + mailTo);
