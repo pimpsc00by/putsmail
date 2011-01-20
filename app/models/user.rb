@@ -17,7 +17,11 @@ class User < ActiveRecord::Base
   end
   
   def generate_token(param)
-    Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
+    # Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
+    # 100000 ~ 999999
+    min = 100000
+    max = 999999
+    (min + rand(max)).to_i
   end
   
 end
