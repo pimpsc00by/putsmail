@@ -1,8 +1,8 @@
 class PutsController < ApplicationController
   
   def index
-    @to = session[:to]
-    @token = session[:token]
+    @to = params[:to] || session[:to]
+    @token = params[:token] || session[:token]
   end
   
   def puts_mail
