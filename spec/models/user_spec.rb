@@ -31,9 +31,11 @@ describe User do
   it 'should reset the token' do
     apu = User.reset_or_create_by_mail('apu@kwik-e-mart.com')
     apu.token_reset?.should be_false
+    apu.new_record?.should be_false
     
     apu2 = User.reset_or_create_by_mail('apu@kwik-e-mart.com')
     apu2.token_reset?.should be_true
+    apu.new_record?.should be_false
     
     apu.token.should_not eql(apu2.token)
   end
