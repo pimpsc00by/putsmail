@@ -9,6 +9,22 @@ describe UsersController do
       response.should be_success
     end
     
+    # reset_or_create_by_mail
+    # it "should be successful with errors" do
+    #   mail = 'ned@the-leftorium.com'
+    #   user = mock(User)
+    #   user.stub!(:new_record?).and_return(false)
+    #   user.stub!(:token_reset?).and_return(false)
+    #   errors = {:mail => "can't be blank"}
+    #   user.stub!(:errors).and_return(errors)
+    #   User.stub!(:reset_or_create_by_mail).with(mail).and_return(user)
+    #   mailer = mock(ActionMailer::Base)
+    #   mailer.stub!(:deliver)
+    #   UserMailer.stub!(:registration_confirmation).and_return(mailer)
+    #   post 'create', :mail => mail
+    #   response.body.should eql("{\"token_reset\":false,\"errors\":{\"mail\":\"can't be blank\"}}")
+    # end
+    
     it "should be successful with errors" do
       mail = 'ned@the-leftorium.com'
       user = mock(User)
@@ -16,13 +32,29 @@ describe UsersController do
       user.stub!(:token_reset?).and_return(false)
       errors = {:mail => "can't be blank"}
       user.stub!(:errors).and_return(errors)
-      User.stub!(:reset_or_create_by_mail).with(mail).and_return(user)
+      User.stub!(:find_or_create_by_mail).with(mail).and_return(user)
       mailer = mock(ActionMailer::Base)
       mailer.stub!(:deliver)
       UserMailer.stub!(:registration_confirmation).and_return(mailer)
       post 'create', :mail => mail
       response.body.should eql("{\"token_reset\":false,\"errors\":{\"mail\":\"can't be blank\"}}")
     end
+    
+    # reset_or_create_by_mail
+    # it "should be successful" do
+    #   mail = 'ned@the-leftorium.com'
+    #   user = mock(User)
+    #   user.stub!(:new_record?).and_return(false)
+    #   user.stub!(:token_reset?).and_return(false)
+    #   errors = {}
+    #   user.stub!(:errors).and_return(errors)
+    #   User.stub!(:reset_or_create_by_mail).with(mail).and_return(user)
+    #   mailer = mock(ActionMailer::Base)
+    #   mailer.stub!(:deliver)
+    #   UserMailer.stub!(:registration_confirmation).and_return(mailer)
+    #   post 'create', :mail => mail
+    #   response.body.should eql("{\"token_reset\":false,\"errors\":{}}")
+    # end
     
     it "should be successful" do
       mail = 'ned@the-leftorium.com'
@@ -31,7 +63,7 @@ describe UsersController do
       user.stub!(:token_reset?).and_return(false)
       errors = {}
       user.stub!(:errors).and_return(errors)
-      User.stub!(:reset_or_create_by_mail).with(mail).and_return(user)
+      User.stub!(:find_or_create_by_mail).with(mail).and_return(user)
       mailer = mock(ActionMailer::Base)
       mailer.stub!(:deliver)
       UserMailer.stub!(:registration_confirmation).and_return(mailer)
