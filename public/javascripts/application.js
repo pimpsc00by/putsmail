@@ -30,7 +30,7 @@ var PutsMail = {
 			if(!PutsMail.showErrorsFor(data.errors)){
 				var msg = '';
 				if(data.token_reset){
-					msg = 'Your token was reset! The previous token was inactivated\n';
+					msg = 'Your token was reset! The previous token has been disabled\n\n';
 				}
 				msg += 'The token was sent to ' + mailTo; 
 				alert(msg);

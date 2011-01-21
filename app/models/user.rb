@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
       user = User.create(:mail => mail)
     else
       user.set_or_reset_token
+      user.save
     end
     user
   end
