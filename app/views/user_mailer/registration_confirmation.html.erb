@@ -1,5 +1,9 @@
 <h2>Hello <%=@user.mail%></h2>
 
+<% if @user.token_reset? %>
+	Your token was reset! The previous token was inactivated
+<% end %>
+
 <p>
 	Your token is <%=@user.token%>
 </p>
@@ -11,7 +15,9 @@
 <p>
 	If you didn't request this token, just ignore this mail
 </p>
+
 <p>
 	If you have any doubts or suggestions, please leave a message at <a href="http://pablocantero.com/blog/contato/">http://pablocantero.com/blog/contato/</a>
 </p>
+
 <a href="http://putsmail.com">http://putsmail.com</a>

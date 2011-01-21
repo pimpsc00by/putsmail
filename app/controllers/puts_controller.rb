@@ -10,7 +10,10 @@ class PutsController < ApplicationController
     session[:token] = params[:token]
     puts_mail = PutsMail.new
     puts_mail.puts_mail(params[:mail], params[:token], params[:subject], params[:body])
-    render :text => puts_mail.errors.to_json
+    json_data ={
+      :errors => puts_mail.errors
+    }
+    render :text => json_data.to_json
   end
   
 end
