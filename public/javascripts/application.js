@@ -38,7 +38,32 @@ var PutsMail = {
 		});
 		$('#sendToken').attr('disabled', false);
 	},
+	checkImagesSource: function(){
+		// Validate putsMail - img src
+		var div = document.createElement('div');
+		div.innerHTML = $('#body').val();
+		var imgs = div.getElementsByTagName('img');
+		var count = 0;
+		for(var i = 0; i < imgs.length; i++){
+			var img = imgs[i];
+			var imgSrc = '';
+			if(img.attributes['src'] && img.attributes['src'].nodeValue){
+				imgSrc = img.attributes['src'].nodeValue.toLowerCase();
+			}
+			if(imgSrc.indexOf('http://') != 0){
+				count++;
+			}
+		}
+		if(count > 0){
+			return (confirm('Ooops! ' + count + ' local image(s) found. The img src attribute must begin with "http://" to be available on the mail\n\nContinue send mail?'))
+		}
+		return true;
+		// Validate putsMail - img src
+	},
 	putsMail: function(){
+		if(!PutsMail.checkImagesSource()){
+			return;
+		}
 		$.ajaxSetup({async:false});
 		var mailTo = $('#to').val();
 		var token = $('#token').val();
