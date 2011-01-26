@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(:version => 20110126000723) do
     t.datetime "updated_at"
   end
 
-  # create_table "users", :force => true do |t|
-  #   t.string   "mail",       :null => false
-  #   t.string   "token",      :null => false
-  #   t.datetime "created_at"
-  #   t.datetime "updated_at"
-  # end
+  create_table "users", :force => true do |t|
+    t.string   "mail",       :null => false
+    t.string   "token",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
