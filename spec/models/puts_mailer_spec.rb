@@ -7,15 +7,19 @@ describe PutsMail do
     puts_mail = PutsMail.new
     subject = 'Hello Apu'
     body = 'Are you interested in new oportunities?'
+    mail_counter = Property.mail_counter
     puts_mail.puts_mail(apu.mail, apu.token, subject, body)
     puts_mail.valid?.should be_true
+    (mail_counter + 1).should eql(Property.mail_counter)
     # PutsMailer.any_instance.should_receive(:puts_mail).with(apu.mail, subject, body)
   end
   
   it 'should not puts mail with invalid mail' do
     apu = User.create(:mail => 'apu@kwik-e-mart.com')
     puts_mail = PutsMail.new
+    mail_counter = Property.mail_counter
     puts_mail.puts_mail(apu.mail, apu.token, 'Hello Apu')
+    mail_counter.should eql(Property.mail_counter)
     puts_mail.valid?.should be_false
     puts_mail.errors['body'].should eql("can't be blank")
   end

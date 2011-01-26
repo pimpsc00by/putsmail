@@ -74,6 +74,7 @@ var PutsMail = {
 			data = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(data.errors)){
 				alert('The mail was sent to ' + mailTo);
+				$('#mail_counter').text(data.mail_counter);
 			}
 		});		
 		$('#sendMail').attr('disabled', false);

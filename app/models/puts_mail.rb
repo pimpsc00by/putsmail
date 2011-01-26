@@ -19,6 +19,7 @@ class PutsMail
     end  
     if valid?  
       PutsMailer.puts_mail(user.mail, subject, body).deliver
+      Property.increment_mail_counter
     end
   end
   

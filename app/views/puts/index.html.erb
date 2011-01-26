@@ -32,6 +32,18 @@
 				<li>Check if all image sources are available online. You can use many free services to upload your images like <a href="http://imageshack.us">Image Shack</a></li>
 				<li>Check out these articles <a href="http://www.adobe.com/devnet/dreamweaver/articles/html_emails.html">Creating cross-client HTML emails</a>, <a href="http://www.campaignmonitor.com/design-guidelines/">Email design guidelines</a> and <a href="http://www.campaignmonitor.com/css/">Guide to CSS support in email clients</a>
 			</ul>
+			<div class="box_counter_header">
+				Users
+				<div class="box_counter_body">
+					<%=@users_counter%>
+				</div>
+			</div>
+			<div class="box_counter_header">
+				Sent mail
+				<div class="box_counter_body" id="mail_counter">
+					<%=@mail_counter%>
+				</div>
+			</div>
 		</div>
 	</div>
 	<p>

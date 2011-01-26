@@ -43,3 +43,17 @@ ul li {
 	font-size: 12px;
 	margin-bottom: 5px;
 }
+
+.box_counter_header {
+	background-color: #000; 
+	color: #FFF; 
+	width: 100px; 
+	text-align: center; 
+	border: 1px solid #000; 
+	float: left; 
+	margin: 5px 10px 0 0
+}
+.box_counter_body {
+	background-color: #FFF; 
+	color: #000; 
+}
