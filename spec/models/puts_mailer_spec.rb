@@ -37,7 +37,12 @@ describe PutsMail do
     puts_mail = PutsMail.new
     puts_mail.puts_mail(apu.mail, nil, 'Hello Apu', 'Are you interested in new oportunities?')
     puts_mail.valid?.should be_false
+    puts_mail.errors[''].should be_nil
+    puts_mail.errors['token'].should eql("can't be blank")
+    # check mail and token
+    puts_mail.puts_mail(apu.mail, 'blah!', 'Hello Apu', 'Are you interested in new oportunities?')
     puts_mail.errors[''].should eql("to and token don't match")
+    
   end
   
 end
