@@ -61,9 +61,9 @@ var PutsMail = {
 		// Validate putsMail - img src
 	},
 	putsMail: function(){
-		if(!PutsMail.checkImagesSource()){
-			return;
-		}
+		// if(!PutsMail.checkImagesSource()){
+		//	return;
+		// }
 		$.ajaxSetup({async:false});
 		var mailTo = $('#to').val();
 		var token = $('#token').val();
