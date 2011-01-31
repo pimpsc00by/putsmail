@@ -57,3 +57,22 @@ ul li {
 	background-color: #FFF; 
 	color: #000; 
 }
+
+.poor td {
+    background-color: #777777;
+    color: #FFFFFF;
+}
+.risky td {
+    background-color: #CCCCCC;
+    color: #222222;
+}
+.safe td {
+    background-color: #EAEAEA;
+    color: #333333;
+}
+
+.warnings th {
+    background-color: #555555;
+    color: #FFFFFF;
+    font-weight: bold;
+}

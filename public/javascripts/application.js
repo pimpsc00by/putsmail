@@ -38,32 +38,42 @@ var PutsMail = {
 		});
 		$('#sendToken').attr('disabled', false);
 	},
-	checkImagesSource: function(){
-		// Validate putsMail - img src
-		var div = document.createElement('div');
-		div.innerHTML = $('#body').val();
-		var imgs = div.getElementsByTagName('img');
-		var count = 0;
-		for(var i = 0; i < imgs.length; i++){
-			var img = imgs[i];
-			var imgSrc = '';
-			if(img.attributes['src'] && img.attributes['src'].nodeValue){
-				imgSrc = img.attributes['src'].nodeValue.toLowerCase();
+	premailer: function(){
+		$.ajaxSetup({async:false});
+		// var mailTo = $('#to').val();
+		// var token = $('#token').val();
+		// var subject = $('#subject').val();
+		var body = $('#body').val();
+		$('#premailer').attr('disabled', true);
+		$.post('/premailer', {body: body}, function(data) {
+			data = eval('(' + data + ')');
+			$('#body').val(data.body)
+			$('#premailer_log table').remove();
+			if(data.warnings.length > 0){
+				var table = $('<table summary="List of HTML and CSS warnings" id="premailer-warnings" class="warnings">');
+				var tableHead = $('<thead>');
+				table.append(tableHead);
+				var trHead = $('<tr>');
+				tableHead.append(trHead);
+				trHead.append($('<th>Property</th>'));
+				trHead.append($('<th>Support</th>'));
+				trHead.append($('<th>Unsupported clients</th>'));
+				var tableBody = $('<tbody>');
+				table.append(tableBody);
+				for(var i = 0; i < data.warnings.length; i++){
+					var trBody = $('<tr class="' + data.warnings[i].level.toLowerCase() + '">');
+					tableBody.append(trBody);
+					trBody.append($('<td>' + data.warnings[i].message + '</td>'));
+					trBody.append($('<td>' + data.warnings[i].level + '</td>'));
+					trBody.append($('<td>' + data.warnings[i].clients + '</td>'));
+				}
+				$('#premailer_log').append(table);
 			}
-			if(imgSrc.indexOf('http://') != 0){
-				count++;
-			}
-		}
-		if(count > 0){
-			return (confirm('Ooops! ' + count + ' local image(s) found. The img src attribute must begin with "http://" to be available on the mail\n\nContinue send mail?'))
-		}
-		return true;
-		// Validate putsMail - img src
+			alert('Your body was Premailed!');
+		});		
+		$('#premailer').attr('disabled', false);		
 	},
 	putsMail: function(){
-		// if(!PutsMail.checkImagesSource()){
-		//	return;
-		// }
 		$.ajaxSetup({async:false});
 		var mailTo = $('#to').val();
 		var token = $('#token').val();

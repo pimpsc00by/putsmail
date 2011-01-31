@@ -54,6 +54,8 @@ Putsmail::Application.routes.draw do
   match '/user' => 'users#create', :via => :post
   
   match '/puts_mail' => 'puts#puts_mail', :via => :post
+  
+  match '/premailer' => 'puts#premailer', :via => :post
 
   # See how all your routes lay out with "rake routes"
 

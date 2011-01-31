@@ -19,4 +19,13 @@ class PutsController < ApplicationController
     render :text => json_data.to_json
   end
   
+  def premailer
+    premailer = Premailer.new(params[:body], {:warn_level => Premailer::Warnings::SAFE, :with_html_string => true})
+    json_data ={
+      :body => premailer.to_inline_css,
+      :warnings => premailer.warnings
+    }
+    render :text => json_data.to_json
+  end
+  
 end
