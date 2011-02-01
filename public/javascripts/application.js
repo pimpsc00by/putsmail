@@ -69,7 +69,8 @@ var PutsMail = {
 				}
 				$('#premailer_log').append(table);
 			}
-			alert('Your body was Premailed!');
+			alert("Your mail's body was replaced by Premailer!");
+			$('#body').focus();
 		});		
 		$('#premailer').attr('disabled', false);		
 	},
