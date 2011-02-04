@@ -1,9 +1,5 @@
 <h2>Hello <%=@user.mail%></h2>
 
-<% if @user.token_reset? %>
-	Your token was reset! The previous token was disabled
-<% end %>
-
 <p>
 	Your token is <a href="http://putsmail.com?to=<%=@user.mail%>&token=<%=@user.token%>"><%=@user.token%></a>
 </p>

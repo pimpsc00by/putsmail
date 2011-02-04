@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe PutsMail do
   
+  fixtures :users
+  
   it 'should puts mail' do
-    apu = User.create(:mail => 'apu@kwik-e-mart.com')
+    apu = users(:apu)
     puts_mail = PutsMail.new
     subject = 'Hello Apu'
     body = 'Are you interested in new oportunities?'
@@ -15,7 +17,7 @@ describe PutsMail do
   end
   
   it 'should not puts mail with invalid mail' do
-    apu = User.create(:mail => 'apu@kwik-e-mart.com')
+    apu = users(:apu)
     puts_mail = PutsMail.new
     mail_counter = Property.mail_counter
     puts_mail.puts_mail(apu.mail, apu.token, 'Hello Apu')
@@ -33,7 +35,7 @@ describe PutsMail do
   end
   
   it 'should not puts mail when to and token do not match' do
-    apu = User.create(:mail => 'apu@kwik-e-mart.com')
+    apu = users(:apu)
     puts_mail = PutsMail.new
     puts_mail.puts_mail(apu.mail, nil, 'Hello Apu', 'Are you interested in new oportunities?')
     puts_mail.valid?.should be_false

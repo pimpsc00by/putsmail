@@ -2,13 +2,16 @@ require 'spec_helper'
 
 describe User do
   
+  fixtures :users
+  
   it 'should create a token' do
     # http://en.wikipedia.org/wiki/Apu_Nahasapeemapetilon
     # http://en.wikipedia.org/wiki/Kwik-E-Mart
-    apu = User.reset_or_create_by_mail('apu@kwik-e-mart.com')
-    apu.valid?.should be_true
-    apu.new_record?.should be_false
-    apu.token.nil?.should be_false
+    apu2 = User.new(:mail => 'apu2@kwik-e-mart.com')
+    apu2.save
+    apu2.valid?.should be_true
+    apu2.new_record?.should be_false
+    apu2.token.nil?.should be_false
   end
   
   it 'should not save with invalid mail' do
@@ -26,18 +29,6 @@ describe User do
     # valid 1
     ned.mail = 'ned@the-leftorium.com'
     ned.valid?.should be_true
-  end
-  
-  it 'should reset the token' do
-    apu = User.reset_or_create_by_mail('apu@kwik-e-mart.com')
-    apu.token_reset?.should be_false
-    apu.new_record?.should be_false
-    
-    apu2 = User.reset_or_create_by_mail('apu@kwik-e-mart.com')
-    apu2.token_reset?.should be_true
-    apu.new_record?.should be_false
-    
-    apu.token.should_not eql(apu2.token)
   end
   
 end

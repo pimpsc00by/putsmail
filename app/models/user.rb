@@ -7,27 +7,11 @@ class User < ActiveRecord::Base
   
   before_create :set_or_reset_token
   
-  def self.reset_or_create_by_mail(mail)
-    user = User.find_by_mail(mail)
-    if user.nil?
-      user = User.create(:mail => mail)
-    else
-      user.set_or_reset_token
-      user.save
-    end
-    user
-  end
-  
-  def token_reset?
-    @token_reset == true
-  end
-    
-  def set_or_reset_token
-    @token_reset = self.token != nil
-    write_attribute :token, generate_token(self.mail)
-  end
-  
   private
+  
+  def set_or_reset_token
+   write_attribute :token, generate_token(self.mail)
+  end
   
   def generate_token(param)
     # write_attribute :token, self.mail.crypt((rand * 1000).to_s)

@@ -28,12 +28,7 @@ var PutsMail = {
 		$.post('/user', {mail: mailTo}, function(data) {
 			data = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(data.errors)){
-				var msg = '';
-				if(data.token_reset){
-					msg = 'Your token was reset! The previous token was disabled\n\n';
-				}
-				msg += 'The token was sent to ' + mailTo; 
-				alert(msg);
+				alert('The token was sent to ' + mailTo);
 			}
 		});
 		$('#sendToken').attr('disabled', false);
