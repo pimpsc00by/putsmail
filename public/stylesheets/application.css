@@ -76,3 +76,11 @@ ul li {
     color: #FFFFFF;
     font-weight: bold;
 }
+.hireme {
+	background-color: #FFFFE0;
+	width: 360px;
+	padding: 10px;
+	border: 2px dotted #000;
+	font-weight: bold;
+	text-align: center;
+}
