@@ -34,6 +34,10 @@ var PutsMail = {
 		$('#sendToken').attr('disabled', false);
 	},
 	premailer: function(){
+		if(_gaq){
+			_gaq.push(['_trackEvent', 'premailer', 'check']);
+		}
+		
 		$.ajaxSetup({async:false});
 		// var mailTo = $('#to').val();
 		// var token = $('#token').val();
@@ -63,6 +67,9 @@ var PutsMail = {
 					trBody.append($('<td>' + data.warnings[i].clients + '</td>'));
 				}
 				$('#premailer_log').append(table);
+			}
+			if(_gaq){
+				_gaq.push(['_trackEvent', 'premailer', 'replaced']);
 			}
 			alert("Your mail's body was replaced by Premailer!");
 			$('#body').focus();
