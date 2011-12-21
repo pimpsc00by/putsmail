@@ -67,11 +67,13 @@ var PutsMail = {
 					trBody.append($('<td>' + data.warnings[i].clients + '</td>'));
 				}
 				$('#premailer_log').append(table);
+				alert("HTML Warnings found by Premailer!");
+			} else {
+				alert("No HTML Warnings found by Premailer!");
 			}
 			if(_gaq){
 				_gaq.push(['_trackEvent', 'premailer', 'replaced']);
 			}
-			alert("Your mail's body was replaced by Premailer!");
 			$('#body').focus();
 		});		
 		$('#premailer').attr('disabled', false);		
