@@ -1,8 +1,10 @@
 class PutsController < ApplicationController
   
   def index
-    @to = params[:to] || cookies[:to]
-    @token = params[:token] || cookies[:token]
+    # @to = params[:to] || cookies[:to]
+    # @token = params[:token] || cookies[:token]
+    @to = params[:to] || session[:to]
+    @token = params[:token] || session[:token]
     @users_counter = User.count
     @mail_counter = Property.mail_counter
   end
@@ -10,14 +12,16 @@ class PutsController < ApplicationController
   def puts_mail
     @mail = params[:mail]
     @token = params[:token]
-    cookies[:to] = {
-       :value => @mail,
-       :expires => 10.years.from_now
-    }
-    cookies[:token] = {
-       :value => @token,
-       :expires => 10.years.from_now
-    }
+    session[:to] = @mail
+    session[:token] = @token
+    # cookies[:to] = {
+    #    :value => @mail,
+    #    :expires => 10.years.from_now
+    # }
+    # cookies[:token] = {
+    #    :value => @token,
+    #    :expires => 10.years.from_now
+    # }
     puts_mail = PutsMail.new
     puts_mail.puts_mail(@mail, @token, params[:subject], params[:body])
     json_data ={
