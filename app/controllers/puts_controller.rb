@@ -1,17 +1,25 @@
 class PutsController < ApplicationController
   
   def index
-    @to = params[:to] || session[:to]
-    @token = params[:token] || session[:token]
+    @to = params[:to] || cookies[:to]
+    @token = params[:token] || cookies[:token]
     @users_counter = User.count
     @mail_counter = Property.mail_counter
   end
   
   def puts_mail
-    session[:to] = params[:mail]
-    session[:token] = params[:token]
+    @mail = params[:mail]
+    @token = params[:token]
+    cookies[:to] = {
+       :value => @mail,
+       :expires => 10.years.from_now
+    }
+    cookies[:token] = {
+       :value => @token,
+       :expires => 10.years.from_now
+    }
     puts_mail = PutsMail.new
-    puts_mail.puts_mail(params[:mail], params[:token], params[:subject], params[:body])
+    puts_mail.puts_mail(@mail, @token, params[:subject], params[:body])
     json_data ={
       :errors => puts_mail.errors,
       :mail_counter => Property.mail_counter
