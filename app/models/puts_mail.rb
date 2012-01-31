@@ -14,7 +14,7 @@ class PutsMail
     else
       user = User.find_or_create_by_mail(to)
       if user.valid? and !user.subscribed?
-         @errors.merge!({'' => "the e-mail '#{to}' unsubscribed the Puts Mail Test E-mails. To subscribe it again, send an e-mail to subscribe@putsmail.com."})
+         @errors.merge!({'' => "the e-mail '#{to}' unsubscribed the Puts Mail Test Mailer. To subscribe it again, send an e-mail to subscribe@putsmail.com."})
       end
       @errors.merge!(user.errors)
     end
