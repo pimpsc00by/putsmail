@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :mail, :presence => true, :email_format => true
   
   before_create :set_or_reset_token
+  before_create :set_default_subscribed_value
   
   def self.unsubscribe token
     user = User.find_by_token token
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  # private
+  private
   
   def set_or_reset_token
    write_attribute :token, generate_token(self.mail)
@@ -27,6 +28,10 @@ class User < ActiveRecord::Base
     # write_attribute :token, Digest::MD5.hexdigest(self.mail)
     # http://www.ruby-doc.org/core/classes/Time.html#M000392
     Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
+  end
+  
+  def set_default_subscribed_value
+    self.subscribed = true
   end
   
 end
