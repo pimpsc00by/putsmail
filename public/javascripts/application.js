@@ -21,18 +21,6 @@ var PutsMail = {
 		var preview = window.open('', 'preview');
 		preview.document.write($('#body').val());
 	},
-	sendToken: function(){
-		$.ajaxSetup({async:false});
-		var mailTo = $('#to').val();
-		$('#sendToken').attr('disabled', true);
-		$.post('/user', {mail: mailTo}, function(data) {
-			data = eval('(' + data + ')');
-			if(!PutsMail.showErrorsFor(data.errors)){
-				alert('The token was sent to ' + mailTo);
-			}
-		});
-		$('#sendToken').attr('disabled', false);
-	},
 	premailer: function(){
 		if(_gaq){
 			_gaq.push(['_trackEvent', 'premailer', 'check']);
@@ -79,7 +67,7 @@ var PutsMail = {
 		$('#premailer').attr('disabled', false);		
 	},
 	putsMail: function(){
-		$.ajaxSetup({async:false});
+		$.ajaxSetup({async:true});
 		var mailTo = $('#to').val();
 		var token = $('#token').val();
 		var subject = $('#subject').val();
