@@ -7,16 +7,18 @@
 	</p>
 	<p>
 		<label for="to">* To</label><br/>
-		<input type="text" id="to" class="inputText"  value="<%=@to%>">&nbsp;<input type="button" id="sendToken" onclick="PutsMail.sendToken();" value="Send token" class="inputButton"> 
+		<input type="text" id="to" class="inputText"  value="<%=@to%>"> <!-- &nbsp;<input type="button" id="sendToken" onclick="PutsMail.sendToken();" value="Send token" class="inputButton"> -->
 	</p>
 	<p>
-		<label for="subject">Subject</label><br/>
+		<label for="subject">* Subject</label><br/>
 		<input type="text" id="subject" class="inputText" value="Puts Mail - Test">
 	</p>
+<!--
 	<p>
 		<label for="token">* Token</label> (<a href="#what_is_the_token" title="What is the Token?">what is it?</a>)<br/>
 		<input type="text" id="token" class="inputText" value="<%=@token%>">
 	</p>
+-->
 	<div id="columns">
 		<div id="left">
 			<p>

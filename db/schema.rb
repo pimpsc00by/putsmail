@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110126000723) do
+ActiveRecord::Schema.define(:version => 20120131190946) do
 
   create_table "properties", :force => true do |t|
     t.string   "key"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110126000723) do
     t.string   "token",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "subscribed"
   end
 
 end

@@ -2,10 +2,19 @@ require 'email_format_validator'
 class User < ActiveRecord::Base
   
   validates_uniqueness_of :mail, :allow_nil => false
+  validates_uniqueness_of :token, :allow_nil => false
   
   validates :mail, :presence => true, :email_format => true
   
   before_create :set_or_reset_token
+  
+  def unsubscribe token
+    user = User.find_by_token token
+    if user
+      user.subscribed = false
+      user.save
+    end
+  end
   
   private
   

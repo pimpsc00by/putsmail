@@ -1,26 +1,25 @@
 class PutsMail
   
-  def puts_mail(to, token, subject = 'Puts Mail - Test', body = '')
+  def puts_mail(to, subject, body)
     @errors = {}
     to = to.to_s.strip
-    token = token.to_s.strip
+    if subject.blank?
+      @errors.merge!({'subject' => "can't be blank."})
+    end
     if body.blank?
-      @errors.merge!({'body' => "can't be blank"})
+      @errors.merge!({'body' => "can't be blank."})
     end
     if to.blank?
-      @errors.merge!({'to' => "can't be blank"})
-    end
-    if token.blank?
-      @errors.merge!({'token' => "can't be blank"})
-    end
-    if(!to.blank? and !token.blank?)
-      user = User.find_by_mail_and_token(to, token)
-      if user.nil?
-        @errors.merge!({'' => "to and token don't match"})
-      end  
+      @errors.merge!({'to' => "can't be blank."})
+    else
+      user = User.find_or_create_by_mail(to)
+      if user.valid? and !user.subscribed?
+         @errors.merge!({'' => "the e-mail '#{to}' unsubscribed the Puts Mail Test E-mails. To subscribe it again, send an e-mail to subscribe@putsmail.com."})
+      end
+      @errors.merge!(user.errors)
     end
     if valid?  
-      PutsMailer.puts_mail(user.mail, subject, body).deliver
+      PutsMailer.puts_mail(user, subject, body).deliver
       Property.increment_mail_counter
     end
   end

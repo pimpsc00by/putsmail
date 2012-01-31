@@ -10,7 +10,7 @@ describe UserMailer do
   
   it 'should be successful' do
     user = mock(User)
-    user.stub!(:mail).and_return('apu@kwik-e-mart.com')
+    user.stub!(:mail).and_return('apu@kwikemart.com')
     user.stub!(:token).and_return('123456')
     mail = UserMailer.registration_confirmation(user).deliver
     ActionMailer::Base.deliveries.size.should == 1  

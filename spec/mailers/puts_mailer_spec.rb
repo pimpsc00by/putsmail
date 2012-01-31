@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe PutsMailer do
   describe "send" do
-    let(:mail) { PutsMailer.puts_mail('pablo@putsmail.com', 'Send', 'Hi') }
+    let(:mail) { PutsMailer.puts_mail(User.new(:mail => 'pablo@putsmail.com'), 'Send', 'Hi') }
 
     it "renders the headers" do
       mail.subject.should eq("Send")
