@@ -27,9 +27,6 @@ var PutsMail = {
 		}
 		
 		$.ajaxSetup({async:false});
-		// var mailTo = $('#to').val();
-		// var token = $('#token').val();
-		// var subject = $('#subject').val();
 		var body = $('#body').val();
 		$('#premailer').attr('disabled', true);
 		$.post('/premailer', {body: body}, function(data) {
@@ -69,17 +66,16 @@ var PutsMail = {
 	putsMail: function(){
 		$.ajaxSetup({async:true});
 		var mailTo = $('#to').val();
-		var token = $('#token').val();
 		var subject = $('#subject').val();
 		var body = $('#body').val();
 		$('#sendMail').attr('disabled', true);
-		$.post('/puts_mail', {mail: mailTo, token: token, subject: subject, body: body}, function(data) {
+		$.post('/puts_mail', {mail: mailTo, subject: subject, body: body}, function(data) {
 			data = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(data.errors)){
 				alert('The mail was sent to ' + mailTo);
 				$('#mail_counter').text(data.mail_counter);
 			}
+			$('#sendMail').attr('disabled', false);
 		});		
-		$('#sendMail').attr('disabled', false);
 	}		
 };
