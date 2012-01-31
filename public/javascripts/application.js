@@ -67,9 +67,9 @@ var PutsMail = {
 					trBody.append($('<td>' + data.warnings[i].clients + '</td>'));
 				}
 				$('#premailer_log').append(table);
-				alert("HTML Warnings found by Premailer!");
+				alert("HTML warnings found!");
 			} else {
-				alert("No HTML Warnings found by Premailer!");
+				alert("No HTML warnings found!");
 			}
 			if(_gaq){
 				_gaq.push(['_trackEvent', 'premailer', 'replaced']);
