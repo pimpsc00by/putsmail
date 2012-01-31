@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
   before_create :set_or_reset_token
   
-  def unsubscribe token
+  def self.unsubscribe token
     user = User.find_by_token token
     if user
       user.subscribed = false
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  private
+  # private
   
   def set_or_reset_token
    write_attribute :token, generate_token(self.mail)
@@ -26,11 +26,7 @@ class User < ActiveRecord::Base
     # write_attribute :token, self.mail.crypt((rand * 1000).to_s)
     # write_attribute :token, Digest::MD5.hexdigest(self.mail)
     # http://www.ruby-doc.org/core/classes/Time.html#M000392
-    # Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
-    # 100000 ~ 999999
-    min = 100000
-    max = 999999
-    (min + rand(max)).to_i
+    Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
   end
   
 end

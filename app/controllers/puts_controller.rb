@@ -33,7 +33,7 @@ class PutsController < ApplicationController
   
   def unsubscribe
     User.unsubscribe params[:token]
-    redirect_to :root_path, :notice => "Your e-mail was unsubscribed! To subscribe it again, send an e-mail to subscribe@putsmail.com."
+    redirect_to root_path, :notice => "Your e-mail was unsubscribed! To subscribe it again, send an e-mail to subscribe@putsmail.com."
   end
   
 end
