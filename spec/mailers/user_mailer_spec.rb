@@ -14,7 +14,7 @@ describe UserMailer do
     user.stub!(:token).and_return('123456')
     mail = UserMailer.registration_confirmation(user).deliver
     ActionMailer::Base.deliveries.size.should == 1  
-    mail.body.should =~ /apu@kwik\-e\-mart\.com/
+    mail.body.should =~ /apu@kwikemart.com/
     mail.body.should =~ /123456/
     mail.body.should_not =~ /Your token was reset\! The previous token was disabled/
   end

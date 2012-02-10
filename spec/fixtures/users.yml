@@ -1,3 +1,4 @@
 apu: 
     mail: 'apu@kwikemart.com'
     token: 123456
+    subscribed: true
