@@ -1,24 +1,31 @@
 class PutsController < ApplicationController
   
   def index
-    @to = cookies[:to]
+    @to1 = cookies["to1"]
+    @to2 = cookies["to2"]
+    @to3 = cookies["to3"]
+    @to4 = cookies["to4"]
     @users_counter = User.count
     @mail_counter = Property.mail_counter
   end
   
   def puts_mail
-    mail = params[:mail]
-    session[:to] = mail
-    cookies[:to] = {
-       :value => mail,
-       :expires => 10.years.from_now
-    }
-    puts_mail = PutsMail.new
-    puts_mail.puts_mail(mail, params[:subject], params[:body])
-    json_data ={
-      :errors => puts_mail.errors,
-      :mail_counter => Property.mail_counter
-    }
+    mail_arr = params[:mail]
+    json_data = {}
+    mail_arr.each_with_index do | mail, index |
+      session["to#{index + 1}"] = mail
+      cookies["to#{index + 1}"] = {
+         :value => mail,
+         :expires => 10.years.from_now
+      }
+      puts_mail = PutsMail.new
+      puts_mail.puts_mail(mail, params[:subject], params[:body])
+      json_data ={
+        :errors => puts_mail.errors,
+        :mail_counter => Property.mail_counter
+      }
+      break unless puts_mail.errors.empty?
+    end
     render :text => json_data.to_json
   end
   

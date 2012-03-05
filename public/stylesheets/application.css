@@ -90,3 +90,11 @@ ul li {
 	font-weight: bold;
 	text-align: center;
 }
+
+.addCC {
+	font-size: 12px;
+}
+
+#copiesContainer {
+	display:none;
+}

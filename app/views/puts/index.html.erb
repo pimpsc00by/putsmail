@@ -1,3 +1,17 @@
+<script>
+	$(function(){
+		$(".addCC").click(function(){
+			var container = $("#copiesContainer");
+			if(container.is(":visible")){
+				$("#copiesContainer").hide(1000);
+				$(this).text("more");
+			} else {
+				$("#copiesContainer").show(1000);
+				$(this).text("less");				
+			}
+		});
+	});
+</script>
 <div id="content">
 	<h1>Puts Mail</h1>
 	<h2>It's a mail test tool to test your mails before sending them</h2>
@@ -7,8 +21,22 @@
 	</p>
 	<p>
 		<label for="to">* To</label><br/>
-		<input type="text" id="to" class="inputText"  value="<%=@to%>">
+		<input type="text" id="to1" name="to" class="inputText"  value="<%=@to1%>"> <a href="#" alt="Add and Remove recipients" class="addCC">more</a>
 	</p>
+	<div id="copiesContainer">
+	<p>
+		<label for="to">* To</label><br/>
+		<input type="text" id="to2" name="to" class="inputText"  value="<%=@to2%>">
+	</p>
+	<p>
+		<label for="to">* To</label><br/>
+		<input type="text" id="to3" name="to" class="inputText"  value="<%=@to3%>">
+	</p>
+	<p>
+		<label for="to">* To</label><br/>
+		<input type="text" id="to4" name="to" class="inputText"  value="<%=@to4%>">
+	</p>
+	</div>
 	<p>
 		<label for="subject">* Subject</label><br/>
 		<input type="text" id="subject" class="inputText" value="Puts Mail - Test">

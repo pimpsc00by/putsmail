@@ -65,11 +65,16 @@ var PutsMail = {
 	},
 	putsMail: function(){
 		$.ajaxSetup({async:true});
-		var mailTo = $('#to').val();
+		var mailTo = [];
+		$("input[name=to]").each(function(){
+			if($.trim($(this).val()) != ""){
+				mailTo.push($(this).val());
+			}
+		});
 		var subject = $('#subject').val();
 		var body = $('#body').val();
 		$('#sendMail').attr('disabled', true);
-		$.post('/puts_mail', {mail: mailTo, subject: subject, body: body}, function(data) {
+		$.post('/puts_mail', {"mail[]": mailTo, subject: subject, body: body}, function(data) {
 			data = eval('(' + data + ')');
 			if(!PutsMail.showErrorsFor(data.errors)){
 				alert('The mail was sent to ' + mailTo);
