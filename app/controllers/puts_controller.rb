@@ -1,7 +1,7 @@
 class PutsController < ApplicationController
   
   def index
-    @to1 = cookies["to1"]
+    @to1 = cookies["to1"] || cookies[:to] # to be compatible with old cookies
     @to2 = cookies["to2"]
     @to3 = cookies["to3"]
     @to4 = cookies["to4"]
