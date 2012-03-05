@@ -68,7 +68,9 @@ var PutsMail = {
 		var mailTo = [];
 		$("input[name=to]").each(function(){
 			if($.trim($(this).val()) != ""){
-				mailTo.push($(this).val());
+				if($(this).is(":visible")){
+					mailTo.push($(this).val());
+				}
 			}
 		});
 		var subject = $('#subject').val();

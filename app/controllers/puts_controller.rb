@@ -12,7 +12,7 @@ class PutsController < ApplicationController
   def puts_mail
     mail_arr = params[:mail]
     json_data = {}
-    mail_arr.each_with_index do | mail, index |
+    mail_arr.uniq.each_with_index do | mail, index |
       session["to#{index + 1}"] = mail
       cookies["to#{index + 1}"] = {
          :value => mail,

@@ -1,14 +1,22 @@
 <script>
 	$(function(){
 		$(".addCC").click(function(){
-			var container = $("#copiesContainer");
-			if(container.is(":visible")){
-				$("#copiesContainer").hide(1000);
-				$(this).text("more");
+			var container = $("p.copiesContainer");
+			var addCC = $(this);
+			var isVisible = false;
+			if($.trim($(this).text()) == "more"){
+				$(this).text("less");
 			} else {
-				$("#copiesContainer").show(1000);
-				$(this).text("less");				
+				$(this).text("more");
+				isVisible = true;
 			}
+			container.each(function(){
+				if(isVisible){
+					$(this).hide(500);
+				} else {
+					$(this).show(500);
+				}
+			});
 		});
 	});
 </script>
@@ -23,20 +31,18 @@
 		<label for="to">* To</label><br/>
 		<input type="text" id="to1" name="to" class="inputText"  value="<%=@to1%>"> <a href="#" alt="Add and Remove recipients" class="addCC">more</a>
 	</p>
-	<div id="copiesContainer">
-	<p>
+	<p class="copiesContainer">
 		<label for="to">* To</label><br/>
 		<input type="text" id="to2" name="to" class="inputText"  value="<%=@to2%>">
 	</p>
-	<p>
+	<p class="copiesContainer">
 		<label for="to">* To</label><br/>
 		<input type="text" id="to3" name="to" class="inputText"  value="<%=@to3%>">
 	</p>
-	<p>
+	<p class="copiesContainer">
 		<label for="to">* To</label><br/>
 		<input type="text" id="to4" name="to" class="inputText"  value="<%=@to4%>">
 	</p>
-	</div>
 	<p>
 		<label for="subject">* Subject</label><br/>
 		<input type="text" id="subject" class="inputText" value="Puts Mail - Test">
