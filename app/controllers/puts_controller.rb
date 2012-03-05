@@ -13,7 +13,6 @@ class PutsController < ApplicationController
     mail_arr = params[:mail]
     json_data = {}
     unless mail_arr.is_a? Array
-      puts "AAAAA----"
       maill_arr = [mail_arr]
     end    
     mail_arr.uniq.each_with_index do | mail, index |
@@ -22,8 +21,8 @@ class PutsController < ApplicationController
          :value => mail,
          :expires => 10.years.from_now
       }
-      puts_mail = PutsMail.new
-      puts_mail.puts_mail(mail, params[:subject], params[:body])
+      puts_mail = PutsMail.new(:to => mail, :subject => params[:subject], :body => params[:body])
+      puts_mail.save
       json_data ={
         :errors => puts_mail.errors,
         :mail_counter => Property.mail_counter

@@ -1,35 +1,32 @@
+require "email_format_validator"
 class PutsMail
-  
-  def puts_mail(to, subject, body)
-    @errors = {}
-    to = to.to_s.strip
-    if subject.blank?
-      @errors.merge!({'subject' => "can't be blank"})
-    end
-    if body.blank?
-      @errors.merge!({'body' => "can't be blank"})
-    end
-    if to.blank?
-      @errors.merge!({'to' => "can't be blank"})
-    else
-      user = User.find_or_create_by_mail(to)
-      if user.valid? and !user.subscribed?
-         @errors.merge!({'' => "the e-mail '#{to}' unsubscribed the Puts Mail Test Mailer. To subscribe it again, send an e-mail to subscribe@putsmail.com"})
-      end
-      @errors.merge!(user.errors)
-    end
-    if valid?  
-      PutsMailer.puts_mail(user, subject, body).deliver
+  include ActiveAttr::Model
+
+  attribute :to
+  attribute :subject
+  attribute :body
+  attribute :user
+
+  validates :to, :email_format => true
+  validates :subject, :presence => true
+  validates :body, :presence => true
+
+  validate :find_or_create_user_with_success
+
+  def save 
+    return unless valid?
+    if PutsMailer.puts_mail(self.user, self.subject, self.body).deliver
       Property.increment_mail_counter
     end
   end
-  
-  def valid?
-    @errors.to_a.empty?
+
+  private
+
+  def find_or_create_user_with_success
+    return if self.to.to_s.blank?
+    self.user = User.find_or_create_by_mail(self.to)
+    unless self.user.subscribed?
+      self.errors.add(:user, "'#{self.to}' was unsubscribed the Puts Mail Test List. To subscribe it again, send an e-mail to subscribe@putsmail.com")
+    end
   end
-  
-  def errors
-    @errors
-  end
-  
 end

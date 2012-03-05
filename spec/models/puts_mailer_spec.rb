@@ -6,23 +6,21 @@ describe PutsMail do
   
   it 'should puts mail' do
     apu = users(:apu)
-    puts_mail = PutsMail.new
     subject = 'Hello Apu'
     body = 'Are you interested in new oportunities?'
     mail_counter = Property.mail_counter
-    puts_mail.puts_mail(apu.mail, subject, body)    
-    puts_mail.valid?.should be_true
+    puts_mail = PutsMail.new :to => apu.mail, :subject => subject, :body => body
+    puts_mail.save.should be_true
     (mail_counter + 1).should eql(Property.mail_counter)
   end
   
   it 'should not puts mail with invalid mail' do
     apu = users(:apu)
-    puts_mail = PutsMail.new
     mail_counter = Property.mail_counter
-    puts_mail.puts_mail(apu.mail, 'Hello Apu', nil)
+    puts_mail = PutsMail.new :to => apu.mail, :subject => 'Hello Apu', :body => nil
     mail_counter.should eql(Property.mail_counter)
-    puts_mail.valid?.should be_false
-    puts_mail.errors['body'].should eql("can't be blank")
+    puts_mail.save.should be_false
+    puts_mail.errors['body'].should eql(["can't be blank"])
   end
   
   it 'should not puts mail with invalid to' do
