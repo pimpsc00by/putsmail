@@ -10,23 +10,32 @@ describe PutsMail do
     puts_mail.save.should be_true
     (mail_counter + 1).should eql(Property.mail_counter)
   end
+  describe "Validate the attributes" do
+    it 'should not puts mail with nil body' do
+      apu = Factory :subscribed_user
+      mail_counter = Property.mail_counter
+      puts_mail = PutsMail.new :to => apu.mail, :subject => 'Hello Apu', :body => nil
+      puts_mail.save.should be_false
+      mail_counter.should eql(Property.mail_counter)
+      puts_mail.errors['body'].should eql(["can't be blank"])
+    end
   
-  it 'should not puts mail with invalid mail' do
-    apu = Factory :subscribed_user
-    mail_counter = Property.mail_counter
-    puts_mail = PutsMail.new :to => apu.mail, :subject => 'Hello Apu', :body => nil
-    mail_counter.should eql(Property.mail_counter)
-    puts_mail.save.should be_false
-    puts_mail.errors['body'].should eql(["can't be blank"])
-  end
+    it 'should not puts mail with nil subject' do
+      apu = Factory :subscribed_user
+      mail_counter = Property.mail_counter
+      puts_mail = PutsMail.new :to => apu.mail, :subject => nil, :body => 'Hello Apu'
+      puts_mail.save.should be_false
+      mail_counter.should eql(Property.mail_counter)
+      puts_mail.errors['subject'].should eql(["can't be blank"])
+    end
   
-  it 'should not puts mail with invalid to' do
-    # PEDING test nil mail
-    # puts_mail = PutsMail.new
-    # puts_mail.puts_mail(nil, nil, 'Hello Apu', 'Are you interested in new oportunities?')
-    # puts_mail.valid?.should be_false
-    # puts_mail.errors['to'].should eql("can't be blank")
-    # puts_mail.errors['token'].should eql("can't be blank")
+    it 'should not puts mail with nil to' do
+      mail_counter = Property.mail_counter
+      puts_mail = PutsMail.new :to => nil, :subject => 'Hello Apu', :body => nil
+      puts_mail.save.should be_false
+      mail_counter.should eql(Property.mail_counter)
+      puts_mail.errors['to'].should eql(["does not appear to be valid"])
+    end
   end
   
 end

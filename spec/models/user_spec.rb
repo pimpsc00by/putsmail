@@ -6,9 +6,7 @@ describe User do
     # http://en.wikipedia.org/wiki/Apu_Nahasapeemapetilon
     # http://en.wikipedia.org/wiki/Kwik-E-Mart
     apu2 = User.new(:mail => 'apu2@kwik-e-mart.com')
-    apu2.save
-    apu2.valid?.should be_true
-    apu2.new_record?.should be_false
+    apu2.save.should be_true
     apu2.token.nil?.should be_false
   end
   
