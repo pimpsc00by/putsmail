@@ -58,6 +58,7 @@ GEM
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     multi_json (1.1.0)
+    pg (0.13.2)
     polyglot (0.3.3)
     premailer (1.7.3)
       css_parser (>= 1.1.9)
@@ -123,6 +124,7 @@ DEPENDENCIES
   active_attr
   jquery-rails (>= 0.2.6)
   mocha
+  pg
   premailer
   rails (= 3.1.0)
   rspec-rails (~> 2.4)

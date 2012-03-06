@@ -13,6 +13,10 @@ gem 'premailer'
 
 gem 'active_attr'
 
+group :production do
+  gem 'pg'
+end
+
 group :test, :development do
   gem "rspec-rails", "~> 2.4"
 end
