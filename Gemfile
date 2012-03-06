@@ -10,11 +10,11 @@ group :production do
 end
 
 group :development do
+  gem 'rspec-rails', '~> 2.4'
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
-group :test, :development do
-  gem 'rspec-rails', '~> 2.4'
+group :test do
   gem 'mocha'
   gem 'factory_girl_rails'
 end
