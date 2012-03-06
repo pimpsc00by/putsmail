@@ -10,7 +10,8 @@ describe PutsMail do
     puts_mail.save.should be_true
     (mail_counter + 1).should eql(Property.mail_counter)
   end
-  describe "Validate the attributes" do
+  
+  describe "Validate the attributes validation" do
     it 'should not puts mail with nil body' do
       apu = Factory :subscribed_user
       mail_counter = Property.mail_counter
