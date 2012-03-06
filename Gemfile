@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 gem 'jquery-rails', '>= 0.2.6'
+gem 'hpricot'
 gem 'premailer'
 gem 'active_attr'
 
