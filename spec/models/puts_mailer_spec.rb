@@ -1,11 +1,8 @@
 require 'spec_helper'
 
-describe PutsMail do
-  
-  fixtures :users
-  
+describe PutsMail do  
   it 'should puts mail' do
-    apu = users(:apu)
+    apu = Factory :subscribed_user
     subject = 'Hello Apu'
     body = 'Are you interested in new oportunities?'
     mail_counter = Property.mail_counter
@@ -15,7 +12,7 @@ describe PutsMail do
   end
   
   it 'should not puts mail with invalid mail' do
-    apu = users(:apu)
+    apu = Factory :subscribed_user
     mail_counter = Property.mail_counter
     puts_mail = PutsMail.new :to => apu.mail, :subject => 'Hello Apu', :body => nil
     mail_counter.should eql(Property.mail_counter)

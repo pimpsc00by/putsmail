@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  
-  fixtures :users
-  
+    
   it 'should create a token' do
     # http://en.wikipedia.org/wiki/Apu_Nahasapeemapetilon
     # http://en.wikipedia.org/wiki/Kwik-E-Mart
