@@ -3,9 +3,9 @@
 <head>
   <title>Puts Mail - It's a mail test tool to test your mails before sending them</title>
   <meta name="description" content="Puts Mail - The main idea of this tool is to test HTML mails that will be sent as campaigns, newsletters and others (please, don't use it to spam, help us to make a better world)"/>
-  <%= stylesheet_link_tag 'application' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];
@@ -38,8 +38,15 @@
 	
 <a href="https://github.com/phstc/putsmail.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://assets0.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_right_darkblue_121621.png&path=" alt="Fork me on GitHub"></a>
 
-<%= yield %>
-
+<div class="container">
+  <div class="row">
+    <div class="span9"><%= yield %></div>
+    <div class="span3">
+      <h2>About Us</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>        
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
   var uvOptions = {};
   (function() {
