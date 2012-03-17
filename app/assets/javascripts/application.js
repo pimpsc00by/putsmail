@@ -1,3 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require_self
+//= require_tree .
+
+/* rest of file omitted */
+
 var PutsMail = {
 	showErrorsFor: function(errors){
 		var msgError = '';

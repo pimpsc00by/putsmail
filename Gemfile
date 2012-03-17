@@ -19,3 +19,9 @@ group :test do
   gem 'mocha'
   # gem 'factory_girl_rails'
 end
+
+group :assets do
+  gem 'sass-rails', " ~> 3.1.0"
+  gem 'coffee-rails', " ~> 3.1.0"
+  gem 'uglifier'
+end
