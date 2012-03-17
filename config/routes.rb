@@ -1,9 +1,5 @@
 Putsmail::Application.routes.draw do
-  root :to => 'puts#index'
+  root :to => "test_emails#index"
   
-  post '/puts_mail' => 'puts#puts_mail'
-    
-  post '/premailer' => 'puts#premailer'
-  
-  get '/unsubscribe' => 'puts#unsubscribe'
+  resources :test_emails
 end
