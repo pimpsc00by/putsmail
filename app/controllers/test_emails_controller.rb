@@ -1,0 +1,2 @@
+class TestEmailsController < ApplicationController
+end
