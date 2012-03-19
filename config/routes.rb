@@ -1,5 +1,9 @@
 Putsmail::Application.routes.draw do
-  root :to => "test_emails#index"
+  get "site/index"
+
+  root :to => "site#index"
   
-  resources :test_emails
+  namespace :api do
+    resources :test_mails, :only => [:create]
+  end
 end

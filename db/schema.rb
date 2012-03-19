@@ -13,15 +13,8 @@
 
 ActiveRecord::Schema.define(:version => 20120317020028) do
 
-  create_table "properties", :force => true do |t|
-    t.string   "key"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "test_mail_users", :force => true do |t|
-    t.integer  "test_email_id"
+    t.integer  "test_mail_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
