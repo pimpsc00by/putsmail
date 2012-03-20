@@ -5,6 +5,7 @@ gem 'jquery-rails', '>= 0.2.6'
 gem 'hpricot'
 gem 'premailer'
 gem 'active_attr'
+gem 'backbone-on-rails'
 
 group :production do
   gem 'pg'
