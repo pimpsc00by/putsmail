@@ -1,6 +1,6 @@
 require 'email_format_validator'
 class User < ActiveRecord::Base  
-  validates :mail, :uniqueness => true, :allow_nil => :false, :email_format => true
+  validates :mail, :uniqueness => true, :allow_nil => :false, :email_format => true, :allow_blank => false
   
   before_create :set_or_reset_token
   before_create :set_default_subscribed_value

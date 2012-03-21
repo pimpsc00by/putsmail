@@ -1,14 +1,14 @@
 class TestMail < ActiveRecord::Base
   has_many :test_mail_users
   
-  validates :test_mail_users, length: { minimum: 1 }
+  # validates :test_mail_users, length: { minimum: 1 }
   validates :body, presence: true
   validates :subject, presence: true
   
   before_validation :convert_recipients_into_test_mail_users
   
-  validate :validate_subscribed_users
-      
+  validate :validate_subscribed_users, :validate_recipients_length
+  
   def subject
     @subject
   end
@@ -37,15 +37,19 @@ class TestMail < ActiveRecord::Base
   def validate_subscribed_users
     self.test_mail_users.each do | test |      
       unless test.user.subscribed?
-        self.errors.add :base, "#{test.user.mail} unsubscribed the list."
+        self.errors.add test.user.mail, "#{test.user.mail} unsubscribed the list."
       end
     end
+  end
+  
+  def validate_recipients_length
+    self.errors.add "recipients", "can't be empty"
   end
   
   def convert_recipients_into_test_mail_users
     recipients.to_a.each do | recipient |      
       user = User.find_or_create_by_mail(recipient)
-      unless self.test_mail_users.index{| test_mail_user | test_mail_user.user_id == user.id }
+      if !user.new_record? and !self.test_mail_users.index{| test_mail_user | test_mail_user.user_id == user.id }
         self.test_mail_users.build user: user
       end
     end

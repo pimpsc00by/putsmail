@@ -1,40 +1,58 @@
 <form class="form-horizontal" action="/api/test_mails" method="post" name="form_test_email" id="form_test_email">
 	<!--
 	<fieldset>
-		<legend>Test fields</legend>
+	<legend>Test fields</legend>
 	-->
-		<div class="control-group">
-			<label class="control-label" for="input01">To:</label>
-			<div class="controls">
-				<input type="email" class="input-xlarge" id="test_mail_recipients_0" name="test_mail_recipients" required="true" value="pablo@pablocantero.com">
-				<p class="help-block">Enter a valid e-mail address.</p>
-			</div>
+	<div class="control-group">
+		<label class="control-label" for="input01">To:</label>
+		<div class="controls">
+			<input type="email" class="input-xlarge" id="test_mail_recipient1" name="test_mail_recipients" value="pablo@pablocantero.com" required="true">
+			<p class="help-block">
+				Enter a valid e-mail address.
+				<br/>
+				<a href="#" id="add_cc">Add Cc</a>
+			</p>
 		</div>
-		<div class="control-group">
-			<label class="control-label" for="input01">To:</label>
-			<div class="controls">
-				<input type="email" class="input-xlarge" id="test_mail_recipients_1" name="test_mail_recipients" required="true" value="pablo@pablocantero.com">
-				<p class="help-block">Enter a valid e-mail address.</p>
-			</div>
+	</div>
+	<div class="control-group test_mail_cc">		
+		<label class="control-label" for="input01">Cc:</label>
+		<div class="controls">
+			<input type="email" class="input-xlarge" id="test_mail_recipient2" name="test_mail_recipients">
+			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
-		<div class="control-group">
-			<label class="control-label" for="input01">Subject:</label>
-			<div class="controls">
-				<input type="text" class="input-xlarge" id="test_mail_subject" name="test_mail_subject"  required="true" value="Hello World">
-			</div>
+	</div>
+	<div class="control-group test_mail_cc">		
+		<label class="control-label" for="input01">Cc:</label>
+		<div class="controls">
+			<input type="email" class="input-xlarge" id="test_mail_recipient3" name="test_mail_recipients">
+			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
-		<div class="control-group">
-			<label class="control-label" for="textarea">Body:</label>
-			<div class="controls">
-				<textarea class="input-xxlarge" id="test_mail_body" name="test_mail_body" rows="18" required="true">Hey ho, let's go.</textarea>
-				<p class="help-block">Paste your HTML here.</p>
-			</div>
+	</div>
+	<div class="control-group test_mail_cc">		
+		<label class="control-label" for="input01">Cc:</label>
+		<div class="controls">
+			<input type="email" class="input-xlarge" id="test_mail_recipient4" name="test_mail_recipients">
+			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
-		<div class="form-actions">
-			<button class="btn" id="button_preview">Preview</button>
-			<button class="btn" id="button_check_html">Check your HTML</button>
-			<button type="submit" class="btn btn-primary" id="button_send">Send</button>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="input01">Subject:</label>
+		<div class="controls">
+			<input type="text" class="input-xlarge" id="test_mail_subject" name="test_mail_subject" required="true" value="Hello World">
 		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="textarea">Body:</label>
+		<div class="controls">
+			<textarea class="input-xxlarge" id="test_mail_body" name="test_mail_body" rows="18" required="true">Hey ho, let's go.</textarea>
+			<p class="help-block">Paste your HTML here.</p>
+		</div>
+	</div>
+	<div class="form-actions">
+		<button class="btn" id="button_preview">Preview</button>
+		<button class="btn" id="button_check_html">Check your HTML</button>
+		<button class="btn btn-primary" id="button_send">Send</button>
+	</div>
 	<!--
 	</fieldset>
 	-->
