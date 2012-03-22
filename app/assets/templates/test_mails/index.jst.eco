@@ -4,9 +4,9 @@
 	<legend>Test fields</legend>
 	-->
 	<div class="control-group">
-		<label class="control-label" for="input01">To:</label>
+		<label class="control-label" for="test_mail_recipient1">To:</label>
 		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_recipient1" name="test_mail_recipients" value="pablo@pablocantero.com" required="true">
+			<input type="email" class="input-xlarge" id="test_mail_recipient1" name="test_mail_recipients" value="pablo@pablocantero.com" required="true" maxlength="40">
 			<p class="help-block">
 				Enter a valid e-mail address.
 				<br/>
@@ -15,23 +15,23 @@
 		</div>
 	</div>
 	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="input01">Cc:</label>
+		<label class="control-label" for="test_mail_recipient2">Cc:</label>
 		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_recipient2" name="test_mail_recipients">
+			<input type="email" class="input-xlarge" id="test_mail_recipient2" name="test_mail_recipients" maxlength="40">
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>
 	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="input01">Cc:</label>
+		<label class="control-label" for="test_mail_recipient3">Cc:</label>
 		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_recipient3" name="test_mail_recipients">
+			<input type="email" class="input-xlarge" id="test_mail_recipient3" name="test_mail_recipients" maxlength="40">
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>
 	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="input01">Cc:</label>
+		<label class="control-label" for="test_mail_recipient4">Cc:</label>
 		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_recipient4" name="test_mail_recipients">
+			<input type="email" class="input-xlarge" id="test_mail_recipient4" name="test_mail_recipients" maxlength="40">
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>

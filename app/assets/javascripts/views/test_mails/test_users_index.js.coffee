@@ -3,7 +3,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   template: JST['test_mails/index']
 
   events:
-    "click #button_send": "sendTest"
+    "submit #form_test_email": "sendTest"
     "click #add_cc": "showCC"
     "focus .test_mail_cc input[name='test_mail_recipients']": "makeVisible"
     "blur  .test_mail_cc input[name='test_mail_recipients']": "checkFilled"
