@@ -9,6 +9,28 @@ describe TestMail do
       test_mail.valid?.should be_true
     end
     
+    it "should ignore empty recipient" do
+      test_mail = TestMail.new subject: "Test", body: "Hello World!"
+      test_mail.valid?.should be_false
+      test_mail.recipients = [""]
+      test_mail.valid?.should be_false
+      test_mail.recipients = ["", "", ""]
+      test_mail.valid?.should be_false
+      test_mail.recipients = ["pablo@pablocantero.com"]
+      test_mail.valid?.should be_true
+    end
+    
+    it "should validate emails" do
+      test_mail = TestMail.new subject: "Test", body: "Hello World!"
+      test_mail.valid?.should be_false
+      test_mail.recipients = ["pablo"]
+      test_mail.valid?.should be_false
+      test_mail.recipients = ["pablo@pablocantero"]
+      test_mail.valid?.should be_false
+      test_mail.recipients = ["pablo@pablocantero.com"]
+      test_mail.valid?.should be_true
+    end
+
     it "should validate subscribed users" do
       user = Factory :user # , subscribed: false
       user.subscribed = false
@@ -20,7 +42,7 @@ describe TestMail do
       test_mail.test_mail_users.reload
       test_mail.valid?.should be_true
     end
-    
+
     it "should require subject and body" do
       user = Factory :user
       test_mail = TestMail.new recipients: [user.mail]
@@ -33,7 +55,7 @@ describe TestMail do
       test_mail.valid?.should be_false
     end
   end
-  
+
   describe "Recipients" do
     it "should convert recipients into users" do
       recipient1 = "pablo1@pablocantero.com"
@@ -48,7 +70,7 @@ describe TestMail do
       users.should include(User.find_by_mail(recipient1))
       users.should include(User.find_by_mail(recipient2))
     end
-    
+
     it "should not duplicate" do
       recipient = "pablo@pablocantero.com"
       test_mail = TestMail.new subject: "Test", body: "Hello World!", recipients: [recipient, recipient]

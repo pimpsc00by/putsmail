@@ -4,9 +4,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   events:
     "submit #form_test_email": "sendTest"
-    "click #add_cc": "showCC"
-    "focus .test_mail_cc input[name='test_mail_recipients']": "makeVisible"
-    "blur  .test_mail_cc input[name='test_mail_recipients']": "checkFilled"
+    "focus .test_mail_cc input[name='test_mail_users_mail']": "makeVisible"
+    "blur  .test_mail_cc input[name='test_mail_users_mail']": "checkFilled"
     
 
   render: ->
@@ -16,7 +15,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   showCC: (event) ->
     event.preventDefault()
     $(".test_mail_cc").show 500, ->
-      firstCc = $(".test_mail_cc input[name='test_mail_recipients']").first()
+      firstCc = $(".test_mail_cc input[name='test_mail_users_mail']").first()
       firstCc.focus()
       firstCc.css("opacity", 1)
 
@@ -32,8 +31,9 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
       obj.parent().parent().css("opacity", .5)
 
   sendTest: (event) ->
+    @clearPreviousErrors()
     event.preventDefault()
-    recipients = _.map $("input[name=test_mail_recipients]"), 
+    recipients = _.map $("input[name=test_mail_users_mail]"), 
        (recipient) -> $(recipient).val()
     testMail = new Putsmail.Models.TestMail
     testMail.save {test_mail: 
@@ -44,12 +44,16 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
       success:(model, response) -> alert "saved"
       error: @handleError
 
+  clearPreviousErrors: ->
+    $("span.error_message").remove()
+    $("div.error").removeClass("errorß")
+
   handleError: (model, response) ->
     if response.status == 422
       errors = $.parseJSON(response.responseText)
-      msg = ""
       for attribute, messages of errors
-        msg += " #{attribute} #{message} \n" for message in messages
-      unless _.isEmpty msg
-        msg = "There were problems with the following fields:\n\n" + msg
-        alert msg
+        for message in messages
+          input = $("input[name=#{attribute}], textarea[name=#{attribute}], input[id=#{attribute}]")
+          if input.length > 0
+            input.parent().parent().addClass("error")
+            input.after("<span class=\"help-inline error_message\">#{message}</span>")
