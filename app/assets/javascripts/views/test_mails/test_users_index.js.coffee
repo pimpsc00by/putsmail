@@ -8,6 +8,13 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "blur  .test_mail_cc input[name='test_mail_users_mail']": "checkFilled"
     
 
+  initialize: ->
+    $( -> 
+      @editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), {
+        mode: "htmlmixed"
+      }
+    )
+
   render: ->
     $(@el).html(@template)
     this
@@ -31,8 +38,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
       obj.parent().parent().css("opacity", .5)
 
   sendTest: (event) ->
-    @clearPreviousErrors()
     event.preventDefault()
+    @clearPreviousErrors()
     recipients = _.map $("input[name=test_mail_users_mail]"), 
        (recipient) -> $(recipient).val()
     testMail = new Putsmail.Models.TestMail
@@ -41,16 +48,19 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
          subject: $("#test_mail_subject").val()
          recipients: recipients}
       wait: true
-      success:(model, response) -> alert "saved"
+      success:(model, response) -> 
+        $.noty({text: 'Your message was sent successfully.', closeable: true, type: "success", layout: "top"})
       error: @handleError
 
   clearPreviousErrors: ->
     $("span.error_message").remove()
-    $("div.error").removeClass("errorß")
+    $("div.error").removeClass("error")
 
   handleError: (model, response) ->
     if response.status == 422
       errors = $.parseJSON(response.responseText)
+      # unless _.isEmpty errors
+      #   $.noty({text: 'Ops... Errors found! Check the messages bellow.', closeable: true, type: "error", layout: "top"})
       for attribute, messages of errors
         for message in messages
           input = $("input[name=#{attribute}], textarea[name=#{attribute}], input[id=#{attribute}]")

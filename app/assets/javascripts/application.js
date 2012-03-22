@@ -9,6 +9,7 @@
 //= require twitter/bootstrap
 //= require underscore-min
 //= require backbone-min
+//= require jquery.noty
 //= require putsmail
 //= require_tree ../templates
 //= require_tree ./models

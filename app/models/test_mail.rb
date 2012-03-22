@@ -40,7 +40,7 @@ class TestMail < ActiveRecord::Base
   def validate_subscribed_users
     self.test_mail_users.each_with_index do | test, index |      
       unless test.user.subscribed?
-        self.errors.add "test_mail_users#{index}", "unsubscribed from Puts Mail. Send an e-mail to subscribe@putsmail.com, to subscribe it again."
+        self.errors.add "test_mail_users#{index}", "is unsubscribed. Send an e-mail to subscribe@putsmail.com, to subscribe it again."
       end
     end
   end
