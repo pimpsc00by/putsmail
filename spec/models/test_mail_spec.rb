@@ -55,6 +55,15 @@ describe TestMail do
       test_mail.valid?.should be_false
     end
   end
+  
+  describe "Mailer" do
+    it "should send the email after_save" do
+      mailer = mock
+      mailer.should_receive(:deliver)
+      TestMailMailer.should_receive(:test_mail).and_return(mailer)
+      Factory :test_mail
+    end
+  end
 
   describe "Recipients" do
     it "should convert recipients into users" do
