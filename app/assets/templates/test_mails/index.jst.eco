@@ -1,42 +1,42 @@
 <form class="form-horizontal" action="/api/test_mails" method="post" name="form_test_email" id="form_test_email">
 	<div class="control-group">
-		<label class="control-label" for="test_mail_recipient0">Recipient #1:</label>
+		<label class="control-label" for="test_mail_recipient0">To:</label>
 		<div class="controls">
-			<input type="text" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" value="pablo@pablocantero.com"  maxlength="40">
+			<input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="40" required="true">
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>
 	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="test_mail_recipient1">Recipient #2:</label>
+		<label class="control-label" for="test_mail_recipient1">Cc #1:</label>
 		<div class="controls">
-			<input type="text" class="input-xlarge" id="test_mail_users1" name="test_mail_users_mail" maxlength="40">
+			<input type="email" class="input-xlarge" id="test_mail_users1" name="test_mail_users_mail" maxlength="40">
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>
 	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="test_mail_recipient2">Recipient #3:</label>
+		<label class="control-label" for="test_mail_recipient2">Cc #2:</label>
 		<div class="controls">
-			<input type="text" class="input-xlarge" id="test_mail_users2" name="test_mail_users_mail" maxlength="40">
+			<input type="email" class="input-xlarge" id="test_mail_users2" name="test_mail_users_mail" maxlength="40">
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>
 	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="test_mail_recipient3">Recipient #4:</label>
+		<label class="control-label" for="test_mail_recipient3">Cc #3:</label>
 		<div class="controls">
-			<input type="text" class="input-xlarge" id="test_mail_users3" name="test_mail_users_mail" maxlength="40">
+			<input type="email" class="input-xlarge" id="test_mail_users3" name="test_mail_users_mail" maxlength="40">
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="input01">Subject:</label>
 		<div class="controls">
-			<input type="text" class="input-xlarge" id="test_mail_subject" name="subject"  value="PutsMail - Test Mail">
+			<input type="text" class="input-xlarge" id="test_mail_subject" name="subject" required="true" value="Puts Mail - Test HTML" maxlength="100">
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="textarea">Body:</label>
 		<div class="controls">
-			<textarea class="input-xxlarge" id="test_mail_body" name="body" rows="14" >Hey ho, let's go.</textarea>
+			<textarea class="input-xxlarge" id="test_mail_body" name="body" rows="14" required="true"></textarea>
 			<p class="help-block">Paste your HTML here.</p>
 		</div>
 	</div>
@@ -46,8 +46,8 @@
 		</div>
 	</div>
 	<div class="form-actions">
-		<button class="btn" id="button_preview">Preview</button>
-		<button class="btn" id="button_check_mail">Check your HTML</button>
-		<button class="btn btn-primary" id="button_send">Send</button>
+		<button type="button" class="btn" id="button_preview">Preview</button>
+		<button type="button" class="btn" id="button_check_mail">Check your HTML</button>
+		<button type="submit" class="btn btn-primary" id="button_send">Send</button>
 	</div>
 </form>
