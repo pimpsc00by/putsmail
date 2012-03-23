@@ -9,6 +9,8 @@ class TestMail < ActiveRecord::Base
   
   validate :validate_subscribed_users, :validate_recipients_length
   
+  after_save :send_test_mail
+  
   # http://www.buildingwebapps.com/articles/79182-validating-email-addresses-with-ruby
   EMAIL_REGEX = /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/
   
@@ -37,6 +39,10 @@ class TestMail < ActiveRecord::Base
   end
   
   private
+  def send_test_mail
+    TestMailMailer.test_mail(self).deliver
+  end
+  
   def validate_subscribed_users
     self.test_mail_users.each_with_index do | test, index |      
       unless test.user.subscribed?
