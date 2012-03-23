@@ -15,8 +15,12 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     thiz = @
     $ ->
       thiz.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
-        {mode: "text/html", tabMode: "indent", theme: "myeclipse"}
+        {mode: "text/html", tabMode: "indent", theme: "myeclipse", onChange: thiz.updatePreview, height: 150}
+      thiz.updatePreview()
     this
+
+  updatePreview: =>
+    $("#body_preview").contents().find("body").html(@editor.getValue())
 
   showNextRecipient: (event) ->
     currentRecipient = $(event.target)

@@ -24,3 +24,7 @@
 	border:1px solid grey;
 	color:black !important;;
 }
+
+.CodeMirror-scroll {
+	height: 280px;
+}
