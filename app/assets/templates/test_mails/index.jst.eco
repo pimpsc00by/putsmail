@@ -6,7 +6,7 @@
 	<div class="control-group">
 		<label class="control-label" for="test_mail_recipient1">Recipient #1:</label>
 		<div class="controls">
-			<input type="text" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" value="pablo@pablocantero.com"  maxlength="40">
+			<input type="text" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" value="pablo@pablocantero.com"  maxlength="40">&nbsp;<span class="help-inline icon-plus-sign" id="show_all_recipients"></span>
 			<p class="help-block">Enter a valid e-mail address.</p>
 		</div>
 	</div>

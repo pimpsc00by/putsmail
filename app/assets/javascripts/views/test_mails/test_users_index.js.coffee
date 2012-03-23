@@ -8,11 +8,15 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "blur  .test_mail_cc input[name='test_mail_users_mail']": "checkFilled"
     "click #button_preview": "preview"
     "click #button_check_mail": "checkMail"
+    "click #show_all_recipients": "showAllRecipients"
 
 
   render: ->
     $(@el).html(@template)
     this
+
+  showAllRecipients: ->
+    $(".test_mail_cc").show(500)
 
   checkMail: ->
     event.preventDefault()
@@ -58,7 +62,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     @clearPreviousErrors()
     thiz = this
     $.noty({text: 'Sending...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
-    recipients = _.map $("input[name=test_mail_users_mail]"), 
+    recipients = _.map $("input[name=test_mail_users_mail]:visible"), 
        (recipient) -> $(recipient).val()
     testMail = new Putsmail.Models.TestMail
     testMail.save {test_mail: 
