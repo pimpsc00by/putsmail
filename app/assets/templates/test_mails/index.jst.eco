@@ -1,8 +1,4 @@
 <form class="form-horizontal" action="/api/test_mails" method="post" name="form_test_email" id="form_test_email">
-	<!--
-	<fieldset>
-	<legend>Test fields</legend>
-	-->
 	<div class="control-group">
 		<label class="control-label" for="test_mail_recipient0">Recipient #1:</label>
 		<div class="controls">
@@ -54,7 +50,4 @@
 		<button class="btn" id="button_check_mail">Check your HTML</button>
 		<button class="btn btn-primary" id="button_send">Send</button>
 	</div>
-	<!--
-	</fieldset>
-	-->
 </form>
