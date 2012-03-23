@@ -16,6 +16,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   checkMail: ->
     event.preventDefault()
+    $.noty({text: 'Checking...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
     check = new Putsmail.Models.CheckHtml
     check.save {test_mail: 
          body: $("#test_mail_body").val()}
@@ -24,7 +25,9 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
         $("#test_mail_body").val model.get("body")
         checkHtmlView = new Putsmail.Views.CheckHtmlsCreate(model: model)
         $("#html_warnings").html(checkHtmlView.render().el)
-      # error: (model, response) ->
+        $.noty.close()
+      error: (model, response) ->
+        $.noty.close()
       #   alert "error"
 
   preview: ->
@@ -53,6 +56,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   sendTest: (event) ->
     event.preventDefault()
     @clearPreviousErrors()
+    thiz = this
+    $.noty({text: 'Sending...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
     recipients = _.map $("input[name=test_mail_users_mail]"), 
        (recipient) -> $(recipient).val()
     testMail = new Putsmail.Models.TestMail
@@ -62,8 +67,10 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
          recipients: recipients}
       wait: true
       success:(model, response) -> 
-        $.noty({text: 'Your message was sent successfully.', closeable: true, type: "success", layout: "top"})
-      error: @handleError
+        $.noty.close()
+      error: (model, response) -> 
+        $.noty.close()
+        thiz.handleError(model, response)
 
   clearPreviousErrors: ->
     $("span.error_message").remove()
@@ -72,8 +79,6 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   handleError: (model, response) ->
     if response.status == 422
       errors = $.parseJSON(response.responseText)
-      # unless _.isEmpty errors
-      #   $.noty({text: 'Ops... Errors found! Check the messages bellow.', closeable: true, type: "error", layout: "top"})
       for attribute, messages of errors
         for message in messages
           input = $("input[name=#{attribute}], textarea[name=#{attribute}], input[id=#{attribute}]")
