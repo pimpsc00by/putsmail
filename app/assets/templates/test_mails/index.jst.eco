@@ -40,7 +40,7 @@
 	<div class="control-group">
 		<label class="control-label" for="textarea">Body:</label>
 		<div class="controls">
-			<textarea class="input-xlarge" id="test_mail_body" name="body" rows="14" >Hey ho, let's go.</textarea>
+			<textarea class="input-xxlarge" id="test_mail_body" name="body" rows="14" >Hey ho, let's go.</textarea>
 			<p class="help-block">Paste your HTML here.</p>
 		</div>
 	</div>

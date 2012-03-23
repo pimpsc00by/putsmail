@@ -6,18 +6,16 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "submit #form_test_email": "sendTest"
     "focus .test_mail_cc input[name='test_mail_users_mail']": "makeVisible"
     "blur  .test_mail_cc input[name='test_mail_users_mail']": "checkFilled"
-    
-
-  initialize: ->
-    $( -> 
-      @editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), {
-        mode: "htmlmixed"
-      }
-    )
+    "click #button_preview": "preview"
 
   render: ->
     $(@el).html(@template)
     this
+
+  preview: ->
+    event.preventDefault()
+    preview = window.open "", "preview"
+    preview.document.write $("#test_mail_body").val()
 
   showCC: (event) ->
     event.preventDefault()
