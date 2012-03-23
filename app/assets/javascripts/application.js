@@ -10,6 +10,11 @@
 //= require underscore-min
 //= require backbone-min
 //= require jquery.noty
+//= require codemirror
+//= require mode/xml/xml
+//= require mode/javascript/javascript
+//= require mode/css/css
+//= require mode/htmlmixed/htmlmixed
 //= require putsmail
 //= require_tree ../templates
 //= require_tree ./models

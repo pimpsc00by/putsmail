@@ -12,6 +12,10 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   render: ->
     $(@el).html(@template)
+    thiz = @
+    $ ->
+      thiz.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
+        {mode: "text/html", tabMode: "indent", theme: "myeclipse"}
     this
 
   showNextRecipient: (event) ->
@@ -23,13 +27,14 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   checkMail: ->
     event.preventDefault()
+    thiz = @
     $.noty({text: 'Checking...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
     check = new Putsmail.Models.CheckHtml
     check.save {test_mail: 
-         body: $("#test_mail_body").val()}
+         body: thiz.editor.getValue()}
       wait: true
       success:(model, response) ->
-        $("#test_mail_body").val model.get("body")
+        thiz.editor.setValue(model.get("body"))
         checkHtmlView = new Putsmail.Views.CheckHtmlsCreate(model: model)
         $("#html_warnings").html(checkHtmlView.render().el)
         $.noty.close()
@@ -40,7 +45,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   preview: ->
     event.preventDefault()
     preview = window.open ""
-    preview.document.write $("#test_mail_body").val()
+    preview.document.write @editor.getValue()
 
   showCC: (event) ->
     event.preventDefault()
@@ -69,7 +74,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
        (recipient) -> $(recipient).val()
     testMail = new Putsmail.Models.TestMail
     testMail.save {test_mail: 
-         body: $("#test_mail_body").val()
+         body: @editor.getValue()
          subject: $("#test_mail_subject").val()
          recipients: recipients}
       wait: true
