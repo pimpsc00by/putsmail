@@ -7,14 +7,29 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "focus .test_mail_cc input[name='test_mail_users_mail']": "makeVisible"
     "blur  .test_mail_cc input[name='test_mail_users_mail']": "checkFilled"
     "click #button_preview": "preview"
+    "click #button_check_mail": "checkMail"
+
 
   render: ->
     $(@el).html(@template)
     this
 
+  checkMail: ->
+    event.preventDefault()
+    check = new Putsmail.Models.CheckHtml
+    check.save {test_mail: 
+         body: $("#test_mail_body").val()}
+      wait: true
+      success:(model, response) ->
+        $("#test_mail_body").val model.get("body")
+        checkHtmlView = new Putsmail.Views.CheckHtmlsCreate(model: model)
+        $("#html_warnings").html(checkHtmlView.render().el)
+      # error: (model, response) ->
+      #   alert "error"
+
   preview: ->
     event.preventDefault()
-    preview = window.open "", "preview"
+    preview = window.open ""
     preview.document.write $("#test_mail_body").val()
 
   showCC: (event) ->

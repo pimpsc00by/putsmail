@@ -44,9 +44,14 @@
 			<p class="help-block">Paste your HTML here.</p>
 		</div>
 	</div>
+	<div class="control-group">
+		<div class="controls">
+			<div id="html_warnings"></div>
+		</div>
+	</div>
 	<div class="form-actions">
 		<button class="btn" id="button_preview">Preview</button>
-		<button class="btn" id="button_check_html">Check your HTML</button>
+		<button class="btn" id="button_check_mail">Check your HTML</button>
 		<button class="btn btn-primary" id="button_send">Send</button>
 	</div>
 	<!--
