@@ -42,7 +42,7 @@
 		<title>Awesome Email Marketing!</title>
 	</head>
 	<body>
-		<h1>Puts Mail - Recommendations</h1>
+		<h1>Recommendations</h1>
 		<ul>
 			<li>Do not use JavaScript</li>
 			<li>Write all css content inside this body. For the best results, CSS should be inline</li>
