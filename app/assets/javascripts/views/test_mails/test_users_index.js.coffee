@@ -8,15 +8,18 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "blur  .test_mail_cc input[name='test_mail_users_mail']": "checkFilled"
     "click #button_preview": "preview"
     "click #button_check_mail": "checkMail"
-    "click #show_all_recipients": "showAllRecipients"
-
+    "keyup input[name='test_mail_users_mail']": "showNextRecipient"
 
   render: ->
     $(@el).html(@template)
     this
 
-  showAllRecipients: ->
-    $(".test_mail_cc").show(500)
+  showNextRecipient: (event) ->
+    currentRecipient = $(event.target)
+    unless _.isEmpty currentRecipient.val()
+      nextRecipient = currentRecipient.parent().parent().next().find("input[name='test_mail_users_mail']")
+      if !nextRecipient.is(":visible")
+        nextRecipient.parent().parent().show(500)
 
   checkMail: ->
     event.preventDefault()

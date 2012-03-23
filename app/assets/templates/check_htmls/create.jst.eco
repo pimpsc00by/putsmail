@@ -1,18 +1,20 @@
-<table class="warnings table table-bordered">
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Support</th>
-		  <th>Unsupported clients</th>
-	  </tr>
-  </thead>
-	<tbody>
-	<% for warning in @model.get("warnings"): %>
-		<tr class="<%= warning.level.toLowerCase() %>">
-			<td><%= warning.message %></td>
-			<td><%= warning.level %></td>
-			<td><%= warning.clients %></td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+<% unless _.isEmpty @model.get("warnings"): %>
+	<table class="warnings table table-bordered">
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Support</th>
+			  <th>Unsupported clients</th>
+		  </tr>
+	  </thead>
+		<tbody>
+		<% for warning in @model.get("warnings"): %>
+			<tr class="<%= warning.level.toLowerCase() %>">
+				<td><%= warning.message %></td>
+				<td><%= warning.level %></td>
+				<td><%= warning.clients %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% end %>
