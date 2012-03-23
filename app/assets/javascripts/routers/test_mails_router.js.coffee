@@ -5,4 +5,4 @@ class Putsmail.Routers.TestMails extends Backbone.Router
 
   index: ->
     view = new Putsmail.Views.TestMailsIndex
-    $("div.container").html(view.render().el)
+    $("#test_mail_form_container").html(view.render().el)
