@@ -5,7 +5,7 @@ window.Putsmail =
   Routers: {}
   init: -> 
     new Putsmail.Routers.TestMails
-    Backbone.history.start()
+    Backbone.history.start({pushState: true})
 
 $(document).ready ->
   Putsmail.init()

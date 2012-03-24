@@ -10,20 +10,30 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "click #button_check_mail": "checkMail"
     "keyup input[name='test_mail_users_mail']": "showNextRecipient"
 
+  initialize: ->
+    this.bind('rendered', this.afterRender, this);
+
+  afterRender: ->
+    this.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
+      {mode: "text/html", tabMode: "indent", theme: "myeclipse", onChange: this.updatePreview, height: 150}
+    if this.model.get("body")
+      this.editor.setValue(this.model.get("body"))
+    if this.model.get("subject")
+      $("#test_mail_subject").val(this.model.get("subject"))
+    this.updatePreview()
+    this.populeRecipients()
+
+  populeRecipients: ->
+    thiz = this
+    _.each this.model.get("users"), (element, index, list)->
+      currentRecipient = $("#test_mail_users" + index)
+      currentRecipient.val(element.mail)
+      currentRecipientContainer = currentRecipient.parent().parent()
+      currentRecipientContainer.show(500)
+      thiz.showNextRecipientFor currentRecipient
+
   render: ->
     $(@el).html(@template(model: @model))
-    thiz = @
-    $ ->
-      thiz.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
-        {mode: "text/html", tabMode: "indent", theme: "myeclipse", onChange: thiz.updatePreview, height: 150}
-      thiz.updatePreview()
-      _.each thiz.model.get("recipients"), (element, index, list)->
-        currentRecipient = $("#test_mail_users" + index)
-        currentRecipient.val(element)
-        currentRecipientContainer = currentRecipient.parent().parent()
-        currentRecipientContainer.show(500)
-        thiz.showNextRecipientFor currentRecipient
-        
     this
 
   updatePreview: =>
@@ -84,12 +94,11 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     thiz = this
     $.noty({text: 'Sending...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
     recipients = _.map $("input[name=test_mail_users_mail]:visible"), 
-       (recipient) -> $(recipient).val()
-    testMail = new Putsmail.Models.TestMail
-    testMail.save {test_mail: 
+       (recipient) -> {mail: $(recipient).val()}
+    thiz.model.save {
          body: @editor.getValue()
          subject: $("#test_mail_subject").val()
-         recipients: recipients}
+         users: recipients}
       wait: true
       success:(model, response) -> 
         $.noty.close()
