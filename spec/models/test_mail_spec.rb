@@ -87,5 +87,14 @@ describe TestMail do
         test_mail.save
       end
     end
+    
+    it "should convert users into recipients" do
+      recipient1 = "pablo@pablocantero.com"
+      recipient2 = "pablohstc@gmail.com"
+      test_mail = TestMail.create subject: "Test", body: "Hello World!", recipients: [recipient1, recipient2]
+      test_mail.recipients = nil
+      recipients = test_mail.convert_users_into_recipients!
+      recipients.should eq [recipient1, recipient2]
+    end
   end
 end

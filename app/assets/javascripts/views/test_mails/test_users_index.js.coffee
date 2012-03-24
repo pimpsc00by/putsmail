@@ -11,19 +11,28 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "keyup input[name='test_mail_users_mail']": "showNextRecipient"
 
   render: ->
-    $(@el).html(@template)
+    $(@el).html(@template(model: @model))
     thiz = @
     $ ->
       thiz.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
         {mode: "text/html", tabMode: "indent", theme: "myeclipse", onChange: thiz.updatePreview, height: 150}
       thiz.updatePreview()
+      _.each thiz.model.get("recipients"), (element, index, list)->
+        currentRecipient = $("#test_mail_users" + index)
+        currentRecipient.val(element)
+        currentRecipientContainer = currentRecipient.parent().parent()
+        currentRecipientContainer.show(500)
+        thiz.showNextRecipientFor currentRecipient
+        
     this
 
   updatePreview: =>
     $("#body_preview").contents().find("body").html(@editor.getValue())
 
   showNextRecipient: (event) ->
-    currentRecipient = $(event.target)
+    this.showNextRecipientFor $(event.target)
+
+  showNextRecipientFor: (currentRecipient) ->
     unless _.isEmpty currentRecipient.val()
       nextRecipient = currentRecipient.parent().parent().next().find("input[name='test_mail_users_mail']")
       if !nextRecipient.is(":visible")

@@ -38,6 +38,12 @@ class TestMail < ActiveRecord::Base
     @recipients = recipients
   end
   
+  def convert_users_into_recipients!
+    self.recipients = self.test_mail_users.to_a.map do | test_mail_user |
+      test_mail_user.user.mail
+    end
+  end
+  
   private
   def send_test_mail
     TestMailMailer.test_mail(self).deliver
