@@ -21,9 +21,9 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     if this.model.get("subject")
       $("#test_mail_subject").val(this.model.get("subject"))
     this.updatePreview()
-    this.populeRecipients()
+    this.populateRecipients()
 
-  populeRecipients: ->
+  populateRecipients: ->
     thiz = this
     _.each this.model.get("users"), (element, index, list)->
       currentRecipient = $("#test_mail_users" + index)
