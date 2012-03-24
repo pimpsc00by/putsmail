@@ -30,6 +30,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
       currentRecipient.val(element.mail)
       currentRecipientContainer = currentRecipient.parent().parent()
       currentRecipientContainer.show(500)
+      currentRecipientContainer.css("opacity", 1)
       thiz.showNextRecipientFor currentRecipient
 
   render: ->
