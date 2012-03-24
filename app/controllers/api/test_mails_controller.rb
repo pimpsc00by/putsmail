@@ -7,7 +7,7 @@ class Api::TestMailsController < ApplicationController
       value: test_mail.id,
       expires: 10.years.from_now
     }
-    respond_with test_mail
+    respond_with test_mail, location: api_test_mail_url(test_mail)
   end
 
   def update
