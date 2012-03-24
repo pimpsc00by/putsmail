@@ -44,10 +44,10 @@
 	<body>
 		<h1>Recommendations</h1>
 		<ul>
-			<li>Do not use JavaScript</li>
-			<li>Write all css content inside this body. For the best results, CSS should be inline</li>
+			<li>Do not use JavaScript.</li>
+			<li>Write all css content inside the body. For the best results, CSS should be inline.</li>
 			<li>Check if all image sources are available online. 
-				You can use many free services to upload your images like Image Shack</li>
+				You can use many free services to upload your images like Image Shack.</li>
 		</ul>
 	</body>
 </html>
