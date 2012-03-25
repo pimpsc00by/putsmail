@@ -64,7 +64,6 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
         $.noty.close()
       error: (model, response) ->
         $.noty.close()
-      #   alert "error"
 
   preview: ->
     event.preventDefault()
@@ -84,10 +83,11 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   checkFilled: (event) ->
     obj = $(event.target)
-    if not _.isEmpty obj.val()
-      obj.parent().parent().css("opacity", 1)
+    if _.isEmpty obj.val()
+      obj.parent().parent().css("opacity", 0.5)
     else
-      obj.parent().parent().css("opacity", .5)
+      obj.parent().parent().css("opacity", 1)
+      
 
   sendTest: (event) ->
     event.preventDefault()
