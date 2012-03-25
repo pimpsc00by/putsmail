@@ -2,7 +2,7 @@ require 'spec_helper'
 describe TestMail do
   
   describe "Mailer" do
-    it "should send the email after_update" do
+    it "should send email after_update" do
       mailer = mock
       mailer.should_receive(:deliver)
       TestMailMailer.should_receive(:test_mail).and_return(mailer)
