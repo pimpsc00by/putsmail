@@ -29,8 +29,9 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
       currentRecipient = $("#test_mail_users" + index)
       currentRecipient.val(element.mail)
       currentRecipientContainer = currentRecipient.parent().parent()
-      currentRecipientContainer.show(500)
-      currentRecipientContainer.css("opacity", 1)
+      currentRecipientContainer.show(500, ->
+         currentRecipientContainer.css("opacity", 1)
+      )
       thiz.showNextRecipientFor currentRecipient
 
   render: ->
@@ -46,7 +47,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   showNextRecipientFor: (currentRecipient) ->
     unless _.isEmpty currentRecipient.val()
       nextRecipient = currentRecipient.parent().parent().next().find("input[name='test_mail_users_mail']")
-      if !nextRecipient.is(":visible")
+      unless nextRecipient.is(":visible")
         nextRecipient.parent().parent().show(500)
 
   checkMail: ->
