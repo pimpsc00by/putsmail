@@ -26,7 +26,7 @@ class Api::TestMailsController < ApplicationController
   end
 
   def show
-    test_mail = TestMail.where("id = ? OR token lIKE '%#{params[:id]}%'", params[:id]).first
+    test_mail = TestMail.where("token lIKE '%#{params[:id]}%'").first
     respond_with test_mail
   end
 end

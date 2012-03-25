@@ -17,11 +17,11 @@ describe Api::TestMailsController do
       get 'show', id: test_mail.token, :format => :json
       response.body.should == test_mail.to_json
     end
-    it "should show by id" do
-      test_mail = Factory :test_mail
-      get 'show', id: test_mail.id, :format => :json
-      response.body.should == test_mail.to_json
-    end
+    # it "should show by id" do
+    #   test_mail = Factory :test_mail
+    #   get 'show', id: test_mail.id, :format => :json
+    #   response.body.should == test_mail.to_json
+    # end
   end
   
   describe "PUT 'update'" do
