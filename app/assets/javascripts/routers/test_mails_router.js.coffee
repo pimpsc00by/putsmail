@@ -2,7 +2,7 @@ class Putsmail.Routers.TestMails extends Backbone.Router
 
   routes:
     "": "index"
-    ":id" : "show"
+    ":token" : "show"
 
   index: ->
     if lastId = $("#test_mail_form_container").data("id")
@@ -11,11 +11,11 @@ class Putsmail.Routers.TestMails extends Backbone.Router
       model = new Putsmail.Models.TestMail
       model.save {}
         success:(model, response) ->
-          Backbone.history.navigate("/#{model.get("id")}", true)
+          Backbone.history.navigate("/#{model.get("token")}", true)
 
-  show: (id) ->
-    model = new Putsmail.Models.TestMail(id: id)
-    model.fetch
+  show: (token) ->
+    model = new Putsmail.Models.TestMail(token: token)
+    model.fetchByToken
       success: ->
         view = new Putsmail.Views.TestMailsIndex model: model
         $("#test_mail_form_container").html(view.render().el)

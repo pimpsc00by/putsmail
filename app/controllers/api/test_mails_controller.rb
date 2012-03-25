@@ -4,7 +4,7 @@ class Api::TestMailsController < ApplicationController
   def create
     test_mail = TestMail.create params[:test_mail]
     cookies[:last_test_mail_id] = {
-      value: test_mail.id,
+      value: test_mail.token,
       expires: 10.years.from_now
     }
     respond_with test_mail, location: api_test_mail_url(test_mail)
@@ -26,6 +26,7 @@ class Api::TestMailsController < ApplicationController
   end
 
   def show
-    respond_with TestMail.find(params[:id])
+    test_mail = TestMail.where("id = ? OR token lIKE '%#{params[:id]}%'", params[:id]).first
+    respond_with test_mail
   end
 end

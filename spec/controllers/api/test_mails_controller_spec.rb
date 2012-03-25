@@ -12,7 +12,12 @@ describe Api::TestMailsController do
   end
   
   describe "GET 'show'" do
-    it "returns http success" do
+    it "should show by token" do
+      test_mail = Factory :test_mail
+      get 'show', id: test_mail.token, :format => :json
+      response.body.should == test_mail.to_json
+    end
+    it "should show by id" do
       test_mail = Factory :test_mail
       get 'show', id: test_mail.id, :format => :json
       response.body.should == test_mail.to_json
@@ -21,7 +26,7 @@ describe Api::TestMailsController do
   
   describe "PUT 'update'" do
     it "returns http success" do
-      # TODO Need a refactory
+      # TODO Needs to be refactored
       test_mail = Factory :test_mail, subject: "subject1", body: "body1"
       put 'update', id: test_mail.id, test_mail: {subject: "subject2", body: "body2"}, :format => :json
       response.should be_success
