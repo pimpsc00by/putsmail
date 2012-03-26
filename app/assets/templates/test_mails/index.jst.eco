@@ -1,36 +1,45 @@
 <form class="form-horizontal" action="/api/test_mails" method="post" name="form_test_email" id="form_test_email">
-	<div class="control-group">
-		<label class="control-label" for="test_mail_recipient0">To:</label>
-		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="40" required="true">
-			<p class="help-block">Enter a valid e-mail address.</p>
+	<div class="row">
+		<div class="span8">
+			<div class="control-group">
+				<label class="control-label" for="test_mail_recipient0">To:</label>
+				<div class="controls">
+					<input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="40" required="true">
+					<p class="help-block">Enter a valid e-mail address.</p>
+				</div>
+			</div>
+			<div class="control-group test_mail_cc">		
+				<label class="control-label" for="test_mail_recipient1">Cc #1:</label>
+				<div class="controls">
+					<input type="email" class="input-xlarge" id="test_mail_users1" name="test_mail_users_mail" maxlength="40">
+					<p class="help-block">Enter a valid e-mail address.</p>
+				</div>
+			</div>
+			<div class="control-group test_mail_cc">		
+				<label class="control-label" for="test_mail_recipient2">Cc #2:</label>
+				<div class="controls">
+					<input type="email" class="input-xlarge" id="test_mail_users2" name="test_mail_users_mail" maxlength="40">
+					<p class="help-block">Enter a valid e-mail address.</p>
+				</div>
+			</div>
+			<div class="control-group test_mail_cc">		
+				<label class="control-label" for="test_mail_recipient3">Cc #3:</label>
+				<div class="controls">
+					<input type="email" class="input-xlarge" id="test_mail_users3" name="test_mail_users_mail" maxlength="40">
+					<p class="help-block">Enter a valid e-mail address.</p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">Subject:</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="test_mail_subject" name="subject" required="true" value="Puts Mail - Test HTML" maxlength="100">
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="test_mail_recipient1">Cc #1:</label>
-		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_users1" name="test_mail_users_mail" maxlength="40">
-			<p class="help-block">Enter a valid e-mail address.</p>
-		</div>
-	</div>
-	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="test_mail_recipient2">Cc #2:</label>
-		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_users2" name="test_mail_users_mail" maxlength="40">
-			<p class="help-block">Enter a valid e-mail address.</p>
-		</div>
-	</div>
-	<div class="control-group test_mail_cc">		
-		<label class="control-label" for="test_mail_recipient3">Cc #3:</label>
-		<div class="controls">
-			<input type="email" class="input-xlarge" id="test_mail_users3" name="test_mail_users_mail" maxlength="40">
-			<p class="help-block">Enter a valid e-mail address.</p>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="input01">Subject:</label>
-		<div class="controls">
-			<input type="text" class="input-xlarge" id="test_mail_subject" name="subject" required="true" value="Puts Mail - Test HTML" maxlength="100">
+		<div class="span4">
+			If you use it and like it, you're very welcome to buy me a beer as a small gesture of appreciation. Making a donation will motivate me to keep this project going and allow for further development.
+			<br/>
+			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WNTLM6FAHU2SJ" target="_blank"><img src="/images/donate.png" border="0"><img src="/images/duff.png" border="0"></a>
 		</div>
 	</div>
 	<div class="control-group">
