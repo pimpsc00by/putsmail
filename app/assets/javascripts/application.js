@@ -15,6 +15,7 @@
 //= require mode/javascript/javascript
 //= require mode/css/css
 //= require mode/htmlmixed/htmlmixed
+//= require jquery.smooth-scroll
 //= require putsmail
 //= require_tree ../templates
 //= require_tree ./models
