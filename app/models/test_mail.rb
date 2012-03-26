@@ -1,5 +1,5 @@
 class TestMail < ActiveRecord::Base
-  has_many :test_mail_users
+  has_many :test_mail_users, :dependent => :destroy
   
   has_many :users, :through => :test_mail_users
   
