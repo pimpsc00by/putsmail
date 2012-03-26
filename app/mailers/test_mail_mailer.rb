@@ -3,6 +3,7 @@ class TestMailMailer < ActionMailer::Base
   
   def test_mail mail
     @mail_body = mail.body
+    @mail_token = mail.token
     to = mail.users.first.mail
     if mail.users.size > 1
       cc = mail.users.slice(1, mail.users.size)
