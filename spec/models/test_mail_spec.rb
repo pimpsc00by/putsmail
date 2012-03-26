@@ -13,10 +13,11 @@ describe TestMail do
     
     it "should increment sent count" do
       mailer = mock
-      mailer.should_receive(:deliver)
-      TestMailMailer.should_receive(:test_mail).once.and_return(mailer)
+      mailer.should_receive(:deliver).twice
+      TestMailMailer.should_receive(:test_mail).twice.and_return(mailer)
       test_mail = Factory :test_mail
       test_mail.test_mail_users.build user: Factory(:user)
+      expect{test_mail.save}.to change{test_mail.sent_count.to_i}.by(1)
       expect{test_mail.save}.to change{test_mail.sent_count.to_i}.by(1)
     end
   end
@@ -27,7 +28,7 @@ describe TestMail do
       b = Factory :test_mail
       a.token.should_not be_nil
       b.token.should_not be_nil
-      a.token.should_not be b.token
+      a.token.should_not eq b.token
     end
   end
 end
