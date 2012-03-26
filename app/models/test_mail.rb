@@ -24,6 +24,7 @@ class TestMail < ActiveRecord::Base
   def send_test_mails
     unless self.users.empty?
       TestMailMailer.test_mail(self).deliver
+      self.increment :sent_count
     end
   end
 end
