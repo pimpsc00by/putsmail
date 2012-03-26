@@ -5,7 +5,7 @@ class Api::TestMailsController < ApplicationController
     test_mail = TestMail.create params[:test_mail]
     cookies[:last_test_mail_id] = {
       value: test_mail.token,
-      expires: 10.years.from_now
+      expires: 3.months.from_now
     }
     respond_with test_mail, location: api_test_mail_url(test_mail)
   end
