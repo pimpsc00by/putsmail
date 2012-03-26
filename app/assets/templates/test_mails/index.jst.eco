@@ -60,7 +60,7 @@
 	</body>
 </html>
 			</textarea>
-			<iframe id="body_preview" style="overflow: auto;height: 150px; width: 100%;position: relative; border:0;"></iframe>
+			<iframe id="body_preview" style="overflow: auto;height: 280px; width: 100%;position: relative; border:0;"></iframe>
 		</div>
 	</div>
 	<div class="control-group">
