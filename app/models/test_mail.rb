@@ -4,8 +4,6 @@ class TestMail < ActiveRecord::Base
   has_many :users, :through => :test_mail_users
   
   before_create :assign_unique_token
-  
-  after_update :send_test_mails
     
   def to_json(options={})
     super(:include => [:users])
@@ -19,12 +17,5 @@ class TestMail < ActiveRecord::Base
 
   def unique_token?
     self.class.count(:conditions => {:token => token}) == 0
-  end
-
-  def send_test_mails
-    unless self.users.empty?
-      TestMailMailer.test_mail(self).deliver
-      self.increment :sent_count
-    end
   end
 end

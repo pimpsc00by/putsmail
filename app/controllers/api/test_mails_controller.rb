@@ -21,7 +21,11 @@ class Api::TestMailsController < ApplicationController
         test_mail.test_mail_users.build :user => user
       end
     end
-    test_mail.save
+    # TODO it should be in a model :/
+    if test_mail.save and !test_mail.users.empty?
+      TestMailMailer.test_mail(test_mail).deliver
+      test_mail.increment! :sent_count
+    end
     respond_with test_mail
   end
 
