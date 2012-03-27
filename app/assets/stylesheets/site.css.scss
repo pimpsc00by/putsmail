@@ -18,3 +18,14 @@ tr.poor {
 tr.safe {
 	 color: #468847;
 }
+
+
+#body_preview {
+	overflow: auto;
+	height: 280px; 
+	width: 100%;
+	position: relative; 
+	border:0;
+	margin: 0;
+	padding: 0;
+}

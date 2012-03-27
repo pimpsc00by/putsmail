@@ -1,5 +1,7 @@
 <% unless _.isEmpty @model.get("warnings"): %>
-	<table class="warnings table table-bordered">
+<div class="alert alert-block">
+	<a class="close" data-dismiss="alert">×</a>
+	<table class="warnings table table-bordered" bgcolor="#fff">
 		<thead>
 			<tr>
 				<th>Property</th>
@@ -17,4 +19,5 @@
 		<% end %>
 		</tbody>
 	</table>
+</div>
 <% end %>
