@@ -40,10 +40,13 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   updatePreview: =>
     ifrm = document.getElementById('body_preview')
-    ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument
-    ifrm.document.open()
-    ifrm.document.write(@editor.getValue())
-    ifrm.document.close()
+    if ifrm.contentWindow
+      ifrmDocument = ifrm.contentWindow.document
+    else 
+      ifrmDocument = ifrm.contentDocument
+    ifrmDocument.open()
+    ifrmDocument.write(@editor.getValue())
+    ifrmDocument.close()
 
   showNextRecipient: (event) ->
     this.showNextRecipientFor $(event.target)
