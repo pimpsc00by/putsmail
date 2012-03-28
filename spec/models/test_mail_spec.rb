@@ -12,10 +12,10 @@ describe TestMail do
   
   describe "Total sent" do
     it "should sum the sent total + Puts Mail V1 total" do
-      Factory :test_mail, sent_count: 10
-      Factory :test_mail, sent_count: 10
+      a = Factory :test_mail, sent_count: 10
+      b = Factory :test_mail, sent_count: 10
       total_sent_puts_mail_v1 = 32977
-      TestMail.total_sent_count.should == 20 + total_sent_puts_mail_v1
+      TestMail.total_sent_count.should == a.sent_count + b.sent_count + total_sent_puts_mail_v1
     end
   end
 end
