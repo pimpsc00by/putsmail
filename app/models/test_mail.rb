@@ -9,6 +9,14 @@ class TestMail < ActiveRecord::Base
     super(:include => [:users])
   end
   
+  def self.total_sent_count
+    # 32977 isn't a magic number, it is the total sent in the Puts Mail V1
+    # Puts Mail V1 28/03/2012 - http://f.cl.ly/items/3A1s3H0E2w2i3e210Y1f/Screen%20Shot%202012-03-28%20at%2011.05.21%20AM.png
+    # putsmail.heroku.com
+    total_sent_puts_mail_v1 = 32977
+    TestMail.sum("sent_count") + total_sent_puts_mail_v1
+  end
+  
   private
   def assign_unique_token
     # http://stackoverflow.com/questions/2125384/assigning-each-user-a-unique-100-character-hash-in-ruby-on-rails

@@ -9,4 +9,13 @@ describe TestMail do
       a.token.should_not eq b.token
     end
   end
+  
+  describe "Total sent" do
+    it "should sum the sent total + Puts Mail V1 total" do
+      Factory :test_mail, sent_count: 10
+      Factory :test_mail, sent_count: 10
+      total_sent_puts_mail_v1 = 32977
+      TestMail.total_sent_count.should == 20 + total_sent_puts_mail_v1
+    end
+  end
 end
