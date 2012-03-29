@@ -1,6 +1,6 @@
 class CheckHtml
   def self.check_it html
-    premailer = Premailer.new html, {:warn_level => Premailer::Warnings::SAFE, :with_html_string => true}
+    premailer = Premailer.new(html, {:warn_level => Premailer::Warnings::POOR, :with_html_string => true})
     CheckHtmlResult.new({:body => premailer.to_inline_css, :warnings => premailer.warnings})
   end
 end
