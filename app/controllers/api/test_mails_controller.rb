@@ -11,7 +11,7 @@ class Api::TestMailsController < ApplicationController
   end
 
   def update
-    test_mail = TestMail.find(params[:id])
+    test_mail = TestMail.find_by_token(params[:test_mail][:token])
     test_mail.body = params[:test_mail][:body]
     test_mail.subject = params[:test_mail][:subject]
     if test_mail.save and !test_mail.active_users.empty?
@@ -23,6 +23,10 @@ class Api::TestMailsController < ApplicationController
 
   def show
     test_mail = TestMail.find_by_token(params[:id])
+    cookies[:last_test_mail_id] = {
+      value: test_mail.token,
+      expires: 3.months.from_now
+    }
     respond_with test_mail
   end
 end
