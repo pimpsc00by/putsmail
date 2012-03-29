@@ -8,10 +8,9 @@ class Putsmail.Views.TestMailUsersIndex extends Backbone.View
 
   addTestMailUser:(model) ->
     testMailUserView = new Putsmail.Views.TestMailUsersEdit(model: model)
-    $("#container_test_mail_user").append(testMailUserView.render().el)
+    $("#container_test_mail_user").prepend(testMailUserView.render().el)
 
   render: ->
     $(@el).html(@template(collection: @collection))
     @collection.each(@addTestMailUser)
-    window.kkk = @collection
     this
