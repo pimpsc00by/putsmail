@@ -5,7 +5,7 @@ class Api::TestMailUsersController < ApplicationController
 
   def create
     user = User.find_or_create_by_mail params[:mail]
-    test_mail_user = @test_mail.test_mail_users.create user_id: user.id, test_mail_id: params[:test_mail_id]
+    test_mail_user = @test_mail.test_mail_users.create user_id: user.id
     respond_with test_mail_user, location: api_test_mail_user_url(test_mail_user)
   end
   
@@ -29,7 +29,7 @@ class Api::TestMailUsersController < ApplicationController
   
   private
   def load_test_mail
-    test_mail_id = cookies[:last_test_mail_id]
-    @test_mail = TestMail.find test_mail_id
+    token = cookies[:last_test_mail_id]
+    @test_mail = TestMail.find_by_token(token)
   end
 end

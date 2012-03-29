@@ -22,7 +22,7 @@ class Api::TestMailsController < ApplicationController
   end
 
   def show
-    test_mail = TestMail.where("token lIKE '%#{params[:id]}%'").first
+    test_mail = TestMail.find_by_token(params[:id])
     respond_with test_mail
   end
 end

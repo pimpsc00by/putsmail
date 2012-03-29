@@ -19,6 +19,11 @@ class TestMail < ActiveRecord::Base
     TestMail.sum("sent_count") + total_sent_puts_mail_v1
   end
   
+  def self.find_by_token token
+    # I don't why but the default find_by_token doesn't work properly
+    TestMail.where("token lIKE '%#{token}%'").first
+  end
+  
   private
   def assign_unique_token
     # http://stackoverflow.com/questions/2125384/assigning-each-user-a-unique-100-character-hash-in-ruby-on-rails

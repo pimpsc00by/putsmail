@@ -8,6 +8,13 @@ describe TestMail do
       b.token.should_not be_nil
       a.token.should_not eq b.token
     end
+    
+    it "should find by token" do
+      a = Factory :test_mail
+      b = Factory :test_mail
+      TestMail.find_by_token(a.token).should eq a
+      TestMail.find_by_token(b.token).should eq b
+    end
   end
   
   describe "Total sent" do

@@ -4,14 +4,15 @@ describe Api::TestMailUsersController do
   
   before(:each) do
     @test_mail = Factory :test_mail
-    @request.cookies[:last_test_mail_id] = @test_mail.id
+    @request.cookies[:last_test_mail_id] = @test_mail.token
   end
 
   describe "POST 'create'" do
     it "returns http success" do
       assert_difference "TestMailUser.count" => +1, "User.count" => +1 do
-        post 'create', test_mail_id: @test_mail.id, mail: "pablo@pablocantero.com", :format => :json
+        post 'create', mail: "pablo@pablocantero.com", :format => :json
       end
+      @test_mail.test_mail_users.reload
       response.body.should == @test_mail.test_mail_users.last.to_json
     end
   end
@@ -29,6 +30,7 @@ describe Api::TestMailUsersController do
       @test_mail.test_mail_users.create user: Factory(:user)
       @test_mail.test_mail_users.create user: Factory(:user)
       get 'index', :format => :json
+      @test_mail.test_mail_users.reload
       response.body.should == @test_mail.test_mail_users.to_json
     end
   end
