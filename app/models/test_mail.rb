@@ -4,9 +4,11 @@ class TestMail < ActiveRecord::Base
   has_many :users, :through => :test_mail_users
   
   before_create :assign_unique_token
-    
-  def to_json(options={})
-    super(:include => [:users])
+  
+  def as_json(options={})
+      super(
+          :include => [:users]
+      )
   end
   
   def self.total_sent_count

@@ -5,7 +5,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="container_test_mail_user">
     <tr>
       <td><input type="checkbox" id="inlineCheckbox1" value="option1" disabled="disabled"></td>
       <td style="color: #CCC; font-style: italic;">test@putsmail.com</td>

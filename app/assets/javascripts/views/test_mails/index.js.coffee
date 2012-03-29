@@ -4,20 +4,21 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   events:
     "submit #form_test_email": "sendTest"
-    "focus .test_mail_cc input[name='test_mail_users_mail']": "makeVisible"
-    "blur  .test_mail_cc input[name='test_mail_users_mail']": "checkFilled"
     "click #button_preview": "preview"
     "click #button_check_mail": "checkMail"
-    "keyup input[name='test_mail_users_mail']": "showNextRecipient"
-    "click #btnAddRecipient": "addRecipient"
+    "click #btnAddRecipient": "newRecipient"
 
   initialize: ->
     this.bind('rendered', this.afterRender, this);
     this.testMailUsersCollection = new Putsmail.Collections.TestMailUsers()
     this.testMailUsersView = new Putsmail.Views.TestMailUsersIndex(collection: this.testMailUsersCollection)
+    this.testMailUsersCollection.fetchByTestMail(@model.id)
 
-  addRecipient: (event) ->
-    event.preventDefault()    
+  newRecipient: (event) ->
+    event.preventDefault() 
+    this.testMailUsersCollection.create {test_mail_id: this.model.id, mail: $("#test_mail_users0").val()},
+      wait: true
+      success: -> $('#test_mail_users0').val("")   
 
   afterRender: ->
     this.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 

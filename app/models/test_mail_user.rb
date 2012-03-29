@@ -6,4 +6,10 @@ class TestMailUser < ActiveRecord::Base
   validates_presence_of :test_mail_id
   
   validates_uniqueness_of :user_id, :scope => [:test_mail_id]
+  
+  def as_json(options={})
+      super(
+          :include => [:user]
+      )
+  end
 end

@@ -1,0 +1,2 @@
+<td><input type="checkbox" id="inlineCheckbox1" value="<%= @model.get("id") %>" disabled="disabled"></td>
+<td style="color: #CCC; font-style: italic;"><%= @model.get("user").mail %></td>

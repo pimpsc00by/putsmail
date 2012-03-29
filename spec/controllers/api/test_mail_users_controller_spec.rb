@@ -5,9 +5,8 @@ describe Api::TestMailUsersController do
   describe "POST 'create'" do
     it "returns http success" do
       test_mail = Factory :test_mail
-      user = Factory :user
-      assert_difference "TestMailUser.count" => +1 do
-        post 'create', test_mail_user: {test_mail_id: test_mail.id, user_id: user.id}, :format => :json
+      assert_difference "TestMailUser.count" => +1, "User.count" => +1 do
+        post 'create', test_mail_id: test_mail.id, mail: "pablo@pablocantero.com", :format => :json
       end
       response.body.should == TestMailUser.last.to_json
     end
