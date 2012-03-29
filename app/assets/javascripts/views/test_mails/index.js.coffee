@@ -12,13 +12,15 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     this.bind('rendered', this.afterRender, this);
     this.testMailUsersCollection = new Putsmail.Collections.TestMailUsers()
     this.testMailUsersView = new Putsmail.Views.TestMailUsersIndex(collection: this.testMailUsersCollection)
-    this.testMailUsersCollection.fetchByTestMail(@model.id)
+    this.testMailUsersCollection.fetch
 
   newRecipient: (event) ->
     event.preventDefault() 
     this.testMailUsersCollection.create {test_mail_id: this.model.id, mail: $("#test_mail_users0").val()},
       wait: true
-      success: -> $('#test_mail_users0').val("")   
+      success: -> 
+        $('#test_mail_users0').val("")   
+        $('#test_mail_users0').focus()
 
   afterRender: ->
     this.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
@@ -28,19 +30,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     if this.model.get("subject")
       $("#test_mail_subject").val(this.model.get("subject"))
     this.updatePreview()
-    this.populateRecipients()
     $("#recipients_container").html(this.testMailUsersView.render().el)
-
-  populateRecipients: ->
-    thiz = this
-    _.each this.model.get("users"), (element, index, list)->
-      currentRecipient = $("#test_mail_users" + index)
-      currentRecipient.val(element.mail)
-      currentRecipientContainer = currentRecipient.parent().parent()
-      currentRecipientContainer.show(500, ->
-         currentRecipientContainer.css("opacity", 1)
-      )
-      thiz.showNextRecipientFor currentRecipient
 
   render: ->
     $(@el).html(@template(model: @model))
@@ -55,15 +45,6 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     ifrmDocument.open()
     ifrmDocument.write(@editor.getValue())
     ifrmDocument.close()
-
-  showNextRecipient: (event) ->
-    this.showNextRecipientFor $(event.target)
-
-  showNextRecipientFor: (currentRecipient) ->
-    unless _.isEmpty currentRecipient.val()
-      nextRecipient = currentRecipient.parent().parent().next().find("input[name='test_mail_users_mail']")
-      unless nextRecipient.is(":visible")
-        nextRecipient.parent().parent().show(500)
 
   checkMail: ->
     event.preventDefault()
@@ -85,24 +66,6 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     event.preventDefault()
     preview = window.open ""
     preview.document.write @editor.getValue()
-
-  showCC: (event) ->
-    event.preventDefault()
-    $(".test_mail_cc").show 500, ->
-      firstCc = $(".test_mail_cc input[name='test_mail_users_mail']").first()
-      firstCc.focus()
-      firstCc.css("opacity", 1)
-
-  makeVisible: (event) ->
-    obj = $(event.target)
-    obj.parent().parent().css("opacity", 1)
-
-  checkFilled: (event) ->
-    obj = $(event.target)
-    if _.isEmpty obj.val()
-      obj.parent().parent().css("opacity", 0.5)
-    else
-      obj.parent().parent().css("opacity", 1)
       
 
   sendTest: (event) ->

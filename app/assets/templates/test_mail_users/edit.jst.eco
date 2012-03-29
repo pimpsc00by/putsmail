@@ -1,2 +1,3 @@
-<td><input type="checkbox" id="inlineCheckbox1" value="<%= @model.get("id") %>"></td>
-<td><%= @model.get("user").mail %></td>
+<td><input type="checkbox" name="mail_active" id="mail_active<%= @model.get("id") %>" value="<%= @model.get("id") %>" <%= "checked" if @model.get("active") %>></td>
+<td><label for="mail_active<%= @model.get("id") %>"><%= @model.get("user").mail %></label></td>
+<td><span class="icon-remove-sign"></span></td>

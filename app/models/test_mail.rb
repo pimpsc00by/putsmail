@@ -1,15 +1,15 @@
 class TestMail < ActiveRecord::Base
-  has_many :test_mail_users, :dependent => :destroy
+  has_many :test_mail_users, dependent: :destroy
+  
+  has_many :active_test_mail_users, conditions: ["active = ?", true], class_name: "TestMailUser"
   
   has_many :users, :through => :test_mail_users
   
+  has_many :active_users, :through => :active_test_mail_users, source: :user
+  
   before_create :assign_unique_token
   
-  def as_json(options={})
-      super(
-          :include => [:users]
-      )
-  end
+  validates_length_of :test_mail_users, maximum: 10
   
   def self.total_sent_count
     # 32977 isn't a magic number, it is the total sent in the Puts Mail V1

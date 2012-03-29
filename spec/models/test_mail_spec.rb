@@ -18,4 +18,13 @@ describe TestMail do
       TestMail.total_sent_count.should == a.sent_count + b.sent_count + total_sent_puts_mail_v1
     end
   end
+  
+  describe "Active recipients" do
+    it "should return active recipients" do
+      test_mail = Factory :test_mail
+      active = test_mail.test_mail_users.create user: Factory(:user), active: true
+      deactive = test_mail.test_mail_users.create user: Factory(:user), active: false
+      test_mail.active_users.should eq [active.user]
+    end
+  end
 end
