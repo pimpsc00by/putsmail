@@ -8,6 +8,7 @@
 					<a href="#" class="btn" id="btnAddRecipient">Add</a>
 					<p class="help-block">Enter a valid e-mail address.</p>
 					<div id="recipients_container"></div>
+					<p class="help-block">Maximum 10 e-mails.</p>
 				</div>
 			</div>
 			<div class="control-group">
