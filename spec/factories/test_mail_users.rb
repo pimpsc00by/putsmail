@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :test_mail_user do
-    test_email_id 1
+    test_mail_id 1
     user_id 1
   end
 end

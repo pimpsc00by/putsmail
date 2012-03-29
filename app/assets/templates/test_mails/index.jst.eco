@@ -2,37 +2,18 @@
 	<div class="row">
 		<div class="span8">
 			<div class="control-group">
-				<label class="control-label" for="test_mail_recipient0">To:</label>
+				<label class="control-label" for="test_mail_recipient0">E-mail:</label>
 				<div class="controls">
-					<input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="40" required="true">
+					<input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="40">
+					<a href="#" class="btn" id="btnAddRecipient">Add</a>
 					<p class="help-block">Enter a valid e-mail address.</p>
-				</div>
-			</div>
-			<div class="control-group test_mail_cc">		
-				<label class="control-label" for="test_mail_recipient1">Cc #1:</label>
-				<div class="controls">
-					<input type="email" class="input-xlarge" id="test_mail_users1" name="test_mail_users_mail" maxlength="40">
-					<p class="help-block">Enter a valid e-mail address.</p>
-				</div>
-			</div>
-			<div class="control-group test_mail_cc">		
-				<label class="control-label" for="test_mail_recipient2">Cc #2:</label>
-				<div class="controls">
-					<input type="email" class="input-xlarge" id="test_mail_users2" name="test_mail_users_mail" maxlength="40">
-					<p class="help-block">Enter a valid e-mail address.</p>
-				</div>
-			</div>
-			<div class="control-group test_mail_cc">		
-				<label class="control-label" for="test_mail_recipient3">Cc #3:</label>
-				<div class="controls">
-					<input type="email" class="input-xlarge" id="test_mail_users3" name="test_mail_users_mail" maxlength="40">
-					<p class="help-block">Enter a valid e-mail address.</p>
+					<div id="recipients_container"></div>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="input01">Subject:</label>
 				<div class="controls">
-					<input type="text" class="input-xlarge" id="test_mail_subject" name="subject" required="true" value="Puts Mail - Test HTML" maxlength="100">
+					<input type="text" class="input-xlarge" id="test_mail_subject" name="subject" required="true" value="Untitled Test HTML" maxlength="100">
 				</div>
 			</div>
 		</div>

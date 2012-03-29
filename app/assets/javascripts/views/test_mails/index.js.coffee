@@ -9,9 +9,15 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "click #button_preview": "preview"
     "click #button_check_mail": "checkMail"
     "keyup input[name='test_mail_users_mail']": "showNextRecipient"
+    "click #btnAddRecipient": "addRecipient"
 
   initialize: ->
     this.bind('rendered', this.afterRender, this);
+    this.testMailUsersCollection = new Putsmail.Collections.TestMailUsers()
+    this.testMailUsersView = new Putsmail.Views.TestMailUsersIndex(collection: this.testMailUsersCollection)
+
+  addRecipient: (event) ->
+    event.preventDefault()    
 
   afterRender: ->
     this.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
@@ -22,6 +28,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
       $("#test_mail_subject").val(this.model.get("subject"))
     this.updatePreview()
     this.populateRecipients()
+    $("#recipients_container").html(this.testMailUsersView.render().el)
 
   populateRecipients: ->
     thiz = this

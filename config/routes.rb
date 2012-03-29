@@ -5,6 +5,7 @@ Putsmail::Application.routes.draw do
   
   namespace :api do
     resources :test_mails, only: [:create, :show, :update]
+    resources :test_mail_users, only: [:create, :index, :show]
     resources :check_htmls, only: [:create]
   end
   

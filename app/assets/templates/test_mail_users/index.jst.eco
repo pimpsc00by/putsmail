@@ -1,0 +1,14 @@
+<table class="table table-striped input-xlarge">
+  <thead>
+    <tr>
+      <th width="30px"></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input type="checkbox" id="inlineCheckbox1" value="option1" disabled="disabled"></td>
+      <td style="color: #CCC; font-style: italic;">test@putsmail.com</td>
+    </tr>
+  </tbody>
+</table>
