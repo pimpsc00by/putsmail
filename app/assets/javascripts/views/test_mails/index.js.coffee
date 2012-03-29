@@ -16,7 +16,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   newRecipient: (event) ->
     event.preventDefault() 
-    this.testMailUsersCollection.create {test_mail_id: this.model.id, mail: $("#test_mail_users0").val()},
+    this.testMailUsersCollection.create {test_mail_id: this.model.id, mail: $("#test_mail_users0").val(), active: true},
       wait: true
       success: -> 
         $('#test_mail_users0').val("")
