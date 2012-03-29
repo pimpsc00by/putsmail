@@ -10,7 +10,7 @@
     <tr>
       <td><input type="checkbox" id="inlineCheckbox1" value="option1" disabled="disabled"></td>
       <td style="color: #CCC; font-style: italic;">test@putsmail.com</td>
-      <td><span class="icon-remove-sign"></span></td>
+      <td>&nbsp;</td>
     </tr>
   </tbody>
 </table>
