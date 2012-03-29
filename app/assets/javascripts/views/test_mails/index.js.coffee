@@ -12,14 +12,17 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     this.bind('rendered', this.afterRender, this);
     this.testMailUsersCollection = new Putsmail.Collections.TestMailUsers()
     this.testMailUsersView = new Putsmail.Views.TestMailUsersIndex(collection: this.testMailUsersCollection)
-    this.testMailUsersCollection.fetch
+    this.testMailUsersCollection.fetch()
 
   newRecipient: (event) ->
     event.preventDefault() 
     this.testMailUsersCollection.create {test_mail_id: this.model.id, mail: $("#test_mail_users0").val()},
       wait: true
       success: -> 
-        $('#test_mail_users0').val("")   
+        $('#test_mail_users0').val("")
+        $('#test_mail_users0').focus()
+      error: ->
+        $('#test_mail_users0').val("")
         $('#test_mail_users0').focus()
 
   afterRender: ->
