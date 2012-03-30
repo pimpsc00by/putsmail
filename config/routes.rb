@@ -1,4 +1,6 @@
 Putsmail::Application.routes.draw do
+  get "subscription_listener/create"
+
   get "site/index"
 
   root :to => "site#index"
