@@ -4,9 +4,9 @@ class SubscriptionListenerController < ApplicationController
   
   def create
     message = Mail.new(params[:message])
-    Rails.logger.info message.subject #print the subject to the logs
-    Rails.logger.info message.body.decoded #print the decoded body to the logs
-    Rails.logger.info message.to #print the decoded body to the logs
+    Rails.logger.info "message.subject: #{message.subject}" #print the subject to the logs
+    Rails.logger.info "message.body.decoded: #{message.body.decoded}" #print the decoded body to the logs
+    Rails.logger.info "message.to: #{message.to}" #print the decoded body to the logs
 
     # Do some other stuff with the mail message
 
