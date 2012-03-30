@@ -1,6 +1,6 @@
 Putsmail::Application.routes.draw do
-  get "subscription_listener/subscribe"
-  get "subscription_listener/unsubscribe"
+  post "subscription_listener/subscribe"
+  post "subscription_listener/unsubscribe"
 
   get "site/index"
 
