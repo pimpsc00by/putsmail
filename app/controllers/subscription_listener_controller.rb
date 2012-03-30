@@ -2,14 +2,20 @@ class SubscriptionListenerController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   def subscribe
-    Rails.logger.error "subscribe/message.x_from_header: #{params[:x_from_header]}" #print the decoded body to the logs
-    # Do some other stuff with the mail message
-    render :text => 'success', :status => 200 # a status of 404 would reject the mail
+    from = params[:x_from_header].to_a.first
+    if user = User.find_by_mail(from)
+      user.subscribed = true
+      user.save
+    end
+    render :text => 'success', :status => 200
   end
   
   def unsubscribe
-    Rails.logger.error "unsubscribe/message.x_from_header: #{params[:x_from_header]}" #print the decoded body to the logs
-    # Do some other stuff with the mail message
+    from = params[:x_from_header].to_a.first
+    if user = User.find_by_mail(from)
+      user.subscribed = false
+      user.save
+    end
     render :text => 'success', :status => 200 # a status of 404 would reject the mail
   end
 end
