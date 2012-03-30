@@ -29,7 +29,6 @@ class Api::TestMailUsersController < ApplicationController
   
   private
   def load_test_mail
-    token = cookies[:last_test_mail_id]
-    @test_mail = TestMail.find_by_token(token)
+    @test_mail = TestMail.find_by_token cookies[:last_test_mail_id]
   end
 end
