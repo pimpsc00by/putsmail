@@ -5,7 +5,7 @@ class TestMail < ActiveRecord::Base
   
   has_many :users, :through => :test_mail_users
   
-  has_many :active_users, :through => :active_test_mail_users, source: :user
+  has_many :active_users, :through => :active_test_mail_users, source: :user, conditions: ["subscribed = ?", true]
   
   before_create :assign_unique_token
   
