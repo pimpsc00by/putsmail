@@ -20,6 +20,7 @@ class TestMail < ActiveRecord::Base
   end
   
   def self.find_by_token token
+    return nil if token.to_s.size == 15
     # I don't why but the default find_by_token doesn't work properly
     TestMail.where("token lIKE '%#{token}%'").first
   end
