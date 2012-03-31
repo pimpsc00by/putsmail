@@ -37,7 +37,7 @@
 		<ul>
 			<li>Do not use JavaScript.</li>
 			<li>Write all css content inside the body. For the best results, CSS should be inline.</li>
-			<li>Check if all image sources are available online.</li>
+			<li>Make sure all your images are being referenced with absolute, not relative links.</li>
 		</ul>
 	</body>
 </html>
