@@ -21,7 +21,7 @@
 		<div class="span4">
 			If you use it and like it, you're very welcome to buy me a beer as a small gesture of appreciation. Making a donation will motivate me to keep this project going on.
 			<br/>
-			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WNTLM6FAHU2SJ" target="_blank"><img src="/images/donate.png" border="0"><img src="/images/duff.png" border="0"></a>
+			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WNTLM6FAHU2SJ" target="_blank"><img src="/images/donate.png" border="0"><!--<img src="/images/duff.png" border="0">--></a>
 		</div>
 	</div>
 	<div class="control-group">
