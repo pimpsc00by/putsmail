@@ -1,6 +1,6 @@
 <% unless _.isEmpty @model.get("warnings"): %>
-<div class="alert alert-block fade in">
-	<a class="close" data-dismiss="alert">×</a>
+<div class="alert alert-block fade in" style="background-color: #FFF">
+	<a class="close" data-dismiss="alert"><i class="icon-remove"></i></a>
 	<table class="warnings table table-bordered" bgcolor="#fff">
 		<thead>
 			<tr>

@@ -7,12 +7,19 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "click #button_preview": "preview"
     "click #button_check_mail": "checkMail"
     "click #btnAddRecipient": "newRecipient"
+    "click #new_window_preview": "newWindowPreview"
 
   initialize: ->
     this.bind('rendered', this.afterRender, this);
     this.testMailUsersCollection = new Putsmail.Collections.TestMailUsers()
     this.testMailUsersView = new Putsmail.Views.TestMailUsersIndex(collection: this.testMailUsersCollection)
     this.testMailUsersCollection.fetch()
+
+  newWindowPreview: (event) ->
+    event.preventDefault() 
+    preview = window.open('', 'puts_mail_preview')
+    preview.document.write(@editor.getValue())
+    preview.focus()
 
   newRecipient: (event) ->
     event.preventDefault() 
