@@ -14,6 +14,7 @@ end
 group :development do
   gem 'rspec-rails', '~> 2.4'
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'heroku'
 end
 
 group :test do
