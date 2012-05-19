@@ -22,6 +22,7 @@ group :test do
   gem 'factory_girl_rails'
   gem "capybara"
   gem 'assert_difference'
+  gem 'simplecov', :require => false
 end
 
 group :assets do

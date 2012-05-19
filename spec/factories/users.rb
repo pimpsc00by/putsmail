@@ -1,5 +1,8 @@
 #coding: utf-8
-Factory.define :user, :class => User do |f|
-  f.sequence(:mail) {|n| "apu#{n}@kwikemart.com"}
-  f.subscribed true
+
+FactoryGirl.define do
+  factory :user do
+    sequence(:mail) {|n| "apu#{n}@kwikemart.com"}
+    subscribed true
+  end
 end

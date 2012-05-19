@@ -61,6 +61,6 @@
 	<div class="form-actions">
 		<!--<button type="button" class="btn" id="button_preview">Preview</button>-->
 		<button type="button" class="btn" id="button_check_mail">Check your HTML</button>
-		<button type="submit" class="btn btn-primary" id="button_send">Send</button>
+		<button type="button" class="btn btn-primary" id="button_send">Send</button>
 	</div>
 </form>
