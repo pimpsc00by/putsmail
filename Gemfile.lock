@@ -111,6 +111,7 @@ GEM
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     multi_json (1.1.0)
+    newrelic_rpm (3.3.5)
     nokogiri (1.5.2)
     pg (0.13.2)
     polyglot (0.3.3)
@@ -216,6 +217,7 @@ DEPENDENCIES
   hpricot
   jquery-rails (>= 0.2.6)
   mocha
+  newrelic_rpm
   pg
   premailer
   rails (= 3.1.0)

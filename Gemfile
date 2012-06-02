@@ -6,6 +6,7 @@ gem 'hpricot'
 gem 'premailer'
 gem 'active_attr'
 gem 'backbone-on-rails'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'pg'
