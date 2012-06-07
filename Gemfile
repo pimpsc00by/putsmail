@@ -7,6 +7,7 @@ gem 'premailer'
 gem 'active_attr'
 gem 'backbone-on-rails'
 gem 'newrelic_rpm'
+gem 'url2png'
 
 group :production do
   gem 'pg'

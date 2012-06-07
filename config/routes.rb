@@ -1,4 +1,6 @@
 Putsmail::Application.routes.draw do
+  resources :galleries, only: [:index, :show]
+
   post "subscription_listener/subscribe"
   post "subscription_listener/unsubscribe"
 
