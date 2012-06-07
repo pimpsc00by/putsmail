@@ -1,6 +1,6 @@
 <h1>Gallery</h1>
 <ul>
 	<% @emails.each do | email | %>
-		<li><%= site_image_tag gallery_url(email), :fullpage => true %></li>
+		<li><%= link_to site_image_tag(gallery_url(email)), site_image_url(gallery_url(email)), :fullpage => true %></li>
 	<% end %>
 </ul>
