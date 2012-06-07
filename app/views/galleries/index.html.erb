@@ -1,6 +1,6 @@
 <h1>Gallery</h1>
 <ul>
 	<% @emails.each do | email | %>
-		<li><%= link_to url2png_image_tag(gallery_url(email)), url2png_image_url(gallery_url(email)) %></li>
+		<li><%= link_to url2png_image_tag(gallery_url(email)), url2png_image_url(gallery_url(email)), target: 'blank' %></li>
 	<% end %>
 </ul>
