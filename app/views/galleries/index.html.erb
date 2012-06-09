@@ -1,7 +1,7 @@
 <div class="span9">
 	<ul class="thumbnails">
 		<% @emails.each do | email | %>
-		<li class="span3"><%= link_to url2png_image_tag(gallery_url(email)), url2png_image_url(gallery_url(email)), target: "emailgallery#{email.id}" %></li>
+		<li class="span3"><a href="<%= url2png_image_url(gallery_url(email)) %>" class="thumbnail" target="emailgallery<%= email.id %>"><img alt="<%= email.subject %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(gallery_url(email)) %>" class="lazy"></a></li>
 		<% end %>
 	</ul>
 </div>
