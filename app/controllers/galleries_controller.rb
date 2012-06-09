@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
   def index
-    @emails = TestMail.limit(20).order('updated_at DESC')
+    @emails = TestMail.where('body != \'\' AND body IS NOT NULL').limit(21).order('updated_at DESC')
   end
   
   def show
