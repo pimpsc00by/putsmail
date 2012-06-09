@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
   def index
-    @emails = TestMail.limit(50).order('updated_at DESC')
+    @emails = TestMail.limit(20).order('updated_at DESC')
   end
   
   def show
