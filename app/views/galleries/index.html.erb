@@ -1,7 +1,7 @@
 <div class="span9">
 	<ul class="thumbnails">
 		<% @emails.each do | email | %>
-		<li class="span3"><a href="<%= url2png_image_url(gallery_url(email)) %>" class="thumbnail" target="emailgallery<%= email.id %>"><img alt="<%= email.subject %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(gallery_url(email)) %>" class="lazy"></a></li>
+		<li class="span3"><a href="<%= url2png_image_url(gallery_url(email)) %>" class="thumbnail" target="emailgallery<%= email.id %>"><img alt="<%= email.subject %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(gallery_url(email), '260x180') %>" class="lazy" width="260" height="180"></a></li>
 		<% end %>
 	</ul>
 </div>

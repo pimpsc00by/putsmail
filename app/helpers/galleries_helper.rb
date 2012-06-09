@@ -5,8 +5,8 @@ module GalleriesHelper
   #   image_tag "http://api.url2png.com/v3/#{Url2png.api_key}/#{security_hash(url)}/400x300/#{url}"
   # end
   
-  def url2png_image_url url
-    "http://api.url2png.com/v3/#{Url2png.api_key}/#{security_hash(url)}/FULL/#{url}"
+  def url2png_image_url url, bounds='FULL'
+    "http://api.url2png.com/v3/#{Url2png.api_key}/#{security_hash(url)}/#{bounds}/#{url}"
   end
   
   private
