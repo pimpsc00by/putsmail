@@ -1,7 +1,7 @@
 <div class="span9">
 	<ul class="thumbnails">
 		<% @emails.each do | email | %>
-		<li class="span3"><%= link_to url2png_image_tag(gallery_url(email)), url2png_image_url(gallery_url(email)), target: 'blank' %></li>
+		<li class="span3"><%= link_to url2png_image_tag(gallery_url(email)), url2png_image_url(gallery_url(email)), target: "emailgallery#{email.id}" %></li>
 		<% end %>
 	</ul>
 </div>
