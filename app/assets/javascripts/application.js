@@ -17,6 +17,7 @@
 //= require mode/htmlmixed/htmlmixed
 //= require jquery.smooth-scroll
 //= require jquery.lazyload.min
+//= require jquery.prettyPhoto.js
 //= require putsmail
 //= require_tree ../templates
 //= require_tree ./models

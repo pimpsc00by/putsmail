@@ -6,3 +6,5 @@ $ ->
     threshold: 200
   })
   $(window).scroll()
+  $("a[rel^='prettyPhoto']").prettyPhoto(social_tools: "", overlay_gallery: false)
+
