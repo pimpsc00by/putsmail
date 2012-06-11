@@ -19,6 +19,7 @@ class Api::TestMailsController < ApplicationController
   def add_to_gallery
     test_mail = TestMail.find_by_token cookies[:last_test_mail_id]
     test_mail.update_attributes(params[:test_mail])
+    test_mail.in_gallery = true
     respond_with test_mail
   end
 
