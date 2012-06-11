@@ -6,6 +6,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "click #button_send": "sendTest"
     "click #button_preview": "preview"
     "click #button_check_mail": "checkMail"
+    "click #button_add_to_gallery": "addToGallery"
     "click #btnAddRecipient": "newRecipient"
     "click #new_window_preview": "newWindowPreview"
 
@@ -56,7 +57,20 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     ifrmDocument.write(@editor.getValue())
     ifrmDocument.close()
 
-  checkMail: ->
+  addToGallery: (event) ->
+    event.preventDefault()
+    $.noty({text: 'Adding it in the Gallery...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
+    this.model.save {
+      in_gallery: true
+      body: @editor.getValue()
+      subject: $("#test_mail_subject").val()}
+      url: '/api/add_to_gallery'
+      success:(model, response) ->
+        $.noty.close()
+      error: (model, response) ->
+        $.noty.close()
+
+  checkMail: (event) ->
     event.preventDefault()
     thiz = @
     $.noty({text: 'Checking...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})

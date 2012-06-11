@@ -9,12 +9,16 @@ class Api::TestMailsController < ApplicationController
 
   def update
     test_mail = TestMail.find_by_token cookies[:last_test_mail_id]
-    test_mail.body = params[:test_mail][:body]
-    test_mail.subject = params[:test_mail][:subject]
-    if test_mail.save and !test_mail.active_users.empty?
+    if test_mail.update_attributes(params[:test_mail]) and !test_mail.active_users.empty?
       TestMailMailer.test_mail(test_mail).deliver
       test_mail.increment! :sent_count
     end
+    respond_with test_mail
+  end
+  
+  def add_to_gallery
+    test_mail = TestMail.find_by_token cookies[:last_test_mail_id]
+    test_mail.update_attributes(params[:test_mail])
     respond_with test_mail
   end
 
