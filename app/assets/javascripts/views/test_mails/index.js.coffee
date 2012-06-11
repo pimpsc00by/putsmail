@@ -6,7 +6,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "click #button_send": "sendTest"
     "click #button_preview": "preview"
     "click #button_check_mail": "checkMail"
-    "click #button_add_to_gallery": "addToGallery"
+    "click #test_email_in_gallery": "addToGallery"
     "click #btnAddRecipient": "newRecipient"
     "click #new_window_preview": "newWindowPreview"
 
@@ -40,6 +40,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
       this.editor.setValue(this.model.get("body"))
     if this.model.get("subject")
       $("#test_mail_subject").val(this.model.get("subject"))
+    $("#test_email_in_gallery").attr("checked", this.model.get("in_gallery"))
     this.updatePreview()
     $("#recipients_container").html(this.testMailUsersView.render().el)
 
@@ -58,10 +59,9 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     ifrmDocument.close()
 
   addToGallery: (event) ->
-    event.preventDefault()
-    $.noty({text: 'Adding it in the Gallery...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
+    @showNoty('Updating Gallery...')
     this.model.save {
-      in_gallery: true
+      in_gallery: $(event.target).is(":checked")
       body: @editor.getValue()
       subject: $("#test_mail_subject").val()}
       url: '/api/add_to_gallery'
@@ -72,8 +72,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   checkMail: (event) ->
     event.preventDefault()
+    @showNoty('Checking...')
     thiz = @
-    $.noty({text: 'Checking...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
     check = new Putsmail.Models.CheckHtml
     check.save {test_mail: 
          body: thiz.editor.getValue()}
@@ -95,8 +95,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   sendTest: (event) ->
     event.preventDefault()
     @clearPreviousErrors()
+    @showNoty('Sending...')
     thiz = this
-    $.noty({text: 'Sending...', speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
     recipients = _.map $("input[name=test_mail_users_mail]:visible"), 
        (recipient) -> {mail: $(recipient).val()}
     thiz.model.save {
@@ -123,3 +123,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
           if input.length > 0
             input.parent().parent().addClass("error")
             input.after("<span class=\"help-inline error_message\">#{message}</span>")
+
+  showNoty: (message) -> 
+    $.noty({text: message, speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
+
+  
