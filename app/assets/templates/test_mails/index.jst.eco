@@ -67,6 +67,15 @@
 			</label>
 		</div>
 	</div>
+	<div class="control-group">
+		<label class="control-label" for="optionsCheckbox">Check your HTML</label>
+		<div class="controls">
+			<label class="checkbox">
+				<input type="checkbox" id="test_email_make_css_inline" name="test_email_make_css_inline" checked="checked">
+				Make the CSS inline when 'Check your HTML'.
+			</label>
+		</div>
+	</div>
 	<div class="form-actions">
 		<button type="button" class="btn" id="button_check_mail">Check your HTML</button>
 		<button type="button" class="btn btn-primary" id="button_send">Send</button>

@@ -79,7 +79,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
          body: thiz.editor.getValue()}
       wait: true
       success:(model, response) ->
-        thiz.editor.setValue(model.get("body"))
+        if $('#test_email_make_css_inline').is(':checked')
+           thiz.editor.setValue(model.get("body"))
         checkHtmlView = new Putsmail.Views.CheckHtmlsCreate(model: model)
         $("#html_warnings").html(checkHtmlView.render().el)
         $.noty.close()
