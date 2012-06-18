@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618151002) do
+ActiveRecord::Schema.define(:version => 20120618151839) do
 
   create_table "test_mail_users", :force => true do |t|
     t.integer  "test_mail_id"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(:version => 20120618151002) do
     t.datetime "updated_at"
     t.boolean  "active",       :default => true
   end
+
+  add_index "test_mail_users", ["test_mail_id"], :name => "index_test_mail_users_on_test_mail_id"
+  add_index "test_mail_users", ["user_id"], :name => "index_test_mail_users_on_user_id"
 
   create_table "test_mails", :force => true do |t|
     t.datetime "created_at"
@@ -41,5 +44,7 @@ ActiveRecord::Schema.define(:version => 20120618151002) do
     t.datetime "updated_at"
     t.boolean  "subscribed", :default => true
   end
+
+  add_index "users", ["token"], :name => "index_users_on_token"
 
 end
