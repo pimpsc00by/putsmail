@@ -5,13 +5,11 @@ class User < ActiveRecord::Base
   has_many :test_mail_users, :dependent => :destroy
   
   before_create :set_or_reset_token
-  before_create :set_default_subscribed_value
-  
+    
   def self.unsubscribe token
     user = User.find_by_token token
     if user
-      user.subscribed = false
-      user.save
+      user.update_attributes subscribed: false
     end
   end
   
@@ -27,9 +25,4 @@ class User < ActiveRecord::Base
     # http://www.ruby-doc.org/core/classes/Time.html#M000392
     Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
   end
-  
-  def set_default_subscribed_value
-    self.subscribed = true
-  end
-  
 end
