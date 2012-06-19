@@ -40,10 +40,10 @@ describe User do
 
   describe 'Subscriptions' do
     it 'should unsubscribe' do
-      # user = Factory(:user, subscribed: true)
-      # User.unsubscribe user.token
-      # user.reload
-      # user.subscribed.should be_false
+      user = Factory(:user, subscribed: true)
+      User.unsubscribe user.token
+      user.reload
+      user.subscribed.should be_false
     end
   end
 

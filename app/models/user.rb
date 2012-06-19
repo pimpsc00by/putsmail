@@ -20,9 +20,8 @@ class User < ActiveRecord::Base
   end
   
   def generate_token(param)
-    # write_attribute :token, self.mail.crypt((rand * 1000).to_s)
-    # write_attribute :token, Digest::MD5.hexdigest(self.mail)
     # http://www.ruby-doc.org/core/classes/Time.html#M000392
-    Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s)
+    # http://stackoverflow.com/a/6591427/464685
+    Digest::MD5.hexdigest(param + rand.to_s + Time.now.strftime('%9N').to_s).encode('UTF-8')
   end
 end
