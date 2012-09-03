@@ -5,7 +5,7 @@
 $ ->
   $("#btn_back_to_top").click (event) -> 
     event.preventDefault()
-    $.smoothScroll({speed: 500})
+    $.smoothScroll(speed: 500)
   $("#btn_new_test_mail").click (event) ->
     event.preventDefault()
     $("#test_mail_form_container").data("id", "")

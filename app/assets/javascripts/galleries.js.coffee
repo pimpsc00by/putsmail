@@ -2,9 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ -> 
-  $('img.lazy').lazyload({
-    threshold: 200
-  })
+  $("img.lazy").lazyload(threshold: 200)
   $(window).scroll()
   $("a[rel^='prettyPhoto']").prettyPhoto(social_tools: "", overlay_gallery: false)
 

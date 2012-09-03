@@ -1,16 +1,16 @@
 <div class="container" id="test_mail_form_container">
-	<div class="span10">
-		<ul class="thumbnails">
-			<% @emails.each do | email | %>
-			<li class="span3">
-				<div class="thumbnail">
-					<a href="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i)) %>" class="thumbnail" target="emailgallery<%= email.id %>" rel="prettyPhoto[gallery]"><img alt="<%= email.subject %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i), '260x180') %>" class="lazy" width="260" height="180"></a>
-					<div class="caption">
-						<h5><%= link_to email.subject, test_mail_url(email), target: "emailhtmlgallery#{email.id}" %></h5>
-					</div>
-				</div>
-			</li>
-			<% end %>
-		</ul>
-	</div>
+  <div class="span10">
+    <ul class="thumbnails">
+      <% @emails.each do | email | %>
+        <li class="span3">
+        <div class="thumbnail">
+          <a href="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i)) %>" class="thumbnail" rel="prettyPhoto[gallery]"><img alt="<%= email.subject %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i), '260x180') %>" class="lazy" width="260" height="180"></a>
+          <div class="caption">
+            <h5><%= link_to email.subject, test_mail_url(email) %></h5>
+          </div>
+        </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

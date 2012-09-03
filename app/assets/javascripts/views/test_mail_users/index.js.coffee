@@ -1,9 +1,9 @@
 class Putsmail.Views.TestMailUsersIndex extends Backbone.View
 
-  template: JST['test_mail_users/index']
+  template: JST["test_mail_users/index"]
 
   initialize: ->
-    @collection.on('reset', @render, this)
+    @collection.on("reset", @render, this)
     @collection.on("add", @addTestMailUser, this)
 
   addTestMailUser:(model) ->
@@ -14,3 +14,4 @@ class Putsmail.Views.TestMailUsersIndex extends Backbone.View
     $(@el).html(@template(collection: @collection))
     @collection.each(@addTestMailUser)
     this
+

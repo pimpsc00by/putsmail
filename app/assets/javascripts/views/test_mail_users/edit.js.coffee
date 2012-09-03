@@ -1,6 +1,6 @@
 class Putsmail.Views.TestMailUsersEdit extends Backbone.View
 
-  template: JST['test_mail_users/edit']
+  template: JST["test_mail_users/edit"]
   tagName: "tr"
 
   events:
@@ -14,7 +14,7 @@ class Putsmail.Views.TestMailUsersEdit extends Backbone.View
 
   activeDeactive:(event) ->
     obj = $(event.target)
-    @model.set({active: obj.is(":checked")})
+    @model.set(active: obj.is(":checked"))
     @model.save()
 
   render: ->

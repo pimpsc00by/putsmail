@@ -1,6 +1,6 @@
 class Putsmail.Views.TestMailsIndex extends Backbone.View
 
-  template: JST['test_mails/index']
+  template: JST["test_mails/index"]
 
   events:
     "click #button_send": "sendTest"
@@ -11,14 +11,14 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "click #new_window_preview": "newWindowPreview"
 
   initialize: ->
-    this.bind('rendered', this.afterRender, this);
+    this.bind("rendered", this.afterRender, this);
     this.testMailUsersCollection = new Putsmail.Collections.TestMailUsers()
     this.testMailUsersView = new Putsmail.Views.TestMailUsersIndex(collection: this.testMailUsersCollection)
     this.testMailUsersCollection.fetch()
 
   newWindowPreview: (event) ->
     event.preventDefault() 
-    preview = window.open('', 'puts_mail_preview')
+    preview = window.open("", "puts_mail_preview")
     preview.document.write(@editor.getValue())
     preview.focus()
 
@@ -27,11 +27,11 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     this.testMailUsersCollection.create {test_mail_id: this.model.id, mail: $("#test_mail_users0").val(), active: true},
       wait: true
       success: -> 
-        $('#test_mail_users0').val("")
-        $('#test_mail_users0').focus()
+        $("#test_mail_users0").val("")
+        $("#test_mail_users0").focus()
       error: ->
-        $('#test_mail_users0').val("")
-        $('#test_mail_users0').focus()
+        $("#test_mail_users0").val("")
+        $("#test_mail_users0").focus()
 
   afterRender: ->
     this.editor = CodeMirror.fromTextArea document.getElementById("test_mail_body"), 
@@ -49,7 +49,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     this
 
   updatePreview: =>
-    ifrm = document.getElementById('body_preview')
+    ifrm = document.getElementById("body_preview")
     if ifrm.contentWindow
       ifrmDocument = ifrm.contentWindow.document
     else 
@@ -59,12 +59,12 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     ifrmDocument.close()
 
   addToGallery: (event) ->
-    @showNoty('Updating Gallery...')
+    @showNoty("Updating Gallery...")
     this.model.save {
       in_gallery: $(event.target).is(":checked")
       body: @editor.getValue()
       subject: $("#test_mail_subject").val()}
-      url: '/api/add_to_gallery'
+      url: "/api/add_to_gallery"
       success:(model, response) ->
         $.noty.close()
       error: (model, response) ->
@@ -72,14 +72,14 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   checkMail: (event) ->
     event.preventDefault()
-    @showNoty('Checking...')
+    @showNoty("Checking...")
     thiz = @
     check = new Putsmail.Models.CheckHtml
     check.save {test_mail: 
          body: thiz.editor.getValue()}
       wait: true
       success:(model, response) ->
-        if $('#test_email_make_css_inline').is(':checked')
+        if $("#test_email_make_css_inline").is(":checked")
            thiz.editor.setValue(model.get("body"))
         checkHtmlView = new Putsmail.Views.CheckHtmlsCreate(model: model)
         $("#html_warnings").html(checkHtmlView.render().el)
@@ -96,7 +96,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   sendTest: (event) ->
     event.preventDefault()
     @clearPreviousErrors()
-    @showNoty('Sending...')
+    @showNoty("Sending...")
     thiz = this
     recipients = _.map $("input[name=test_mail_users_mail]:visible"), 
        (recipient) -> {mail: $(recipient).val()}
@@ -126,6 +126,4 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
             input.after("<span class=\"help-inline error_message\">#{message}</span>")
 
   showNoty: (message) -> 
-    $.noty({text: message, speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux"})
-
-  
+    $.noty(text: message, speed: 100, closeable: true, type: "alert", layout: "topRight", timeout: false, theme: "mitgux")
