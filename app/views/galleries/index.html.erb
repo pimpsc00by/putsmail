@@ -2,7 +2,7 @@
   <div class="span10">
     <ul class="thumbnails">
       <% @emails.each do | email | %>
-        <li class="span3" style="<%= cycle "", "", "",  "clear:both" %>">
+        <li class="span3" style="<%= cycle "clear:both", "", "" %>">
         <div class="thumbnail">
           <a href="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i)) %>" class="thumbnail" rel="prettyPhoto[gallery]"><img alt="<%= email.subject %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i), '260x180') %>" class="lazy" width="260" height="180"></a>
           <div class="caption">
