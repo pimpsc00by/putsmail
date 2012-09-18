@@ -1,93 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Puts Mail - It's a mail test tool to test your mails before sending them</title>
-  <meta name="description" content="Puts Mail - The main idea of this tool is to test HTML mails that will be sent as campaigns, newsletters and others (please, don't use it to spam, help us to make a better world)"/>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-	<script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-20856841-1']);
-	  _gaq.push(['_trackPageview']);
+  <head>
+    <title>Puts Mail - It's a mail test tool to test your mails before sending them</title>
+    <meta name="description" content="Puts Mail - The main idea of this tool is to test HTML mails that will be sent as campaigns, newsletters and others (please, don't use it to spam, help us to make a better world)"/>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20856841-1']);
+      _gaq.push(['_trackPageview']);
 
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	</script>
-	<script type="text/javascript">var switchTo5x=true;</script>
-	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "3c0bc034-4948-42bc-9a66-468c9eca824c"}); </script>
-</head>
-<body>
-	<div id="fb-root"></div>
-	<script type="text/javascript_TEMP">(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=242262269176125";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	
-<a href="https://github.com/phstc/putsmail.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+</script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "3c0bc034-4948-42bc-9a66-468c9eca824c"}); </script>
+<% if params[:path].present? %>
+  <meta name="robots" content="nofollow" />
+<% end %>
+   </head>
+   <body>
+     <div id="fb-root"></div>
+     <script type="text/javascript_TEMP">(function(d, s, id) {
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) return;
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=242262269176125";
+       fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));</script>
+
+     <a href="https://github.com/phstc/putsmail.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
 
 
-<div class="container">
-		<div class="page-header">
-			<div class="row">
-				<div class="span7">
-					<h1><a href="/">Puts Mail</a> <small>It's a mail test tool to test your HTML mails before sending them.</small></h1>
-					<!--
-					<div class="alert alert-info">Hey Guys, I'm looking for a job overseas. If you know a good job opportunity for a Ruby Developer, with long Java EE background, I will appreciate if you can share it with me <a href="mailto:pablo@pablocantero.com">pablo@pablocantero.com</a> / <a href="http://linkedin.com/in/pablocantero" target="_blank">linkedin.com/in/pablocantero</a>.</div>
-					-->
-				</div>
-				<div class="span2">
-					<a href="/" id="btn_new_test_mail" class="btn-medium btn btn-success" style="font-size: 18px">New Test Mail<br/><span style="font-size: 12px">It will generate a new token</span></a>
-				</div>
-				<div class="span2">
-					<a href="/gallery" class="btn-medium btn btn-info" style="font-size: 18px">Gallery<br/><span style="font-size: 12px">Awesome e-mails by users</span></a>
-				</div>
-			</div>
-		</div>
-	<%= yield %>
-	
-	<div class="footer">
-		<div class="row">
-			<div class="span4">
-				<h4>Who</h4>
-				<p>Developed by <a href="http://pablocantero.com">Pablo Cantero</a>.</p>
-				<p><a href="mailto:&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;">&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;</a></p>
-				<p><a href="http://twitter.com/pablocantero">@pablocantero</a>
-			</div>
-			<div class="span5">
-				<h4>People</h4>
-				<p>
-					<span class="label label-success">Tests sent: <%= number_with_delimiter @total_sent_count %></span>
-				</p>
-				<h4>Share</h4>
-				<p>	
-					<span class='st_twitter' displayText='Tweet' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
-					<span class="st_plusone" displayText='Facebook Recommend' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
-					<span class='st_email' displayText='Email' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
-					<span class='st_fbrec' displayText='Facebook Recommend' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
-				</p>
-			</div>
-			<div class="span3">
-				<p class="pull-right"><a href="#" id="btn_back_to_top">Back to top</a></p>
-			</div>
-		</div>
-	</div>
-</div>
+     <div class="container">
+       <div class="page-header">
+         <div class="row">
+           <div class="span7">
+             <h1><a href="/">Puts Mail</a> <small>It's a mail test tool to test your HTML mails before sending them.</small></h1>
+             <!--
+             <div class="alert alert-info">Hey Guys, I'm looking for a job overseas. If you know a good job opportunity for a Ruby Developer, with long Java EE background, I will appreciate if you can share it with me <a href="mailto:pablo@pablocantero.com">pablo@pablocantero.com</a> / <a href="http://linkedin.com/in/pablocantero" target="_blank">linkedin.com/in/pablocantero</a>.</div>
+             -->
+           </div>
+           <div class="span2">
+             <a href="/" id="btn_new_test_mail" class="btn-medium btn btn-success" style="font-size: 18px" rel="nofollow">New Test Mail<br/><span style="font-size: 12px">It will generate a new token</span></a>
+           </div>
+           <div class="span2">
+             <a href="/gallery" class="btn-medium btn btn-info" style="font-size: 18px">Gallery<br/><span style="font-size: 12px">Awesome e-mails by users</span></a>
+           </div>
+         </div>
+       </div>
+       <%= yield %>
 
-<script type="text/javascript">
-  var uvOptions = {};
-  (function() {
-    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/CO2c8Hj1kTkcbnAqhI6lqw.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-  })();
+       <div class="footer">
+         <div class="row">
+           <div class="span4">
+             <h4>Who</h4>
+             <p>Developed by <a href="http://pablocantero.com">Pablo Cantero</a>.</p>
+             <p><a href="mailto:&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;">&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;</a></p>
+             <p><a href="http://twitter.com/pablocantero">@pablocantero</a>
+           </div>
+           <div class="span5">
+             <h4>People</h4>
+             <p>
+             <span class="label label-success">Tests sent: <%= number_with_delimiter @total_sent_count %></span>
+             </p>
+             <h4>Share</h4>
+             <p>	
+             <span class='st_twitter' displayText='Tweet' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
+             <span class="st_plusone" displayText='Facebook Recommend' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
+             <span class='st_email' displayText='Email' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
+             <span class='st_fbrec' displayText='Facebook Recommend' st_url="http://putsmail.com" st_title="Puts Mail is a really cool tool to test your HTML emails before sending them. I recommend it."></span>
+             </p>
+           </div>
+           <div class="span3">
+             <p class="pull-right"><a href="#" id="btn_back_to_top">Back to top</a></p>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <script type="text/javascript">
+       var uvOptions = {};
+(function() {
+ var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+ uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/CO2c8Hj1kTkcbnAqhI6lqw.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+ })();
 </script>
 
 </body>
