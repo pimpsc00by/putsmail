@@ -38,27 +38,27 @@ describe TestMail do
   describe "Public emails" do
     it "should ignore blank e-mail" do
       test_mail = Factory :test_mail, body: "", in_gallery: true
-      expect { TestMail.public_emails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
+      expect { TestMail.public_mails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
     end
     
     it "should ignore nil e-mail" do
       test_mail = Factory :test_mail, body: nil, in_gallery: true
-      expect { TestMail.public_emails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
+      expect { TestMail.public_mails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
     end
 
     it "should ignore default e-mail" do
       test_mail = Factory :test_mail, body: "<li>Do not use JavaScript.</li>", in_gallery: true
-      expect { TestMail.public_emails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
+      expect { TestMail.public_mails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
     end
     
     it "should not return valid body without in gallery" do
       test_mail = Factory :test_mail, body: "Valid body", in_gallery: false
-      expect { TestMail.public_emails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
+      expect { TestMail.public_mails.find(test_mail.id) }.to raise_error(ActiveRecord::RecordNotFound) 
     end
 
     it "should return a valid e-mail" do
       test_mail = Factory :test_mail, body: "Valid body", in_gallery: true
-      expect { TestMail.public_emails.find(test_mail.id) }.to_not raise_error(ActiveRecord::RecordNotFound) 
+      expect { TestMail.public_mails.find(test_mail.id) }.to_not raise_error(ActiveRecord::RecordNotFound) 
     end
   end
 end

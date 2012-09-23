@@ -1,7 +1,9 @@
 Putsmail::Application.routes.draw do
-  resources :test_mails, only: [:show]  
+  #resources :test_mails, only: [:show], as: :galleries
   
-  get 'gallery', to: 'galleries#index'
+  #get "gallery", to: "galleries#index"
+
+  resources :galleries, only: [:index, :show]
   
   post "subscription_listener/subscribe"
   post "subscription_listener/unsubscribe"
@@ -11,11 +13,11 @@ Putsmail::Application.routes.draw do
   root :to => "site#index"
   
   namespace :api do
-    put '/add_to_gallery', to: 'test_mails#add_to_gallery'
+    put "/add_to_gallery", to: "test_mails#add_to_gallery"
     resources :test_mails, only: [:create, :show, :update]
     resources :test_mail_users, only: [:create, :index, :show, :destroy, :update]
     resources :check_htmls, only: [:create]
   end
   
-  match '*path', to: 'site#index'
+  match "*path", to: "site#index"
 end

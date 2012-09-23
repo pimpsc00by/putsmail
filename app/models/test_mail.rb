@@ -11,7 +11,7 @@ class TestMail < ActiveRecord::Base
   
   validates_length_of :test_mail_users, maximum: 10
   
-  scope :public_emails, lambda { where('body != \'\' AND body IS NOT NULL AND body NOT LIKE ? AND in_gallery = ?', '%<li>Do not use JavaScript.</li>%', true).limit(21).order('updated_at DESC') }
+  scope :public_mails, lambda { where('body != \'\' AND body IS NOT NULL AND body NOT LIKE ? AND in_gallery = ?', '%<li>Do not use JavaScript.</li>%', true).limit(21).order('updated_at DESC') }
   
   def self.total_sent_count
     # 32977 isn't a magic number, it is the total sent in the Puts Mail V1
