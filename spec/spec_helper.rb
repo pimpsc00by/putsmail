@@ -11,7 +11,9 @@ Spork.prefork do
   # https://github.com/colszowka/simplecov/issues/42#issuecomment-4440284
   unless ENV["DRB"]
     require "simplecov"
-    SimpleCov.start "rails"
+    SimpleCov.start "rails" do
+      add_filter "/vender/ruby"
+    end
   end
 
   # This file is copied to spec/ when you run "rails generate rspec:install"
@@ -57,7 +59,9 @@ Spork.each_run do
   # https://github.com/colszowka/simplecov/issues/42#issuecomment-4440284
   if ENV["DRB"]
     require "simplecov"
-    SimpleCov.start "rails"
+    SimpleCov.start "rails" do
+      add_filter "/vender/ruby"
+    end
   end
   FactoryGirl.reload
 end

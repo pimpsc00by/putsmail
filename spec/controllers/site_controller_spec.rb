@@ -1,10 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe SiteController do
 
-  describe "GET 'index'" do
+  describe "#index" do
     it "returns http success" do
-      get 'index'
+      get "index"
       response.should be_success
     end
   end

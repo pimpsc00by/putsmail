@@ -1,44 +1,55 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Api::TestMailsController do
+  
+  let(:test_mail) { double("Test mail", token: "0") }
 
-  describe "POST 'create'" do
-    it "returns http success"
+  before do
+    test_mail.stub(:as_json).and_return({})
   end
 
-  describe "GET 'show'" do
+  describe "#create" do
+    it "creates test_mail" do
+      TestMail.should_receive(:create).and_return(test_mail)
+      post :create
+    end
+  end
+
+  describe "#show" do
     it "should show by token" do
-      test_mail = FactoryGirl.create :test_mail
-      get 'show', id: test_mail.token, :format => :json
-      response.body.should == test_mail.to_json
+      TestMail.should_receive(:find_by_token).with("0").and_return(test_mail)
+      get "show", id: "0", :format => :json
     end
   end
 
-  describe "PUT 'update'" do
+  describe "#update" do
 
-    before(:each) do
-      @test_mail = FactoryGirl.create :test_mail
-      @request.cookies[:last_test_mail_id] = @test_mail.token
+    let(:mailer) { double("Mailer") }
+
+    before do
+      @request.cookies[:last_test_mail_id] = "0"
     end
 
-    it "should send email" do
-      mailer = mock
+    it "sends email" do
       mailer.should_receive(:deliver)
       TestMailMailer.should_receive(:test_mail).once.and_return(mailer)
-      @test_mail.test_mail_users.create user: FactoryGirl.create(:user), active: true
-      put 'update', id: @test_mail.token, test_mail: {subject: "Test mail", body: "Hi"}, :format => :json
-      response.should be_success
+      TestMail.stub(:find_by_token).with("0").and_return(test_mail)
+      test_mail_params = {subject: "Test mail", body: "Hi"}
+      test_mail.stub(:update_attributes).with(hash_including(test_mail_params)).and_return(true)
+      test_mail.stub(active_users: [double("User")])
+      test_mail.stub(:increment!)
+      put "update", id: "0", test_mail: test_mail_params, :format => :json
     end
 
     it "should increment sent count" do
-      mailer = mock
-      mailer.should_receive(:deliver).once
-      TestMailMailer.should_receive(:test_mail).once.and_return(mailer)
-      @test_mail.test_mail_users.create user: FactoryGirl.create(:user), active: true
-      expect{
-        put 'update', id: @test_mail.id, test_mail: {subject: "Test mail", body: "Hi"}, :format => :json
-      }.to change{@test_mail.reload; @test_mail.sent_count.to_i}.by(1)
-      response.should be_success
+      mailer.stub(:deliver)
+      TestMailMailer.stub(:test_mail).once.and_return(mailer)
+      TestMail.stub(:find_by_token).with("0").and_return(test_mail)
+      test_mail_params = {subject: "Test mail", body: "Hi"}
+      test_mail.stub(:update_attributes).with(hash_including(test_mail_params)).and_return(true)
+      test_mail.stub(active_users: [double("User")])
+      test_mail.should_receive(:increment!)
+      put "update", id: "0", test_mail: test_mail_params, :format => :json
     end
   end
 end

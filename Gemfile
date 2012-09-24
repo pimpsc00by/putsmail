@@ -32,5 +32,5 @@ group :assets do
   gem "coffee-rails", " ~> 3.1.0"
   gem "uglifier"
   gem "twitter-bootstrap-rails"
-  gem "bootstrap-sass", "~> 2.0.1"
+#  gem "bootstrap-sass", "~> 2.0.1"
 end

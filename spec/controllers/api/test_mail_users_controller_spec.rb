@@ -27,14 +27,14 @@ describe Api::TestMailUsersController do
     it "adds to test_mail_users" do
       User.stub(:find_or_create_by_mail)
       .and_return(user)
-      test_mail_users.should_receive(:create).with(user_id: user.id).and_return(test_mail_user)
+      test_mail_users.should_receive(:create).with(user: user).and_return(test_mail_user)
       post "create", mail: "pablo@pablocantero.com", :format => :json
     end
 
     it "responds with json" do
       User.stub(:find_or_create_by_mail)
       .and_return(user)
-      test_mail_users.stub(:create).with(user_id: user.id).and_return(test_mail_user)
+      test_mail_users.stub(:create).with(user: user).and_return(test_mail_user)
       post "create", mail: "pablo@pablocantero.com", :format => :json
       expect(response.body).to eq "{}"
     end

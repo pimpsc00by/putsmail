@@ -9,7 +9,7 @@ class Api::TestMailsController < ApplicationController
 
   def update
     test_mail = TestMail.find_by_token cookies[:last_test_mail_id]
-    if test_mail.update_attributes(params[:test_mail]) and !test_mail.active_users.empty?
+    if test_mail.update_attributes(params[:test_mail]) && test_mail.active_users.any?
       TestMailMailer.test_mail(test_mail).deliver
       test_mail.increment! :sent_count
     end

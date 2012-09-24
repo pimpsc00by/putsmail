@@ -1,40 +1,35 @@
 require "spec_helper"
 
 describe TestMailMailer do
-  describe "Send email" do
-    let(:mail) do
-      @mail = FactoryGirl.create :test_mail, subject: "Test mail", body: "Hi"
-      @mail.test_mail_users.build user: FactoryGirl.create(:user, mail: "pablo@pablocantero.com")
-      @mail.save
-      TestMailMailer.test_mail @mail
-    end
 
-    it "renders the headers" do
-      mail.subject.should eq @mail.subject
-      mail.to.should eq [@mail.users.first.mail]
-      mail.from.should eq ["test@putsmail.com"]
-    end
+  describe "#test_mail" do
+    let(:test_mail) { FactoryGirl.create :test_mail, subject: "Test mail", body: "Hi" } 
+    let!(:user) { FactoryGirl.create(:user, mail: "pablo@pablocantero.com") }
+    let!(:test_mail_user) { test_mail.test_mail_users.create user: user }
+    subject(:mailer) { TestMailMailer.test_mail test_mail }
+
+    its(:subject) { should eq test_mail.subject }
+    its(:to) { should eq [test_mail.users.first.mail] }
+    its(:from) { should eq ["test@putsmail.com"] }
 
     it "renders the body" do
-      mail.body.encoded.should match(@mail.body)
+      mailer.body.encoded.should match(test_mail.body)
     end
 
     it "renders the token" do
-      mail.body.encoded.should match(@mail.token)
+      mailer.body.encoded.should match(test_mail.token)
     end
-  end  
 
-  describe "Recipients" do
-    let(:three_mail) do
-      @mail = FactoryGirl.create :test_mail, subject: "Test mail", body: "Hi"
-      @mail.test_mail_users.build user: FactoryGirl.create(:user)
-      @mail.test_mail_users.build user: FactoryGirl.create(:user)
-      @mail.test_mail_users.build user: FactoryGirl.create(:user)
-      @mail.save
-      TestMailMailer.test_mail @mail
-    end
-    it "should add more recipients" do
-      three_mail.to.should eq @mail.active_users.collect &:mail
-    end
+    context "multiple recipients" do
+      before do
+        test_mail.test_mail_users.create user: FactoryGirl.create(:user)
+        test_mail.test_mail_users.create user: FactoryGirl.create(:user)
+        test_mail.test_mail_users.create user: FactoryGirl.create(:user)
+      end
+
+      it "sends to all recipients" do
+        expect(mailer.to).to eq test_mail.active_users.collect &:mail
+      end
+    end  
   end
 end
