@@ -1,33 +1,36 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe SubscriptionListenerController do
 
-  describe "POST 'subscribe'" do
-    it "returns http success" do
-      user = Factory :user, subscribed: false
-      post 'subscribe', x_from_header: [user.mail]
-      user.reload
-      user.subscribed.should be_true
-      response.should be_success
+  let(:user_mail) { "pablo@pablocantero.com" }
+  let(:user) { double "User", mail: user_mail, :subscribed= => true, save: true }
+
+  before do
+    User.stub(:find_by_mail).with(user_mail).and_return(user)
+  end
+
+  describe "#subscribe" do
+    it "subscribes" do
+      user.should_receive(:update_attributes).with(subscribed: true)
+      post "subscribe", x_from_header: [user_mail]
     end
-    
-    it "should not fail with invalid mail" do
-      post 'subscribe', x_from_header: ["blah"]
+
+    it "ignores invalid user" do
+      User.stub(:find_by_mail).with("").and_return(nil)
+      post "subscribe", x_from_header: [""]
       response.should be_success
     end
   end
-  
-  describe "POST 'unsubscribe'" do
-    it "returns http success" do
-      user = Factory :user, subscribed: true
-      post 'unsubscribe', x_from_header: [user.mail]
-      user.reload
-      user.subscribed.should be_false
-      response.should be_success
+
+  describe "#unsubscribe" do
+    it "subscribes" do
+      user.should_receive(:update_attributes).with(subscribed: false)
+      post "unsubscribe", x_from_header: [user_mail]
     end
-    
-    it "should not fail with invalid mail" do
-      post 'unsubscribe', x_from_header: ["blah"]
+
+    it "ignores invalid user" do
+      User.stub(:find_by_mail).with("").and_return(nil)
+      post "unsubscribe", x_from_header: [""]
       response.should be_success
     end
   end

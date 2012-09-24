@@ -1,12 +1,12 @@
 <div class="container" id="test_mail_form_container">
   <div class="span10">
     <ul class="thumbnails">
-      <% @emails.each do | email | %>
+      <% @mails.each do | mail | %>
         <li class="span3" style="<%= cycle "clear:both", "", "" %>">
         <div class="thumbnail">
-          <a href="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i)) %>" class="thumbnail" rel="prettyPhoto[gallery]"><img alt="<%= email.subject %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(test_mail_url(email, updated_at: email.updated_at.to_i), '260x180') %>" class="lazy" width="260" height="180"></a>
+          <a href="<%= url2png_image_url(gallery_path(mail, updated_at: mail.updated_at.to_i)) %>" class="thumbnail" rel="prettyPhoto[gallery]"><img alt="<%= "Screenshot #{mail.id}" %>" src="/images/transparent.gif" data-original="<%= url2png_image_url(gallery_url(mail, updated_at: mail.updated_at.to_i), "260x180") %>" class="lazy" width="260" height="180"></a>
           <div class="caption">
-            <h5><%= link_to "HTML", test_mail_url(email) %></h5>
+            <h5><%= link_to "HTML", gallery_path(mail) %></h5>
           </div>
         </div>
         </li>

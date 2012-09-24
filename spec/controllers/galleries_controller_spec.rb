@@ -7,7 +7,7 @@ describe GalleriesController do
 
   before { TestMail.stub(public_mails: public_mails) }
 
-  context "#index" do
+  describe "#index" do
     it "loads all test_mails" do
       public_mails.should_receive(:all)
       get "index"
@@ -20,7 +20,7 @@ describe GalleriesController do
     end
   end
 
-  context "#show" do
+  describe "#show" do
     it "loads test_mail" do
       public_mails.should_receive(:find).with "0"
       get "show", id: 0

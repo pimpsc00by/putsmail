@@ -15,7 +15,7 @@ class Api::TestMailUsersController < ApplicationController
   end
   
   def index
-    respond_with @test_mail.test_mail_users
+    respond_with @test_mail.test_mail_users.all
   end
   
   def update
