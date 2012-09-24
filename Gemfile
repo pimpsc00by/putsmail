@@ -25,7 +25,6 @@ group :test do
   gem "assert_difference"
   gem "simplecov", :require => false
   gem "spork", "> 0.9.0.rc"
-  gem "mocha"
 end
 
 group :assets do
