@@ -6,26 +6,21 @@
   opacity: 0.5;
   display: none;
 }
-
 tr.risky {
-	color: #B94A48;
+  color: #B94A48;
 }
-
 tr.poor {
-	color: #C09853;
+  color: #C09853;
 }
-
 tr.safe {
-	 color: #468847;
+  color: #468847;
 }
-
-
 #body_preview {
-	overflow: auto;
-	height: 280px; 
-	width: 100%;
-	position: relative; 
-	border:0;
-	margin: 0;
-	padding: 0;
+  overflow: auto;
+  height: 280px; 
+  width: 100%;
+  position: relative; 
+  border:0;
+  margin: 0;
+  padding: 0;
 }

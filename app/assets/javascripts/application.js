@@ -6,7 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap
 //= require underscore-min
 //= require backbone-min
 //= require jquery.noty
