@@ -1,3 +1,5 @@
+App.site ||= {}
+
 window.Putsmail =
   Models: {}
   Collections: {}
@@ -5,8 +7,8 @@ window.Putsmail =
   Routers: {}
   init: -> 
     new Putsmail.Routers.TestMails
-    Backbone.history.start(pushState: true)
+    Backbone.history.start pushState: true
 
-$(document).ready ->
-  Putsmail.init()
-
+App.site["index"] = ->
+    $ ->
+      Putsmail.init()
