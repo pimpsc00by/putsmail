@@ -15,5 +15,5 @@ Putsmail::Application.routes.draw do
     resources :check_htmls, only: [:create]
   end
 
-  match "*path", to: "site#index"
+  match "/tests/:token", to: "site#index"
 end

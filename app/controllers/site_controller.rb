@@ -4,3 +4,4 @@ class SiteController < ApplicationController
     @total_sent_count = TestMail.total_sent_count
   end
 end
+

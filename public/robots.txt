@@ -2,8 +2,4 @@
 #
 # To ban all spiders from the entire site uncomment the next two lines:
 User-Agent: *
-Disallow: /19536718f7bf80639b0d5b03e119af
-Disallow: /d58ffa01c4b3e29123baab00754716
-Disallow: /903a6378014fbd4ccd1e304a83d7d7
-Disallow: /?to=ineedmyrice@hotmail.com&token=1076505
-Disallow: /91298f5c5112fa95a4fe8e150a7be2
+Disallow: /tests/
