@@ -6,6 +6,7 @@ describe Api::TestMailsController do
 
   before do
     test_mail.stub(:as_json).and_return({})
+    @request.cookies[:last_test_mail_id] = "0"
   end
 
   describe "#create" do
@@ -23,12 +24,7 @@ describe Api::TestMailsController do
   end
 
   describe "#update" do
-
     let(:mailer) { double("Mailer") }
-
-    before do
-      @request.cookies[:last_test_mail_id] = "0"
-    end
 
     it "sends email" do
       mailer.should_receive(:deliver)
@@ -50,6 +46,15 @@ describe Api::TestMailsController do
       test_mail.stub(active_users: [double("User")])
       test_mail.should_receive(:increment!)
       put "update", id: "0", test_mail: test_mail_params, :format => :json
+    end
+  end
+
+  describe "#add_to_gallery" do
+    it "adds to gallery" do
+      TestMail.stub(:find_by_token).with("0").and_return(test_mail)
+      test_mail.should_receive(:update_attributes).with(hash_including(in_gallery: true))
+
+      put "add_to_gallery", id: 0, test_mail: {in_gallery: true}
     end
   end
 end

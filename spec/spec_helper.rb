@@ -12,7 +12,7 @@ Spork.prefork do
   unless ENV["DRB"]
     require "simplecov"
     SimpleCov.start "rails" do
-      add_filter "/vender/ruby"
+      add_filter "/vendor/ruby"
     end
   end
 
@@ -60,7 +60,7 @@ Spork.each_run do
   if ENV["DRB"]
     require "simplecov"
     SimpleCov.start "rails" do
-      add_filter "/vender/ruby"
+      add_filter "/vendor/ruby"
     end
   end
   FactoryGirl.reload
