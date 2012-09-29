@@ -5,12 +5,7 @@ class SiteController < ApplicationController
   end
 
   def old_index
-    new_path = if token = params[:token]
-      "/tests/#{token}"
-    else
-      "/"
-    end
-    redirect_to new_path, status: 301
+    redirect_to "/tests/#{params[:token]}", status: 301
   end
 end
 
