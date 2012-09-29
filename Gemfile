@@ -18,6 +18,12 @@ group :development do
   gem "rspec-rails", "~> 2.4"
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "heroku"
+  gem "bullet"
+end
+
+group :development, :test do
+  gem "pry"
+  gem "pry-nav"
 end
 
 group :test do
