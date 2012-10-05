@@ -9,12 +9,13 @@ Putsmail::Application.routes.draw do
   root :to => "site#index"
 
   namespace :api do
-    put "/add_to_gallery", to: "test_mails#add_to_gallery"
-    resources :test_mails, only: [:create, :show, :update]
-    resources :test_mail_users, except: [:edit]
-    resources :check_htmls, only: [:create]
+    put "/add_to_gallery"      , to: "test_mails#add_to_gallery"
+    resources :test_mails      , only: [:create, :show, :update]
+    resources :test_mail_users , except: [:edit]
+    resources :check_htmls     , only: [:create]
   end
 
-  get "/tests/:token",  to: "site#index"
-  get "/:token",        to: "site#old_index"
+  get "/gallery"      , to: "site#old_gallery"
+  get "/tests/:token" , to: "site#index"
+  get "/:token"       , to: "site#old_index"
 end

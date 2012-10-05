@@ -4,6 +4,10 @@ class SiteController < ApplicationController
     @total_sent_count = TestMail.total_sent_count
   end
 
+  def old_gallery
+    redirect_to galleries_path, status: 301
+  end
+
   def old_index
     redirect_to "/tests/#{params[:token]}", status: 301
   end
