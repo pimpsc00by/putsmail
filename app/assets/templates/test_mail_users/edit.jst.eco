@@ -1,9 +1,21 @@
 <% if @model.get("user").subscribed: %>
-	<td><input type="checkbox" name="mail_active" id="mail_active<%= @model.get("id") %>" value="<%= @model.get("id") %>" <%= "checked" if @model.get("active") %>></td>
-	<td><label for="mail_active<%= @model.get("id") %>"><%= @model.get("user").mail %></label></td>
-	<td><span class="icon-remove-sign"></span></td>
+<td>
+  <input type="checkbox" name="mail_active" id="mail_active<%= @model.get("id") %>" value="<%= @model.get("id") %>" <%= "checked" if @model.get("active") %>>
+</td>
+<td>
+  <label for="mail_active<%= @model.get("id") %>"><%= @model.get("user").mail %></label>
+</td>
+<td>
+  <span class="icon-remove-sign"></span>
+</td>
 <% else: %>
-	<td><input type="checkbox" name="mail_active" id="mail_active<%= @model.get("id") %>" value="<%= @model.get("id") %>" disabled="disabled"></td>
-	<td><label for="mail_active<%= @model.get("id") %>"><del><%= @model.get("user").mail %></del></label></td>
-	<td><span class="icon-remove-sign"></span></td>
+<td>
+  <input type="checkbox" name="mail_active" id="mail_active<%= @model.get("id") %>" value="<%= @model.get("id") %>" disabled="disabled">
+</td>
+<td>
+  <label for="mail_active<%= @model.get("id") %>"><del><%= @model.get("user").mail %></del></label>
+</td>
+<td>
+  <span class="icon-remove-sign"></span>
+</td>
 <% end %>

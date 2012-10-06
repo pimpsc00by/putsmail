@@ -20,27 +20,27 @@ tr.safe {
 }
 
 #body_preview {
-  overflow: auto;
-  height: 280px; 
-  width: 100%;
-  position: relative; 
-  border:0;
-  margin: 0;
-  padding: 0;
+  overflow:  auto;
+  height:    280px;
+  width:     100%;
+  position:  relative;
+  border:    1px solid #fbeed5;
+  margin:    0;
+  padding:   0;
 }
 
 h1 {
-	font-size: 30px;
+  font-size: 30px;
 }
 
 h1 small {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .btn {
-	padding: 4px 10px 4px;
+  padding: 4px 10px 4px;
 }
 
 body {
-	font-size: 14px;
+  font-size: 14px;
 }

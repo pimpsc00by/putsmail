@@ -3,18 +3,27 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   template: JST["test_mails/index"]
 
   events:
-    "click #button_send": "sendTest"
-    "click #button_preview": "preview"
-    "click #button_check_mail": "checkMail"
-    "click #test_email_in_gallery": "addToGallery"
-    "click #btnAddRecipient": "newRecipient"
-    "click #new_window_preview": "newWindowPreview"
+    "click #button_send":               "sendTest"
+    "click #button_preview":            "preview"
+    "click #button_check_mail":         "checkMail"
+    "click #test_email_in_gallery":     "addToGallery"
+    "click #btnAddRecipient":           "newRecipient"
+    "click #new_window_preview":        "newWindowPreview"
+    "change #body_preview_resolution":  "changeResolution"
 
   initialize: ->
-    this.bind("rendered", this.afterRender, this);
+    this.bind "rendered", this.afterRender, this
     this.testMailUsersCollection = new Putsmail.Collections.TestMailUsers()
-    this.testMailUsersView = new Putsmail.Views.TestMailUsersIndex(collection: this.testMailUsersCollection)
+    this.testMailUsersView       = new Putsmail.Views.TestMailUsersIndex collection: this.testMailUsersCollection
     this.testMailUsersCollection.fetch()
+
+  changeResolution: ->
+    resolution = $("#body_preview_resolution").val()
+    resolution = resolution.split "x"
+    width  = resolution[0]
+    height = resolution[1]
+    $("#body_preview").css "width"  , if width  == "" then "100%" else "#{width}px"
+    $("#body_preview").css "height" , if height == "" then "100%" else "#{height}px"
 
   newWindowPreview: (event) ->
     event.preventDefault() 

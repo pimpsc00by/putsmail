@@ -1,83 +1,93 @@
 <form class="form-horizontal" action="/api/test_mails" method="post" name="form_test_email" id="form_test_email">
-	<div class="row">
-		<div class="span8">
-			<div class="control-group">
-				<label class="control-label" for="test_mail_recipient0">E-mail:</label>
-				<div class="controls">
-					<input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="50">
-					<a href="#" class="btn" id="btnAddRecipient">Add</a>
-					<p class="help-block">Enter a valid e-mail address.</p>
-					<div id="recipients_container"></div>
-					<p class="help-block">Maximum 10 e-mails.</p>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="input01">Subject:</label>
-				<div class="controls">
-					<input type="text" class="input-xlarge" id="test_mail_subject" name="subject" required="true" value="Untitled Test HTML" maxlength="100">
-				</div>
-			</div>
-		</div>
-		<div class="span4">
-			If you use it and like it, you're very welcome to buy me a beer as a small gesture of appreciation. Making a donation will motivate me to keep this project going on.
-			<br/>
-			Pay me a beer <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_send-money-transfer&send_method=domestic&nav=0.2.0">sending money</a> to <a href="mailto:&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;">&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;</a> with <a href="http://paypal.com">PayPal</a>.
-			<!--<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WNTLM6FAHU2SJ" target="_blank"><img src="/images/donate.png" border="0"><img src="/images/duff.png" border="0"></a>-->
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="textarea">Body:</label>
-		<div class="controls">
-			<textarea class="input-xxlarge" id="test_mail_body" name="body" rows="14">
-				<html>
-				<head>
-					<title>Awesome Email Marketing!</title>
-				</head>
-				<body>
-					<h1>Recommendations</h1>
-					<ul>
-						<li>Do not use JavaScript.</li>
-						<li>Write all css content inside the body. For the best results, CSS should be inline.</li>
-						<li>Make sure all your images are being referenced with absolute, not relative links.</li>
-					</ul>
-				</body>
-				</html>
-			</textarea>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="controls">
-			<div class="alert alert-block fade in" style="background-color: #FFF">
-				<a href="#" class="close" id="new_window_preview"><i class="icon-resize-vertical"></i></a>
-				<iframe id="body_preview"></iframe>
-			</div>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="controls">
-			<div id="html_warnings"></div>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="optionsCheckbox">Add to Gallery</label>
-		<div class="controls">
-			<label class="checkbox">
-				<input type="checkbox" id="test_email_in_gallery" name="test_email_in_gallery" checked="checked">
-				Show how awesome your e-mail is, share it adding to <a href="/gallery">Gallery</a>.
-			</label>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="optionsCheckbox">Check your HTML</label>
-		<div class="controls">
-			<label class="checkbox">
-				<input type="checkbox" id="test_email_make_css_inline" name="test_email_make_css_inline" checked="checked">
-				Make the CSS inline when 'Check your HTML'.
-			</label>
-		</div>
-	</div>
-	<div class="form-actions">
-		<button type="button" class="btn" id="button_check_mail">Check your HTML</button>
-		<button type="button" class="btn btn-primary" id="button_send">Send</button>
-	</div>
+  <div class="row">
+    <div class="span8">
+      <div class="control-group">
+        <label class="control-label" for="test_mail_recipient0">E-mail:</label>
+        <div class="controls">
+          <input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="50">
+          <a href="#" class="btn" id="btnAddRecipient">Add</a>
+          <p class="help-block">Enter a valid e-mail address.</p>
+          <div id="recipients_container"></div>
+          <p class="help-block">Maximum 10 e-mails.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input01">Subject:</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="test_mail_subject" name="subject" required="true" value="Untitled Test HTML" maxlength="100">
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      If you use it and like it, you're very welcome to buy me a beer as a small gesture of appreciation. Making a donation will motivate me to keep this project going on.
+      <br/>
+      Pay me a beer <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_send-money-transfer&send_method=domestic&nav=0.2.0">sending money</a> to <a href="mailto:&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;">&#112;&#097;&#098;&#108;&#111;&#064;&#112;&#097;&#098;&#108;&#111;&#099;&#097;&#110;&#116;&#101;&#114;&#111;&#046;&#099;&#111;&#109;</a> with <a href="http://paypal.com">PayPal</a>.
+      <!--<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WNTLM6FAHU2SJ" target="_blank"><img src="/images/donate.png" border="0"><img src="/images/duff.png" border="0"></a>-->
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="textarea">Body:</label>
+    <div class="controls">
+      <textarea class="input-xxlarge" id="test_mail_body" name="body" rows="14">
+        <html>
+          <head>
+            <title>Awesome Email Marketing!</title>
+          </head>
+          <body>
+            <h1>Recommendations</h1>
+            <ul>
+              <li>Do not use JavaScript.</li>
+              <li>Write all css content inside the body. For the best results, CSS should be inline.</li>
+              <li>Make sure all your images are being referenced with absolute, not relative links.</li>
+            </ul>
+          </body>
+        </html>
+      </textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="body_preview_resolution">Preview resolution:</label>
+    <div class="controls">
+      <select id="body_preview_resolution">
+        <option value="x280">Puts Mail default</option>
+        <option value="320x480">iPhone portrait 320 x 480</option>
+        <option value="768x1024">iPad portrait 768 x 1024</option>
+      </select>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <div style="background-color: #FFF; text-align: center">
+        <a href="#" class="close" id="new_window_preview"><i class="icon-resize-vertical"></i></a>
+        <iframe id="body_preview"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <div id="html_warnings"></div>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="optionsCheckbox">Add to Gallery</label>
+    <div class="controls">
+      <label class="checkbox">
+        <input type="checkbox" id="test_email_in_gallery" name="test_email_in_gallery" checked="checked">
+        Show how awesome your e-mail is, share it adding to <a href="/gallery">Gallery</a>.
+      </label>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="optionsCheckbox">Check your HTML</label>
+    <div class="controls">
+      <label class="checkbox">
+        <input type="checkbox" id="test_email_make_css_inline" name="test_email_make_css_inline" checked="checked">
+        Make the CSS inline when 'Check your HTML'.
+      </label>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="button" class="btn" id="button_check_mail">Check your HTML</button>
+    <button type="button" class="btn btn-primary" id="button_send">Send</button>
+  </div>
 </form>

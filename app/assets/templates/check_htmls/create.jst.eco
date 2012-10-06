@@ -1,23 +1,23 @@
 <% unless _.isEmpty @model.get("warnings"): %>
 <div class="alert alert-block fade in" style="background-color: #FFF">
-	<a class="close" data-dismiss="alert"><i class="icon-remove"></i></a>
-	<table class="warnings table table-bordered" bgcolor="#fff">
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Support</th>
-			  <th>Unsupported clients</th>
-		  </tr>
-	  </thead>
-		<tbody>
-		<% for warning in @model.get("warnings"): %>
-			<tr class="<%= warning.level.toLowerCase() %>">
-				<td><%= warning.message %></td>
-				<td><%= warning.level %></td>
-				<td><%= warning.clients %></td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
+  <a class="close" data-dismiss="alert"><i class="icon-remove"></i></a>
+  <table class="warnings table table-bordered" bgcolor="#fff">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Support</th>
+        <th>Unsupported clients</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for warning in @model.get("warnings"): %>
+      <tr class="<%= warning.level.toLowerCase() %>">
+        <td><%= warning.message %></td>
+        <td><%= warning.level %></td>
+        <td><%= warning.clients %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 <% end %>
