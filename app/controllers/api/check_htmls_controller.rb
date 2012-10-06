@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 require "check_html"
+
 class Api::CheckHtmlsController < ApplicationController
   respond_to :json
 

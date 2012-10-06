@@ -5,7 +5,7 @@
         <label class="control-label" for="test_mail_recipient0">E-mail:</label>
         <div class="controls">
           <input type="email" class="input-xlarge" id="test_mail_users0" name="test_mail_users_mail" maxlength="50">
-          <a href="#" class="btn" id="btnAddRecipient">Add</a>
+          <a href="#" class="btn" id="button_add_recipient">Add</a>
           <p class="help-block">Enter a valid e-mail address.</p>
           <div id="recipients_container"></div>
           <p class="help-block">Maximum 10 e-mails.</p>

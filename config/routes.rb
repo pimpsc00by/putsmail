@@ -15,7 +15,8 @@ Putsmail::Application.routes.draw do
     resources :check_htmls     , only: [:create]
   end
 
-  get "/gallery"      , to: "site#old_gallery"
-  get "/tests/:token" , to: "site#index"
-  get "/:token"       , to: "site#old_index"
+  get "/test_mails/:id" , to: "site#old_gallery_item"
+  get "/gallery"        , to: "site#old_gallery"
+  get "/tests/:token"   , to: "site#index"
+  get "/:token"         , to: "site#old_index"
 end

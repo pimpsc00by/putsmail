@@ -1,19 +1,24 @@
+# encoding: utf-8
 require "email_format_validator"
+
 class User < ActiveRecord::Base  
-  validates :mail, :uniqueness => true, :allow_nil => :false, :email_format => true, :allow_blank => false
+  validates :mail      , uniqueness: true   , allow_nil: false ,
+    email_format: true , allow_blank: false
 
   has_many :test_mail_users, :dependent => :destroy
 
-  before_create :set_or_reset_token
+  before_create :create_user_token
 
-  def self.unsubscribe token
-    user = User.find_by_token token
-    user.update_attributes subscribed: false if user
+  def subscribe!
+    update_attributes subscribed: true
+  end
+
+  def unsubscribe!
+    update_attributes subscribed: false
   end
 
   private
-
-  def set_or_reset_token
+  def create_user_token
     write_attribute :token, generate_token(mail)
   end
 

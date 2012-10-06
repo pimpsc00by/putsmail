@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618151839) do
+ActiveRecord::Schema.define(:version => 20121006145956) do
 
   create_table "test_mail_users", :force => true do |t|
     t.integer  "test_mail_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120618151839) do
     t.string   "token"
     t.integer  "sent_count",      :default => 0
     t.boolean  "in_gallery",      :default => true
-    t.boolean  "make_css_inline"
+    t.boolean  "make_css_inline", :default => true
   end
 
   add_index "test_mails", ["token"], :name => "index_test_mails_on_token", :unique => true
