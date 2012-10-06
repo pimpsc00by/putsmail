@@ -4,19 +4,17 @@ class Putsmail.Views.TestMailUsersEdit extends Backbone.View
   tagName: "tr"
 
   events:
-    "click span.icon-remove-sign": "destroy"
-    "change input[name=mail_active]": "activeDeactive"
+    "click span.icon-remove-sign":     "destroy"
+    "change input[name=mail_active]":  "activeDeactive"
 
   destroy: ->
-    thiz = this
-    @model.destroy success: ->
-      thiz.$el.remove()
+    @model.destroy success: =>
+      @$el.remove()
 
   activeDeactive:(event) ->
-    obj = $(event.target)
-    @model.set(active: obj.is(":checked"))
+    @model.set active: $(event.target).is(":checked")
     @model.save()
 
   render: ->
-    $(@el).html(@template(model: @model))
-    this
+    $(@el).html @template(model: @model)
+    @

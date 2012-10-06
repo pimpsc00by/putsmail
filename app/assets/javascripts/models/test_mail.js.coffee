@@ -3,5 +3,5 @@ class Putsmail.Models.TestMail extends Backbone.Model
 
   fetchByToken: (options) ->
     options ||= {}
-    options["url"] = "/api/test_mails/#{this.get("token")}"
-    this.fetch options
+    options["url"] = "/api/test_mails/#{@get("token")}"
+    @fetch options
