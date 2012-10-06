@@ -13,7 +13,7 @@ class SiteController < ApplicationController
   end
 
   def old_gallery_item
-    redirect_to "/test_mails/#{params[:id]}", status: 301
+    redirect_to "/galleries/#{params[:id]}", status: 301
   end
 end
 
