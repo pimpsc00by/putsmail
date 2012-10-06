@@ -21,6 +21,9 @@
      <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
      <script type="text/javascript">stLight.options({publisher: "3c0bc034-4948-42bc-9a66-468c9eca824c"}); </script>
      <%= raw dispatcher_tag %>
+     <% if params[:token] %>
+       <META name="robots" content="NOINDEX, NOFOLLOW" />
+     <% end %>
    </head>
    <body>
      <div id="fb-root"></div>
