@@ -28,21 +28,20 @@
   <div class="control-group">
     <label class="control-label" for="textarea">Body:</label>
     <div class="controls">
-      <textarea class="input-xxlarge" id="test_mail_body" name="body" rows="14">
-        <html>
-          <head>
-            <title>Awesome Email Marketing!</title>
-          </head>
-          <body>
-            <h1>Recommendations</h1>
-            <ul>
-              <li>Do not use JavaScript.</li>
-              <li>Write all css content inside the body. For the best results, CSS should be inline.</li>
-              <li>Make sure all your images are being referenced with absolute, not relative links.</li>
-            </ul>
-          </body>
-        </html>
-      </textarea>
+<textarea class="input-xxlarge" id="test_mail_body" name="body" rows="14">
+<html>
+  <head>
+    <title>Awesome Email Marketing!</title>
+  </head>
+  <body>
+    <h1>Recommendations</h1>
+    <ul>
+      <li>Do not use JavaScript.</li>
+      <li>Write all css content inside the body. For the best results, CSS should be inline.</li>
+      <li>Make sure all your images are being referenced with absolute, not relative links.</li>
+    </ul>
+  </body>
+</html></textarea>
     </div>
   </div>
   <div class="control-group">
