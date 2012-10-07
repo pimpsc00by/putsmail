@@ -24,7 +24,7 @@ tr.safe {
   height:    280px;
   width:     100%;
   position:  relative;
-  border:    1px solid #fbeed5;
+  border:    1px solid #DDD;
   margin:    0;
   padding:   0;
 }
@@ -43,4 +43,8 @@ h1 small {
 
 body {
   font-size: 14px;
+}
+
+.CodeMirror {
+  border: 1px solid #DDD;
 }
