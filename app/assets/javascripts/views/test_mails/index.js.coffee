@@ -19,11 +19,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
 
   changeResolution: (event) ->
     resolution = $(event.target).val()
-    resolution = resolution.split "x"
-    width  = resolution[0]
-    height = resolution[1]
-    $("#body_preview").css "width"  , if width  == "" then "100%" else "#{width}px"
-    $("#body_preview").css "height" , if height == "" then "100%" else "#{height}px"
+    $("#body_preview").attr "class", resolution
 
   newRecipient: (event) ->
     event.preventDefault()

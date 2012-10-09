@@ -48,9 +48,11 @@
     <label class="control-label" for="body_preview_resolution">Preview resolution:</label>
     <div class="controls">
       <select id="body_preview_resolution">
-        <option value="x280">Puts Mail default</option>
-        <option value="320x480">iPhone portrait 320 x 480</option>
-        <option value="768x1024">iPad portrait 768 x 1024</option>
+        <option value="desktop">Puts Mail default</option>
+        <option value="smartphone-portrait">Smartphone portrait 335x480</option>
+        <option value="smartphone-landscape">Smartphone landscape 495x320</option>
+        <option value="tablet-portrait">Tablet portrait 783x1024</option>
+        <option value="tablet-landscape">Tablet landscape 1039x768</option>
       </select>
     </div>
   </div>
@@ -58,7 +60,7 @@
     <div class="controls">
       <div style="background-color: #FFF; text-align: center">
         <a href="#" class="close" id="new_window_preview"><i class="icon-resize-vertical"></i></a>
-        <iframe id="body_preview"></iframe>
+        <iframe id="body_preview" class="desktop"></iframe>
       </div>
     </div>
   </div>
