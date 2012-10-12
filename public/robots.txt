@@ -5,3 +5,4 @@ User-Agent: *
 Disallow: /tests/
 Disallow: /javascripts/
 Disallow: /url/
+Disallow: /test_mails/
