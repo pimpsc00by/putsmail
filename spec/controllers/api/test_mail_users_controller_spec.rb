@@ -2,38 +2,38 @@ require "spec_helper"
 
 describe Api::TestMailUsersController do
 
-  let(:test_mail) { FactoryGirl.create :test_mail } 
-  let(:test_mail_users) { double("Test mail users") }
-  let(:test_mail_user) { double(TestMailUser.new, id: 0) }
-  let(:user) { double("user", id: 0) }
+  let(:test_mail)       { FactoryGirl.create :test_mail }
+  let(:test_mail_users) { double "Test mail users" }
+  let(:test_mail_user)  { stub_model TestMailUser, id: 0 }
+  let(:user)            { double "User", id: 0, model_name: "User" }
 
   before do
     @request.cookies[:last_test_mail_id] = test_mail.token
-    test_mail.stub(:test_mail_users).and_return(test_mail_users)
+    test_mail.stub test_mail_users: test_mail_users
     TestMail.stub(:find_by_token).with(test_mail.token).and_return(test_mail)
-    test_mail_user.stub(:as_json).and_return({})
-    test_mail_users.stub(:as_json).and_return({})
+    test_mail_user.stub as_json: {}
+    test_mail_users.stub as_json: {}
   end
 
   describe "#create" do
     it "creates an user" do
-      User.should_receive(:find_or_create_by_mail)
-      .with("pablo@pablocantero.com")
-      .and_return(user)
-      test_mail_users.stub(:create).and_return(test_mail_user)
+      User.should_receive(:find_or_create_by_mail).
+        with("pablo@pablocantero.com").
+        and_return(user)
+      test_mail_users.stub create: test_mail_user
       post "create", mail: "pablo@pablocantero.com", :format => :json
     end
 
     it "adds to test_mail_users" do
-      User.stub(:find_or_create_by_mail)
-      .and_return(user)
+      User.stub(:find_or_create_by_mail).
+        and_return(user)
       test_mail_users.should_receive(:create).with(user: user).and_return(test_mail_user)
       post "create", mail: "pablo@pablocantero.com", :format => :json
     end
 
     it "responds with json" do
-      User.stub(:find_or_create_by_mail)
-      .and_return(user)
+      User.stub(:find_or_create_by_mail).
+        and_return(user)
       test_mail_users.stub(:create).with(user: user).and_return(test_mail_user)
       post "create", mail: "pablo@pablocantero.com", :format => :json
       expect(response.body).to eq "{}"

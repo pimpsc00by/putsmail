@@ -6,7 +6,7 @@ class Api::TestMailUsersController < ApplicationController
   def create
     user = User.find_or_create_by_mail params[:mail]
     test_mail_user = @test_mail.test_mail_users.create user: user
-    respond_with test_mail_user, location: api_test_mail_user_url(test_mail_user)
+    respond_with :api, test_mail_user
   end
 
   def show

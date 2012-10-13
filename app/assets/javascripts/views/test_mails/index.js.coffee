@@ -8,6 +8,7 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     "click #test_email_in_gallery":       "saveGalleryPreferences"
     "click #test_email_make_css_inline":  "saveCSSPreferences"
     "click #button_add_recipient":        "newRecipient"
+    "keyup #test_mail_users0":            "newRecipientIfEnter"
     "click #new_window_preview":          "newWindowPreview"
     "change #body_preview_resolution":    "changeResolution"
 
@@ -20,6 +21,12 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
   changeResolution: (event) ->
     resolution = $(event.target).val()
     $("#body_preview").attr "class", resolution
+
+  newRecipientIfEnter: (event) ->
+    keycode = event.keyCode || event.which
+    if keycode == 13
+      @newRecipient event
+
 
   newRecipient: (event) ->
     event.preventDefault()
