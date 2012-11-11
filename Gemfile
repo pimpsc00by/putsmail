@@ -8,6 +8,7 @@ gem "active_attr"
 gem "backbone-on-rails"
 gem "newrelic_rpm"
 gem "url2png"
+gem "putsmail_pro", path: "putsmail_pro"
 
 
 group :production do
@@ -17,7 +18,6 @@ end
 group :development do
   gem "rspec-rails", "~> 2.4"
   gem "sqlite3-ruby", :require => "sqlite3"
-  gem "heroku"
   gem "bullet"
   gem "capybara"
 end

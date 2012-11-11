@@ -1,4 +1,6 @@
 Putsmail::Application.routes.draw do
+  mount PutsmailPro::Engine => "/pro"
+
   resources :galleries, only: [:index, :show]
 
   post "subscription_listener/subscribe"

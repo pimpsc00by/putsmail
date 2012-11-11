@@ -11,7 +11,7 @@ class Api::TestMailsController < ApplicationController
 
   def update
     test_mail = TestMail.find_by_token! cookies[:last_test_mail_id]
-    params[:test_mail][:dispatch]        = params[:dispatch] if params[:dispatch] # ???
+    params[:test_mail][:dispatch] = params[:dispatch] if params[:dispatch] # ???
     # params[:test_mail][:make_css_inline] = params[:make_css_inline] if params[:make_css_inline] # ???
     test_mail.update_attributes params[:test_mail]
     respond_with test_mail
@@ -29,3 +29,4 @@ class Api::TestMailsController < ApplicationController
     cookies[:last_test_mail_id] = {value: token, expires: 3.months.from_now}
   end
 end
+

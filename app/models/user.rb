@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :test_mail_users, :dependent => :destroy
 
+  has_many :test_mails
+
   before_create :create_user_token
 
   def subscribe!

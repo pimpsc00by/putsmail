@@ -55,6 +55,8 @@ class Putsmail.Views.TestMailsIndex extends Backbone.View
     $("#test_email_make_css_inline").attr "checked", @model.get("make_css_inline")
     $("#recipients_container").html @testMailUsersView.render().el
 
+    $("#login-container").html $("#login-view").html()
+
   render: ->
     $(@el).html @template(model: @model)
     @

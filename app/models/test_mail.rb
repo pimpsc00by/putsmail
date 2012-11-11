@@ -10,6 +10,8 @@ class TestMail < ActiveRecord::Base
 
   validates_length_of :test_mail_users, maximum: 10
 
+  belongs_to :user
+
   attr_accessor :dispatch
 
   scope :public_mails, (lambda do
